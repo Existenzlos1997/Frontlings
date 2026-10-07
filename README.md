@@ -6,7 +6,7 @@ Die D1-Datenbank **kaltmark** (id `924ae586-441e-4946-bd65-adc8e283ba80`) existi
 ## Weg A: per GitHub (ohne Terminal)
 1. Neues GitHub-Repo anlegen und den Inhalt dieses Ordners hochladen (`public/`, `src/`, `wrangler.jsonc`, `schema.sql`, `package.json`).
 2. Cloudflare-Dashboard → Workers & Pages → Create → Import a repository → Repo wählen.
-3. Name `kaltmark`, Deploy-Befehl `npx wrangler deploy` (Standard). Adresse danach: `https://kaltmark.<dein-name>.workers.dev`.
+3. Name `fortlings`, Deploy-Befehl `npx wrangler deploy` (Standard). Adresse danach: `https://fortlings.<dein-name>.workers.dev`.
 
 ## Weg B: per Terminal
 ```
