@@ -1,0 +1,9 @@
+{
+  "name": "kaltmark",
+  "main": "src/worker.js",
+  "compatibility_date": "2025-09-01",
+  "assets": { "directory": "./public", "binding": "ASSETS" },
+  "d1_databases": [
+    { "binding": "DB", "database_name": "kaltmark", "database_id": "924ae586-441e-4946-bd65-adc8e283ba80" }
+  ]
+}
