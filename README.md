@@ -39,3 +39,8 @@ Die Web-Version lässt sich mit **Capacitor** (kostenlos) in eine Android-/iOS-A
 - Echtzeit-PvP über einen Cloudflare **Durable Object** (`Lobby`, SQLite-basiert, im Gratis-Tarif enthalten). Konfiguration steht in `wrangler.jsonc` (`durable_objects` + `migrations`), Cloudflare richtet ihn beim automatischen Deploy selbst ein.
 - Ablauf: Spieler A sucht → wartet; Spieler B sucht → beide werden gepaart. A ist „Host“ und rechnet den Kampf, B sieht ihn gespiegelt und schickt nur seine Karten-Züge. Freundes-Live-Kampf: beide tippen beim Freund auf ⚡.
 - Verbindung: `wss://<adresse>/api/live?id=…&token=…`
+
+## Aufbau (ab Oktober 2026)
+- `game/` – Quelle: das ganze Spiel als **eine** HTML-Datei (läuft auch offline/als Einzeldatei) plus Service Worker, Manifest, Icons.
+- `public/` – **gebaute** Server-Version: `python3 tools/build.py game public` lagert die eingebetteten Bilder nach `public/a/` aus. Dadurch lädt die Seite schneller (HTML ~260 KB statt 2,3 MB) und Bilder werden einzeln zwischengespeichert.
+- Nach jeder Änderung an `game/index.html` den Build ausführen und beides einchecken; Cloudflare veröffentlicht `public/` automatisch.
