@@ -1,0 +1,5 @@
+Start both ['wolf', 'frosch']
+TRELLIS fehlgeschlagen wolf TypeError("Client.__init__() got an unexpected keyword argument 'hf_token'")
+TripoSR fehlgeschlagen wolf CalledProcessError(1, ['/opt/hostedtoolcache/Python/3.11.17/x64/bin/python', 'TripoSR/run.py', 'in3d/wolf_rgb.png', '--output-dir', 'tsr_wolf', '--model-save-format', 'glb', '--device', 'cpu', '--mc-resolution', '256', '--foreground-ratio', '0.85', '--no-remove-bg'])
+TRELLIS fehlgeschlagen frosch TypeError("Client.__init__() got an unexpected keyword argument 'hf_token'")
+TripoSR fehlgeschlagen frosch CalledProcessError(1, ['/opt/hostedtoolcache/Python/3.11.17/x64/bin/python', 'TripoSR/run.py', 'in3d/frosch_rgb.png', '--output-dir', 'tsr_frosch', '--model-save-format', 'glb', '--device', 'cpu', '--mc-resolution', '256', '--foreground-ratio', '0.85', '--no-remove-bg'])
