@@ -2,13 +2,19 @@
 <script type="importmap">{"imports":{"three":"/three.js/build/three.module.js","three/addons/":"/three.js/examples/jsm/"}}</script>
 <script type="module">
 import * as THREE from 'three';import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
-// Rendert ein animiertes GLB als Seitenansicht-Spritesheet (Frames je Clip)
-window.renderSheet=async(url,clips,frames,size)=>{const r=new THREE.WebGLRenderer({antialias:true,alpha:true,preserveDrawingBuffer:true});r.setSize(size,size);r.setClearColor(0,0);r.outputColorSpace=THREE.SRGBColorSpace;
- const sc=new THREE.Scene();sc.add(new THREE.HemisphereLight(0xfff4e0,0x5a3a90,2.2));const d=new THREE.DirectionalLight(0xffffff,2.4);d.position.set(3,5,4);sc.add(d);const rim=new THREE.DirectionalLight(0xb8a0ff,1.6);rim.position.set(-4,2,-3);sc.add(rim);
- const g=await new GLTFLoader().loadAsync(url),m=g.scene;sc.add(m);const box=new THREE.Box3().setFromObject(m),s=box.getSize(new THREE.Vector3()),c=box.getCenter(new THREE.Vector3());
- const h=Math.max(s.y,s.x*0.9)*1.15,cam=new THREE.OrthographicCamera(-h/2,h/2,h/2,-h/2,0.01,100);cam.position.set(c.x+10*Math.sin(Math.PI/2*0.8),box.min.y+h*0.48+h*0.08,c.z+10*Math.cos(Math.PI/2*0.8));cam.lookAt(c.x,box.min.y+h*0.48-h*0.02,c.z);
- const mix=new THREE.AnimationMixer(m),out=document.createElement('canvas');out.width=size*frames;out.height=size*clips.length;const o=out.getContext('2d'),names=g.animations.map(a=>a.name);
- for(let ci=0;ci<clips.length;ci++){const clip=g.animations.find(a=>a.name===clips[ci])||g.animations[0];mix.stopAllAction();const a=mix.clipAction(clip);a.reset().play();
-  for(let f=0;f<frames;f++){mix.setTime(clip.duration*f/frames);r.render(sc,cam);o.drawImage(r.domElement,f*size,ci*size)}}
- return {png:out.toDataURL('image/png'),names}};
+// Rendert ein animiertes GLB als Seitenansicht-Spritesheet: Zeilen = Animationen, Spalten = Einzelbilder. Figur schaut nach rechts.
+const pick=(names,res)=>{for(const re of res){const n=names.find(x=>re.test(x));if(n)return n}return null};
+window.renderSheet=async(url,frames,cell,yawDeg,elevDeg)=>{const r=new THREE.WebGLRenderer({antialias:true,alpha:true,preserveDrawingBuffer:true});r.setSize(cell,cell);r.setClearColor(0,0);r.outputColorSpace=THREE.SRGBColorSpace;r.toneMapping=THREE.ACESFilmicToneMapping;r.toneMappingExposure=1.15;
+ const sc=new THREE.Scene();sc.add(new THREE.HemisphereLight(0xfff4e0,0x6a4ab0,2.0));const k=new THREE.DirectionalLight(0xffffff,2.6);k.position.set(2,6,5);sc.add(k);const rim=new THREE.DirectionalLight(0xc8b0ff,2.2);rim.position.set(-5,3,-4);sc.add(rim);
+ const g=await new GLTFLoader().loadAsync(url),m=g.scene;sc.add(m);m.traverse(o=>{if(o.isMesh){o.frustumCulled=false;if(o.material){o.material.side=THREE.DoubleSide}}});
+ const names=g.animations.map(a=>a.name),map={idle:pick(names,[/idle/i,/breath/i,/stand/i]),walk:pick(names,[/walk/i,/run/i,/move/i,/trot/i]),atk:pick(names,[/attack/i,/punch/i,/bite/i,/slash/i,/strike/i,/swing/i,/kick/i,/hit(?!.*react)/i]),death:pick(names,[/death/i,/die/i,/dead/i,/fall/i])};
+ const rows=['idle','walk','atk','death'].filter(k=>map[k]);if(!rows.length&&g.animations.length){map.idle=names[0];rows.push('idle')}
+ const mix=new THREE.AnimationMixer(m);if(map.idle){mix.clipAction(g.animations.find(a=>a.name==map.idle)).play();mix.setTime(0)}m.updateMatrixWorld(true);
+ const box=new THREE.Box3().setFromObject(m),s=box.getSize(new THREE.Vector3()),c=box.getCenter(new THREE.Vector3()),h=Math.max(s.y,s.x,s.z)*1.45,yaw=yawDeg*Math.PI/180,el=elevDeg*Math.PI/180;
+ const cam=new THREE.OrthographicCamera(-h/2,h/2,h/2,-h/2,0.01,1000),tgt=new THREE.Vector3(c.x,box.min.y+h*0.42,c.z);cam.position.set(tgt.x+50*Math.sin(yaw)*Math.cos(el),tgt.y+50*Math.sin(el),tgt.z+50*Math.cos(yaw)*Math.cos(el));cam.lookAt(tgt);cam.updateMatrixWorld();
+ const pj=v=>{const p=v.clone().project(cam);return (1-(p.y+1)/2)};const foot=pj(new THREE.Vector3(c.x,box.min.y,c.z)),top=pj(new THREE.Vector3(c.x,box.max.y,c.z));
+ const out=document.createElement('canvas');out.width=cell*frames;out.height=cell*rows.length;const o=out.getContext('2d');
+ for(let ri=0;ri<rows.length;ri++){const clip=g.animations.find(a=>a.name===map[rows[ri]]);mix.stopAllAction();const a=mix.clipAction(clip);a.reset();if(rows[ri]=='death'){a.setLoop(THREE.LoopOnce);a.clampWhenFinished=true}a.play();
+  for(let f=0;f<frames;f++){const t=rows[ri]=='death'?clip.duration*f/(frames-1):clip.duration*f/frames;mix.setTime(t);r.render(sc,cam);o.drawImage(r.domElement,f*cell,ri*cell)}}
+ const rowIdx={};rows.forEach((k,i)=>rowIdx[k]=i);return {png:out.toDataURL('image/png'),names,map,meta:{n:frames,cell,rows:rowIdx,foot:+foot.toFixed(3),hgt:+(foot-top).toFixed(3)}}};
 </script></body></html>
