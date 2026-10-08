@@ -25,6 +25,11 @@ jobs:
           curl -sSf -H "Authorization: Bearer $TOKEN" https://frontlings.geldbeutel1997.workers.dev/api/apk/key > key.json
           PW=$(jq -r .pw key.json); echo "::add-mask::$PW"; echo "KS_PW=$PW" >> "$GITHUB_ENV"
           jq -r .ks key.json | base64 -d > android.keystore; rm key.json
+      - name: Android-SDK für Bubblewrap vorbereiten
+        run: |
+          [ -e "$ANDROID_HOME/tools" ] || sudo ln -s "$ANDROID_HOME/cmdline-tools/latest" "$ANDROID_HOME/tools"
+          ls "$ANDROID_HOME/tools/bin" | head
+          yes | "$ANDROID_HOME/tools/bin/sdkmanager" --licenses >/dev/null || true
       - name: App bauen
         env:
           VC: ${{ github.run_number }}
