@@ -1,0 +1,44 @@
+name: 3D-Modelle erzeugen
+on:
+  workflow_dispatch:
+    inputs:
+      ids:
+        description: 'Monster-IDs, mit Komma getrennt'
+        default: 'wolf,frosch'
+      mode:
+        description: 'trellis | tsr | both'
+        default: 'both'
+permissions:
+  contents: write
+jobs:
+  gen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Werkzeuge installieren
+        run: |
+          pip install -q gradio_client pillow
+          if [ "${{ inputs.mode }}" != "trellis" ]; then
+            pip install -q torch torchvision --index-url https://download.pytorch.org/whl/cpu
+            git clone -q --depth 1 https://github.com/VAST-AI-Research/TripoSR
+            pip install -q omegaconf==2.3.0 einops==0.7.0 transformers==4.35.0 trimesh==4.0.5 rembg huggingface-hub imageio[ffmpeg] xatlas==0.0.9 moderngl==5.10.0 git+https://github.com/tatsy/torchmcubes.git || true
+          fi
+      - name: Modelle erzeugen
+        env:
+          IDS: ${{ inputs.ids }}
+          MODE: ${{ inputs.mode }}
+        run: python tools/gen3d/gen.py || true
+      - name: Ergebnisse sichern
+        run: |
+          ls -la out3d || true
+          git config user.name "gen3d-bot"; git config user.email "gen3d-bot@users.noreply.github.com"
+          git fetch -q origin models-3d || true
+          mkdir -p /tmp/res && cp -r out3d/* /tmp/res/ 2>/dev/null || true
+          if git rev-parse -q --verify origin/models-3d >/dev/null; then git checkout -q -B models-3d origin/models-3d; else git checkout -q --orphan models-3d; git rm -rqf --cached . || true; fi
+          mkdir -p models; cp -r /tmp/res/* models/ 2>/dev/null || true
+          git add -f models; git commit -qm "3D-Modelle: ${{ inputs.ids }}" || true
+          git push -q origin models-3d
