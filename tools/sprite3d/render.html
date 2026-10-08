@@ -17,4 +17,12 @@ window.renderSheet=async(url,frames,cell,yawDeg,elevDeg)=>{const r=new THREE.Web
  for(let ri=0;ri<rows.length;ri++){const clip=g.animations.find(a=>a.name===map[rows[ri]]);mix.stopAllAction();const a=mix.clipAction(clip);a.reset();if(rows[ri]=='death'){a.setLoop(THREE.LoopOnce);a.clampWhenFinished=true}a.play();
   for(let f=0;f<frames;f++){const t=rows[ri]=='death'?clip.duration*f/(frames-1):clip.duration*f/frames;mix.setTime(t);r.render(sc,cam);o.drawImage(r.domElement,f*cell,ri*cell)}}
  const rowIdx={};rows.forEach((k,i)=>rowIdx[k]=i);return {png:out.toDataURL('image/png'),names,map,meta:{n:frames,cell,rows:rowIdx,foot:+foot.toFixed(3),hgt:+(foot-top).toFixed(3)}}};
+
+// Vorschau: mehrere Blickwinkel nebeneinander (zum Prüfen von Ausrichtung und Qualität)
+window.previewViews=async(url,cell,yaws,elevDeg)=>{const r=new THREE.WebGLRenderer({antialias:true,alpha:true,preserveDrawingBuffer:true});r.setSize(cell,cell);r.setClearColor(0x2a2255,1);r.outputColorSpace=THREE.SRGBColorSpace;r.toneMapping=THREE.ACESFilmicToneMapping;r.toneMappingExposure=1.15;
+ const sc=new THREE.Scene();sc.add(new THREE.HemisphereLight(0xfff4e0,0x6a4ab0,2.0));const k=new THREE.DirectionalLight(0xffffff,2.6);k.position.set(2,6,5);sc.add(k);const rim=new THREE.DirectionalLight(0xc8b0ff,2.2);rim.position.set(-5,3,-4);sc.add(rim);
+ const g=await new GLTFLoader().loadAsync(url),m=g.scene;sc.add(m);m.traverse(o=>{if(o.isMesh&&o.material)o.material.side=THREE.DoubleSide});const box=new THREE.Box3().setFromObject(m),s=box.getSize(new THREE.Vector3()),c=box.getCenter(new THREE.Vector3()),h=Math.max(s.x,s.y,s.z)*1.3,el=elevDeg*Math.PI/180;
+ const out=document.createElement('canvas');out.width=cell*yaws.length;out.height=cell;const o=out.getContext('2d');
+ yaws.forEach((yd,i)=>{const yaw=yd*Math.PI/180,cam=new THREE.OrthographicCamera(-h/2,h/2,h/2,-h/2,0.01,1000);cam.position.set(c.x+50*Math.sin(yaw)*Math.cos(el),c.y+50*Math.sin(el),c.z+50*Math.cos(yaw)*Math.cos(el));cam.lookAt(c);r.render(sc,cam);o.drawImage(r.domElement,i*cell,0)});
+ return {png:out.toDataURL('image/png'),size:[s.x,s.y,s.z]}};
 </script></body></html>
