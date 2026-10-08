@@ -1,44 +1,30 @@
-Start both ['wolf', 'frosch']
+Start trellis ['wolf', 'frosch']
 Loaded as API: https://trellis-community-trellis.hf.space
- Traceback (most recent call last):
-  File "/home/runner/work/Frontlings/Frontlings/tools/gen3d/trellis_one.py", line 11, in <module>
-    r = c.predict(image=handle_file(pre), multiimages=[], is_multiimage=False, seed=7, ss_guidance_strength=7.5, ss_sampling_steps=12, slat_guidance_strength=3, slat_sampling_steps=12, multiimage_algo='stochastic', mesh_simplify=0.95, texture_size=1024, api_name='/generate_and_extract_glb')
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/tmp/gc/lib/python3.11/site-packages/gradio_client/client.py", line 604, in predict
-    return self.submit(
-           ^^^^^^^^^^^^
-  File "/tmp/gc/lib/python3.11/site-packages/gradio_client/client.py", line 655, in submit
-    args = utils.construct_args(endpoint.parameters_info, args, kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/tmp/gc/lib/python3.11/site-packages/gradio_client/utils.py", line 1409, in construct_args
-    raise TypeError(
-TypeError: Parameter `is_multiimage` is not a valid key-word argument. Please click on 'view API' in the footer of the Gradio app to see usage.
-
-TRELLIS fehlgeschlagen wolf RuntimeError('TRELLIS-Aufruf fehlgeschlagen')
-Traceback (most recent call last):
-  File "/home/runner/work/Frontlings/Frontlings/tools/gen3d/gen.py", line 40, in <module>
-    trellis(i, png); say('TRELLIS ok', i, round(time.time() - t0), 's'); continue
-    ^^^^^^^^^^^^^^^
-  File "/home/runner/work/Frontlings/Frontlings/tools/gen3d/gen.py", line 23, in trellis
-    if r.returncode != 0 or not os.path.exists(f'out3d/{i}.glb'): raise RuntimeError('TRELLIS-Aufruf fehlgeschlagen')
-                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-RuntimeError: TRELLIS-Aufruf fehlgeschlagen
-
-TripoSR ok wolf 123 s
+ok out3d/wolf.glb
+ 
+TRELLIS ok wolf 21 s
 Loaded as API: https://trellis-community-trellis.hf.space
- Traceback (most recent call last):
-  File "/home/runner/work/Frontlings/Frontlings/tools/gen3d/trellis_one.py", line 11, in <module>
-    r = c.predict(image=handle_file(pre), multiimages=[], is_multiimage=False, seed=7, ss_guidance_strength=7.5, ss_sampling_steps=12, slat_guidance_strength=3, slat_sampling_steps=12, multiimage_algo='stochastic', mesh_simplify=0.95, texture_size=1024, api_name='/generate_and_extract_glb')
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/tmp/gc/lib/python3.11/site-packages/gradio_client/client.py", line 604, in predict
-    return self.submit(
-           ^^^^^^^^^^^^
-  File "/tmp/gc/lib/python3.11/site-packages/gradio_client/client.py", line 655, in submit
-    args = utils.construct_args(endpoint.parameters_info, args, kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/tmp/gc/lib/python3.11/site-packages/gradio_client/utils.py", line 1409, in construct_args
-    raise TypeError(
-TypeError: Parameter `is_multiimage` is not a valid key-word argument. Please click on 'view API' in the footer of the Gradio app to see usage.
+ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/gc/lib/python3.11/site-packages/gradio_client/client.py", line 606, in predict
+    ).result()
+      ^^^^^^^^
+  File "/tmp/gc/lib/python3.11/site-packages/gradio_client/client.py", line 1707, in result
+    return super().result(timeout=timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/concurrent/futures/_base.py", line 456, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/gc/lib/python3.11/site-packages/gradio_client/client.py", line 1233, in _inner
+    predictions = _predict(*data, **kwargs)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/gc/lib/python3.11/site-packages/gradio_client/client.py", line 1356, in _predict
+    raise AppError(message=message, **result)
+gradio_client.exceptions.AppError: You have exceeded your ZeroGPU quota (120s requested vs. 164s left). Try again in 23:59:34. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens
 
 TRELLIS fehlgeschlagen frosch RuntimeError('TRELLIS-Aufruf fehlgeschlagen')
 Traceback (most recent call last):
@@ -50,4 +36,3 @@ Traceback (most recent call last):
                                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 RuntimeError: TRELLIS-Aufruf fehlgeschlagen
 
-TripoSR ok frosch 59 s

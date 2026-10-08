@@ -1,65 +1,30 @@
-Start both ['wolf', 'frosch']
+Start trellis ['wolf', 'frosch']
 Loaded as API: https://trellis-community-trellis.hf.space
- Traceback (most recent call last):
-  File "/home/runner/work/Frontlings/Frontlings/tools/gen3d/trellis_one.py", line 11, in <module>
-    r = c.predict(image=handle_file(pre), multiimages=[], is_multiimage=False, seed=7, ss_guidance_strength=7.5, ss_sampling_steps=12, slat_guidance_strength=3, slat_sampling_steps=12, multiimage_algo='stochastic', mesh_simplify=0.95, texture_size=1024, api_name='/generate_and_extract_glb')
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/tmp/gc/lib/python3.11/site-packages/gradio_client/client.py", line 604, in predict
-    return self.submit(
-           ^^^^^^^^^^^^
-  File "/tmp/gc/lib/python3.11/site-packages/gradio_client/client.py", line 655, in submit
-    args = utils.construct_args(endpoint.parameters_info, args, kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/tmp/gc/lib/python3.11/site-packages/gradio_client/utils.py", line 1409, in construct_args
-    raise TypeError(
-TypeError: Parameter `is_multiimage` is not a valid key-word argument. Please click on 'view API' in the footer of the Gradio app to see usage.
-
-TRELLIS fehlgeschlagen wolf RuntimeError('TRELLIS-Aufruf fehlgeschlagen')
-Traceback (most recent call last):
-  File "/home/runner/work/Frontlings/Frontlings/tools/gen3d/gen.py", line 40, in <module>
-    trellis(i, png); say('TRELLIS ok', i, round(time.time() - t0), 's'); continue
-    ^^^^^^^^^^^^^^^
-  File "/home/runner/work/Frontlings/Frontlings/tools/gen3d/gen.py", line 23, in trellis
-    if r.returncode != 0 or not os.path.exists(f'out3d/{i}.glb'): raise RuntimeError('TRELLIS-Aufruf fehlgeschlagen')
-                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-RuntimeError: TRELLIS-Aufruf fehlgeschlagen
-
-[0;93m2026-10-08 21:26:58.219811587 [W:onnxruntime:Default, device_discovery.cc:146 GetPciBusId] Skipping pci_bus_id for PCI path at "/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/5620e0c7-8062-4dce-aeb7-520c7ef76171" because filename "5620e0c7-8062-4dce-aeb7-520c7ef76171" did not match expected pattern of [0-9a-f]+:[0-9a-f]+:[0-9a-f]+[.][0-9a-f]+[m
-2026-10-08 21:27:44,739 - INFO - Initializing model ...
-Downloading config.yaml:   0%|          | 0.00/987 [00:00<?, ?B/s]Downloading config.yaml: 100%|██████████| 987/987 [00:00<00:00, 6.73MB/s]
-Downloading model.ckpt:   0%|          | 0.00/1.68G [00:00<?, ?B/s]Downloading model.ckpt:   1%|          | 10.5M/1.68G [00:00<01:02, 26.8MB/s]Downloading model.ckpt:   2%|▏         | 31.5M/1.68G [00:00<00:27, 58.9MB/s]Downloading model.ckpt:   3%|▎         | 41.9M/1.68G [00:00<00:24, 67.6MB/s]Downloading model.ckpt:   3%|▎         | 52.4M/1.68G [00:00<00:22, 71.0MB/s]Downloading model.ckpt:   4%|▍         | 62.9M/1.68G [00:00<00:22, 70.8MB/s]Downloading model.ckpt:   4%|▍         | 73.4M/1.68G [00:01<00:22, 71.4MB/s]Downloading model.ckpt:   5%|▌         | 83.9M/1.68G [00:01<00:22, 71.0MB/s]Downloading model.ckpt:   6%|▌         | 94.4M/1.68G [00:01<00:21, 73.0MB/s]Downloading model.ckpt:   6%|▋         | 105M/1.68G [00:01<00:23, 68.2MB/s] Downloading model.ckpt:   7%|▋         | 115M/1.68G [00:01<00:24, 65.1MB/s]Downloading model.ckpt:   8%|▊         | 126M/1.68G [00:01<00:24, 63.6MB/s]Downloading model.ckpt:   8%|▊         | 136M/1.68G [00:02<00:25, 60.8MB/s]Downloading model.ckpt:   9%|▉         | 147M/1.68G [00:02<00:24, 61.3MB/s]Downloading model.ckpt:   9%|▉         | 157M/1.68G [00:02<00:23, 63.3MB/s]Downloading model.ckpt:  10%|█         | 168M/1.68G [00:02<00:22, 67.1MB/s]Downloading model.ckpt:  11%|█         | 178M/1.68G [00:02<00:22, 65.9MB/s]Downloading model.ckpt:  11%|█▏        | 189M/1.68G [00:02<00:23, 63.1MB/s]Downloading model.ckpt:  12%|█▏        | 199M/1.68G [00:03<00:22, 64.7MB/s]Downloading model.ckpt:  13%|█▎        | 210M/1.68G [00:03<00:22, 64.3MB/s]Downloading model.ckpt:  13%|█▎        | 220M/1.68G [00:03<00:23, 61.4MB/s]Downloading model.ckpt:  14%|█▍        | 231M/1.68G [00:03<00:23, 62.4MB/s]Downloading model.ckpt:  14%|█▍        | 241M/1.68G [00:03<00:21, 67.9MB/s]Downloading model.ckpt:  15%|█▌        | 252M/1.68G [00:03<00:19, 74.2MB/s]Downloading model.ckpt:  16%|█▌        | 262M/1.68G [00:03<00:18, 76.3MB/s]Downloading model.ckpt:  16%|█▋        | 273M/1.68G [00:04<00:17, 78.1MB/s]Downloading model.ckpt:  17%|█▋        | 283M/1.68G [00:04<00:18, 74.0MB/s]Downloading model.ckpt:  18%|█▊        | 294M/1.68G [00:04<00:20, 67.8MB/s]Downloading model.ckpt:  18%|█▊        | 304M/1.68G [00:04<00:21, 63.1MB/s]Downloading model.ckpt:  19%|█▉        | 315M/1.68G [00:04<00:21, 62.3MB/s]Downloading model.ckpt:  19%|█▉        | 325M/1.68G [00:04<00:20, 64.6MB/s]Downloading model.ckpt:  20%|██        | 336M/1.68G [00:05<00:19, 70.1MB/s]Downloading model.ckpt:  21%|██        | 346M/1.68G [00:05<00:19, 67.4MB/s]Downloading model.ckpt:  21%|██▏       | 357M/1.68G [00:05<00:17, 73.4MB/s]Downloading model.ckpt:  22%|██▏       | 367M/1.68G [00:05<00:18, 70.9MB/s]Downloading model.ckpt:  23%|██▎       | 377M/1.68G [00:05<00:17, 74.9MB/s]Downloading model.ckpt:  24%|██▍       | 398M/1.68G [00:05<00:13, 92.6MB/s]Downloading model.ckpt:  25%|██▌       | 419M/1.68G [00:05<00:12, 101MB/s] Downloading model.ckpt:  26%|██▋       | 440M/1.68G [00:06<00:11, 109MB/s]Downloading model.ckpt:  28%|██▊       | 461M/1.68G [00:06<00:09, 123MB/s]Downloading model.ckpt:  29%|██▉       | 482M/1.68G [00:06<00:09, 132MB/s]Downloading model.ckpt:  30%|███       | 503M/1.68G [00:06<00:09, 127MB/s]Downloading model.ckpt:  31%|███▏      | 524M/1.68G [00:06<00:09, 118MB/s]Downloading model.ckpt:  33%|███▎      | 545M/1.68G [00:07<00:10, 104MB/s]Downloading model.ckpt:  34%|███▍      | 566M/1.68G [00:07<00:11, 98.9MB/s]Downloading model.ckpt:  34%|███▍      | 577M/1.68G [00:07<00:11, 99.2MB/s]Downloading model.ckpt:  35%|███▌      | 587M/1.68G [00:07<00:11, 98.9MB/s]Downloading model.ckpt:  36%|███▋      | 608M/1.68G [00:07<00:09, 107MB/s] Downloading model.ckpt:  38%|███▊      | 629M/1.68G [00:07<00:09, 112MB/s]Downloading model.ckpt:  39%|███▉      | 650M/1.68G [00:08<00:09, 108MB/s]Downloading model.ckpt:  40%|████      | 671M/1.68G [00:08<00:09, 101MB/s]Downloading model.ckpt:  41%|████▏     | 692M/1.68G [00:08<00:09, 107MB/s]Downloading model.ckpt:  43%|████▎     | 713M/1.68G [00:08<00:07, 121MB/s]Downloading model.ckpt:  44%|████▍     | 734M/1.68G [00:08<00:06, 136MB/s]Downloading model.ckpt:  46%|████▌     | 765M/1.68G [00:08<00:05, 164MB/s]Downloading model.ckpt:  48%|████▊     | 797M/1.68G [00:08<00:04, 186MB/s]Downloading model.ckpt:  49%|████▉     | 828M/1.68G [00:09<00:04, 193MB/s]Downloading model.ckpt:  51%|█████▏    | 860M/1.68G [00:09<00:03, 214MB/s]Downloading model.ckpt:  53%|█████▎    | 891M/1.68G [00:09<00:03, 204MB/s]Downloading model.ckpt:  55%|█████▌    | 923M/1.68G [00:09<00:03, 196MB/s]Downloading model.ckpt:  56%|█████▋    | 944M/1.68G [00:09<00:03, 184MB/s]Downloading model.ckpt:  58%|█████▊    | 965M/1.68G [00:09<00:03, 181MB/s]Downloading model.ckpt:  59%|█████▉    | 986M/1.68G [00:09<00:04, 157MB/s]Downloading model.ckpt:  60%|██████    | 1.01G/1.68G [00:10<00:04, 146MB/s]Downloading model.ckpt:  61%|██████▏   | 1.03G/1.68G [00:10<00:04, 154MB/s]Downloading model.ckpt:  63%|██████▎   | 1.05G/1.68G [00:10<00:03, 158MB/s]Downloading model.ckpt:  64%|██████▍   | 1.07G/1.68G [00:10<00:03, 169MB/s]Downloading model.ckpt:  66%|██████▌   | 1.10G/1.68G [00:10<00:02, 194MB/s]Downloading model.ckpt:  67%|██████▋   | 1.12G/1.68G [00:10<00:02, 189MB/s]Downloading model.ckpt:  68%|██████▊   | 1.14G/1.68G [00:10<00:03, 155MB/s]Downloading model.ckpt:  69%|██████▉   | 1.16G/1.68G [00:11<00:03, 161MB/s]Downloading model.ckpt:  71%|███████   | 1.18G/1.68G [00:11<00:03, 141MB/s]Downloading model.ckpt:  72%|███████▏  | 1.21G/1.68G [00:11<00:03, 128MB/s]Downloading model.ckpt:  73%|███████▎  | 1.23G/1.68G [00:11<00:03, 128MB/s]Downloading model.ckpt:  74%|███████▍  | 1.25G/1.68G [00:11<00:03, 138MB/s]Downloading model.ckpt:  76%|███████▌  | 1.27G/1.68G [00:11<00:02, 144MB/s]Downloading model.ckpt:  77%|███████▋  | 1.29G/1.68G [00:12<00:02, 144MB/s]Downloading model.ckpt:  78%|███████▊  | 1.31G/1.68G [00:12<00:02, 149MB/s]Downloading model.ckpt:  79%|███████▉  | 1.33G/1.68G [00:12<00:02, 157MB/s]Downloading model.ckpt:  81%|████████▏ | 1.36G/1.68G [00:12<00:01, 178MB/s]Downloading model.ckpt:  83%|████████▎ | 1.38G/1.68G [00:12<00:01, 173MB/s]Downloading model.ckpt:  84%|████████▍ | 1.41G/1.68G [00:12<00:01, 175MB/s]Downloading model.ckpt:  85%|████████▌ | 1.43G/1.68G [00:12<00:01, 171MB/s]Downloading model.ckpt:  86%|████████▋ | 1.45G/1.68G [00:12<00:01, 161MB/s]Downloading model.ckpt:  88%|████████▊ | 1.47G/1.68G [00:13<00:01, 164MB/s]Downloading model.ckpt:  89%|████████▉ | 1.49G/1.68G [00:13<00:01, 138MB/s]Downloading model.ckpt:  90%|█████████ | 1.51G/1.68G [00:13<00:01, 134MB/s]Downloading model.ckpt:  91%|█████████▏| 1.53G/1.68G [00:13<00:01, 132MB/s]Downloading model.ckpt:  93%|█████████▎| 1.55G/1.68G [00:13<00:00, 132MB/s]Downloading model.ckpt:  94%|█████████▍| 1.57G/1.68G [00:13<00:00, 135MB/s]Downloading model.ckpt:  95%|█████████▌| 1.59G/1.68G [00:14<00:00, 145MB/s]Downloading model.ckpt:  96%|█████████▋| 1.61G/1.68G [00:14<00:00, 148MB/s]Downloading model.ckpt:  98%|█████████▊| 1.64G/1.68G [00:14<00:00, 139MB/s]Downloading model.ckpt:  99%|█████████▉| 1.66G/1.68G [00:14<00:00, 125MB/s]Downloading model.ckpt: 100%|██████████| 1.68G/1.68G [00:14<00:00, 125MB/s]Downloading model.ckpt: 100%|██████████| 1.68G/1.68G [00:14<00:00, 114MB/s]
-/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/transformers/utils/generic.py:441: FutureWarning: `torch.utils._pytree._register_pytree_node` is deprecated. Please use `torch.utils._pytree.register_pytree_node` instead.
-  _torch_pytree._register_pytree_node(
-The cache for model files in Transformers v4.22.0 has been updated. Migrating your old cache. This is a one-time only operation. You can interrupt this and resume the migration later on by calling `transformers.utils.move_cache()`.
-0it [00:00, ?it/s]0it [00:00, ?it/s]
-/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/transformers/utils/generic.py:309: FutureWarning: `torch.utils._pytree._register_pytree_node` is deprecated. Please use `torch.utils._pytree.register_pytree_node` instead.
-  _torch_pytree._register_pytree_node(
-Downloading config.json:   0%|          | 0.00/454 [00:00<?, ?B/s]Downloading config.json: 100%|██████████| 454/454 [00:00<00:00, 2.00MB/s]
-2026-10-08 21:28:02,998 - INFO - Initializing model finished in 18258.77ms.
-2026-10-08 21:28:02,998 - INFO - Processing images ...
-2026-10-08 21:28:03,006 - INFO - Processing images finished in 8.43ms.
-2026-10-08 21:28:03,006 - INFO - Running image 1/1 ...
-2026-10-08 21:28:03,007 - INFO - Running model ...
-2026-10-08 21:28:22,774 - INFO - Running model finished in 19767.09ms.
-2026-10-08 21:28:22,774 - INFO - Extracting mesh ...
-2026-10-08 21:28:54,854 - INFO - Extracting mesh finished in 32080.15ms.
-2026-10-08 21:28:54,854 - INFO - Exporting mesh ...
-2026-10-08 21:28:54,861 - INFO - Exporting mesh finished in 6.87ms.
-TripoSR ok wolf 123 s
+ok out3d/wolf.glb
+ 
+TRELLIS ok wolf 21 s
 Loaded as API: https://trellis-community-trellis.hf.space
- Traceback (most recent call last):
-  File "/home/runner/work/Frontlings/Frontlings/tools/gen3d/trellis_one.py", line 11, in <module>
-    r = c.predict(image=handle_file(pre), multiimages=[], is_multiimage=False, seed=7, ss_guidance_strength=7.5, ss_sampling_steps=12, slat_guidance_strength=3, slat_sampling_steps=12, multiimage_algo='stochastic', mesh_simplify=0.95, texture_size=1024, api_name='/generate_and_extract_glb')
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/tmp/gc/lib/python3.11/site-packages/gradio_client/client.py", line 604, in predict
-    return self.submit(
-           ^^^^^^^^^^^^
-  File "/tmp/gc/lib/python3.11/site-packages/gradio_client/client.py", line 655, in submit
-    args = utils.construct_args(endpoint.parameters_info, args, kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/tmp/gc/lib/python3.11/site-packages/gradio_client/utils.py", line 1409, in construct_args
-    raise TypeError(
-TypeError: Parameter `is_multiimage` is not a valid key-word argument. Please click on 'view API' in the footer of the Gradio app to see usage.
+ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/gc/lib/python3.11/site-packages/gradio_client/client.py", line 606, in predict
+    ).result()
+      ^^^^^^^^
+  File "/tmp/gc/lib/python3.11/site-packages/gradio_client/client.py", line 1707, in result
+    return super().result(timeout=timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/concurrent/futures/_base.py", line 456, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/gc/lib/python3.11/site-packages/gradio_client/client.py", line 1233, in _inner
+    predictions = _predict(*data, **kwargs)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/gc/lib/python3.11/site-packages/gradio_client/client.py", line 1356, in _predict
+    raise AppError(message=message, **result)
+gradio_client.exceptions.AppError: You have exceeded your ZeroGPU quota (120s requested vs. 164s left). Try again in 23:59:34. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens
 
 TRELLIS fehlgeschlagen frosch RuntimeError('TRELLIS-Aufruf fehlgeschlagen')
 Traceback (most recent call last):
@@ -71,20 +36,3 @@ Traceback (most recent call last):
                                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 RuntimeError: TRELLIS-Aufruf fehlgeschlagen
 
-[0;93m2026-10-08 21:28:58.884416058 [W:onnxruntime:Default, device_discovery.cc:146 GetPciBusId] Skipping pci_bus_id for PCI path at "/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/5620e0c7-8062-4dce-aeb7-520c7ef76171" because filename "5620e0c7-8062-4dce-aeb7-520c7ef76171" did not match expected pattern of [0-9a-f]+:[0-9a-f]+:[0-9a-f]+[.][0-9a-f]+[m
-2026-10-08 21:29:01,080 - INFO - Initializing model ...
-/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/transformers/utils/generic.py:441: FutureWarning: `torch.utils._pytree._register_pytree_node` is deprecated. Please use `torch.utils._pytree.register_pytree_node` instead.
-  _torch_pytree._register_pytree_node(
-/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/transformers/utils/generic.py:309: FutureWarning: `torch.utils._pytree._register_pytree_node` is deprecated. Please use `torch.utils._pytree.register_pytree_node` instead.
-  _torch_pytree._register_pytree_node(
-2026-10-08 21:29:04,240 - INFO - Initializing model finished in 3160.08ms.
-2026-10-08 21:29:04,240 - INFO - Processing images ...
-2026-10-08 21:29:04,248 - INFO - Processing images finished in 8.11ms.
-2026-10-08 21:29:04,248 - INFO - Running image 1/1 ...
-2026-10-08 21:29:04,248 - INFO - Running model ...
-2026-10-08 21:29:23,502 - INFO - Running model finished in 19254.15ms.
-2026-10-08 21:29:23,502 - INFO - Extracting mesh ...
-2026-10-08 21:29:54,950 - INFO - Extracting mesh finished in 31447.41ms.
-2026-10-08 21:29:54,950 - INFO - Exporting mesh ...
-2026-10-08 21:29:54,957 - INFO - Exporting mesh finished in 7.27ms.
-TripoSR ok frosch 59 s
