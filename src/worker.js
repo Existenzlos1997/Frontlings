@@ -167,14 +167,14 @@ export class Lobby{constructor(state,env){this.state=state;this.env=env||{}}
   if(m.t==='find'&&m.mode==='2v2'){a.st='wait2';a.tc=String(m.tc||'').slice(0,40);a.info=m.info||{};a.info.name=a.name;a.info.id=a.pid;a.since=Date.now();ws.serializeAttachment(a);
    const solo=[],byTc={},teams=[];for(const o of this.state.getWebSockets()){const b=o.deserializeAttachment();if(!b||b.st!=='wait2')continue;if(b.tc)(byTc[b.tc]=byTc[b.tc]||[]).push(o);else solo.push(o)}
    for(const k in byTc){const t=byTc[k];if(t.length>=2&&t[0].deserializeAttachment().pid!==t[1].deserializeAttachment().pid)teams.push(t.slice(0,2))}for(let i=0;i+1<solo.length;i+=2)teams.push([solo[i],solo[i+1]]);
-   if(teams.length>=2){const grp=[...teams[0],...teams[1]],mid=Math.random().toString(36).slice(2,10),att=grp.map(o=>o.deserializeAttachment()),pids=att.map(x=>x.pid),infos=att.map(x=>x.info);
-    grp.forEach((o,i)=>{const x=att[i];x.st='play2';x.mid=mid;x.slot=i;x.grp=pids;o.serializeAttachment(x)});grp.forEach((o,i)=>{try{o.send(JSON.stringify({t:'start2',slot:i,mid,players:infos}))}catch(e){}});return}
+   if(teams.length>=2){const grp=[...teams[0],...teams[1]],mid=Math.random().toString(36).slice(2,10),att=grp.map(o=>o.deserializeAttachment()),pids=att.map(x=>x.pid),infos=att.map(x=>modeInfo(x.info,'r8'));
+    grp.forEach((o,i)=>{const x=att[i];x.st='play2';x.mid=mid;x.slot=i;x.grp=pids;o.serializeAttachment(x)});grp.forEach((o,i)=>{try{o.send(JSON.stringify({t:'start2',slot:i,mid,md:'r8',players:infos}))}catch(e){}});return}
    try{ws.send(JSON.stringify({t:'wait'}))}catch(e){}return}
   if(m.t==='find'){a.st='wait';a.code=String(m.code||'').slice(0,40);a.info=m.info||{};a.info.name=a.name;a.info.rk=a.rk;a.info.id=a.pid;a.since=Date.now();ws.serializeAttachment(a);
-   const ranked=!a.code;let best=null,bd=1e9;for(const o of this.state.getWebSockets()){if(o===ws)continue;const b=o.deserializeAttachment();if(!b||b.st!=='wait'||b.pid===a.pid||(b.code||'')!==a.code)continue;const d=ranked?Math.abs((b.rk||1000)-(a.rk||1000)):Math.abs(((b.info||{}).tr||0)-((a.info||{}).tr||0));if(d<bd){bd=d;best=o}}
+   const ranked=!a.code;a.md=MDS.includes(a.info.md)?a.info.md:'r8';ws.serializeAttachment(a);let best=null,bd=1e9;for(const o of this.state.getWebSockets()){if(o===ws)continue;const b=o.deserializeAttachment();if(!b||b.st!=='wait'||b.pid===a.pid||(b.code||'')!==a.code)continue;if(!a.code&&(b.md||'r8')!==a.md)continue;const d=ranked?Math.abs((b.rk||1000)-(a.rk||1000)):Math.abs(((b.info||{}).tr||0)-((a.info||{}).tr||0));if(d<bd){bd=d;best=o}}
    if(best){const b=best.deserializeAttachment(),mid=Math.random().toString(36).slice(2,10);b.st='play';b.partner=a.pid;b.mid=mid;a.st='play';a.partner=b.pid;a.mid=mid;b.role='host';a.role='guest';best.serializeAttachment(b);ws.serializeAttachment(a);
     if(this.state.storage){await this.state.storage.put('m:'+mid,{h:b.pid,g:a.pid,ranked,ts:Date.now(),ch:null,cg:null,done:0});try{const al=await this.state.storage.getAlarm();if(!al)await this.state.storage.setAlarm(Date.now()+36e5)}catch(e){}}
-    try{best.send(JSON.stringify({t:'start',role:'host',mid,ranked,opp:a.info}));ws.send(JSON.stringify({t:'start',role:'guest',mid,ranked,opp:b.info}))}catch(e){}return}
+    const md=b.md||'r8',ai=modeInfo(a.info,md),bi=modeInfo(b.info,md);try{best.send(JSON.stringify({t:'start',role:'host',mid,ranked,md,opp:ai}));ws.send(JSON.stringify({t:'start',role:'guest',mid,ranked,md,opp:bi}))}catch(e){}return}
    try{ws.send(JSON.stringify({t:'wait'}))}catch(e){}return}
   if(m.t==='watch'){let tgt=null;for(const o of this.state.getWebSockets(String(m.pid||''))){const x=o.deserializeAttachment();if(x&&x.st==='play'){tgt=x;break}}
    if(!tgt){try{ws.send('{"t":"watchfail"}')}catch(e){}return}let opp=null;for(const o of this.state.getWebSockets(tgt.partner||'')){const x=o.deserializeAttachment();if(x&&x.mid===tgt.mid){opp=x;break}}
@@ -197,3 +197,6 @@ export class Lobby{constructor(state,env){this.state=state;this.env=env||{}}
    const r=await this.rec(a.mid);if(r&&!r.done)await this.settle(a.mid,{force:a.pid===r.h?r.g:r.h})}}
  async webSocketError(ws){await this.webSocketClose(ws)}
  async alarm(){const st=this.state.storage;if(!st)return;const all=await st.list({prefix:'m:'}),old=Date.now()-36e5,del=[];for(const [k,v] of all)if(!v||v.ts<old)del.push(k);for(let i=0;i<del.length;i+=100)await st.delete(del.slice(i,i+100));if(all.size-del.length>0)await st.setAlarm(Date.now()+36e5)}}
+const MDS=['m4','r8','ms'];
+/* Spielmodus: beide Seiten spielen mit dem Deck des vereinbarten Modus */
+function modeInfo(inf,md){const o={...(inf||{})},d=o.dks&&o.dks[md];if(Array.isArray(d)&&d.length&&d.length<=8&&d.every(x=>typeof x=='string'&&x.length<24))o.deck=d;delete o.dks;o.md=md;return o}
