@@ -213,34 +213,38 @@ export class Lobby{constructor(state,env){this.state=state;this.env=env||{}}
  tPT(round){return round<=1?30000:round<=3?35000:40000}
  async tftTry(force){const seen=new Set(),W=[];for(const o of this.state.getWebSockets()){const b=o.deserializeAttachment();if(!b||b.st!=='twait'||seen.has(b.pid))continue;seen.add(b.pid);W.push([o,b])}W.sort((p,q)=>p[1].since-q[1].since);
   if(W.length>=4||(force&&W.length>=2)){const grp=W.slice(0,4),rid=Math.random().toString(36).slice(2,10),players=grp.map(([o,b],i)=>({pid:b.pid,name:b.name,av:(b.info||{}).av||'',slot:i,hp:100,alive:1,gone:0,place:0}));
-   const r={rid,round:1,phase:'plan',players,ready:{},last:{},res:{},pairs:{}};await this.tSave(r);
+   const BN=['Grimbart','Nebelzahn','Moosbart','Funkenfee'],BA=['krabbe','frosch','igel','mumie'];for(let i=players.length;i<4;i++)players.push({pid:'bot:'+rid+i,name:BN[i]+' 🤖',av:BA[i],slot:i,hp:100,alive:1,gone:0,place:0,bot:1});
+   const r={rid,round:1,phase:'plan',players,ready:{},last:{},res:{},pairs:{},bh:0,rt:0};await this.tSave(r);
    grp.forEach(([o,b],i)=>{b.st='troom';b.rid=rid;b.slot=i;o.serializeAttachment(b)});
-   grp.forEach(([o],i)=>{try{o.send(JSON.stringify({t:'tstart',rid,slot:i,round:1,pt:this.tPT(1),players:players.map(p=>({slot:p.slot,name:p.name,av:p.av}))}))}catch(e){}});
+   grp.forEach(([o],i)=>{try{o.send(JSON.stringify({t:'tstart',rid,slot:i,round:1,bh:0,players:players.map(p=>({slot:p.slot,name:p.name,av:p.av,bot:p.bot?1:0}))}))}catch(e){}});
    try{const al=await this.state.storage.getAlarm();if(!al)await this.state.storage.setAlarm(Date.now()+36e5)}catch(e){}return}
   const raw=JSON.stringify({t:'twait',n:W.length});for(const [o] of W){try{o.send(raw)}catch(e){}}}
  tBoard(b){if(!Array.isArray(b))return [];return b.slice(0,8).map(u=>Array.isArray(u)&&typeof u[0]=='string'&&/^[a-z]{2,12}$/.test(u[0])&&[1,2,3].includes(u[1])?[u[0],u[1]]:null)}
  async tftMsg(ws,a,m){const r=await this.tLoad(a.rid);if(!r){a.st='idle';ws.serializeAttachment(a);return}const me=r.players[a.slot];if(!me)return;
-  if(m.t==='tready'){if(r.phase!=='plan'||m.round!==r.round||!me.alive)return;const b=this.tBoard(m.board);r.ready[a.slot]=b;r.last[a.slot]=b;this.tSend(r,{t:'trd',slot:a.slot,r:1});await this.tCheckReady(r);return}
+  if(m.t==='tready'){if(r.phase!=='plan'||m.round!==r.round||!me.alive)return;const b=this.tBoard(m.board);r.ready[a.slot]=b;r.last[a.slot]=b;if(!r.rt)r.rt=Date.now();this.tSend(r,{t:'trd',slot:a.slot,r:1});await this.tCheckReady(r);return}
   if(m.t==='tunready'){if(r.phase!=='plan')return;delete r.ready[a.slot];this.tSend(r,{t:'trd',slot:a.slot,r:0});await this.tSave(r);return}
   if(m.t==='tres'){if(r.phase!=='fight'||m.round!==r.round||r.res[a.slot]||!me.alive)return;const win=!!m.win,dmg=Math.max(0,Math.min(40,Math.floor(Number(m.dmg))||0));r.res[a.slot]={win,dmg};
-   if(!win)me.hp-=dmg;else{const o=r.pairs[a.slot];if(o!=null&&o>=0){const op=r.players[o];if(op&&op.gone&&op.alive)op.hp-=dmg}}await this.tCheckRes(r);return}
+   if(!win)me.hp-=dmg;else{const o=r.pairs[a.slot];if(o!=null&&o>=0){const op=r.players[o];if(op&&(op.gone||op.bot)&&op.alive)op.hp-=dmg}}await this.tCheckRes(r);return}
+  if(m.t==='tbots'){if(r.phase!=='plan'||m.round!==r.round)return;const bs=m.boards||{};for(const p of r.players){if(p.bot&&p.alive&&bs[p.slot]){const b=this.tBoard(bs[p.slot]);r.ready[p.slot]=b;r.last[p.slot]=b}}await this.tCheckReady(r);return}
+  if(m.t==='tnudge'){if(r.phase!=='plan'||!r.rt||Date.now()-r.rt<75000||!r.ready[a.slot])return;const auto=[];for(const p of r.players){if(p.alive&&!p.gone&&!p.bot&&!r.ready[p.slot]){r.ready[p.slot]=r.last[p.slot]||[];auto.push(p.slot)}}if(auto.length)this.tSend(r,{t:'tauto',slots:auto});await this.tCheckReady(r);return}
   if(m.t==='tleave'){a.st='idle';ws.serializeAttachment(a);await this.tftGone({...a,st:'troom'});return}}
- async tCheckReady(r){const need=r.players.filter(p=>p.alive&&!p.gone);if(!need.length){await this.tDel(r.rid);return}if(!need.every(p=>r.ready[p.slot])){await this.tSave(r);return}
+ async tCheckReady(r){const need=r.players.filter(p=>p.alive&&!p.gone&&!p.bot);if(!need.length){await this.tDel(r.rid);return}if(!need.every(p=>r.ready[p.slot])){await this.tSave(r);return}
   const al=r.players.filter(p=>p.alive).map(p=>p.slot).sort(()=>Math.random()-.5),pairs={};for(let i=0;i+1<al.length;i+=2){pairs[al[i]]=al[i+1];pairs[al[i+1]]=al[i]}let gh=null;
   if(al.length%2){const z=al[al.length-1],others=al.filter(s=>s!==z);pairs[z]=-1;gh=others.length?others[Math.floor(Math.random()*others.length)]:null}
   r.pairs=pairs;r.res={};r.phase='fight';await this.tSave(r);
   for(const p of need){const o=pairs[p.slot],src=o>=0?o:gh,op=src!=null?r.players[src]:null;this.tSend(r,{t:'tfight',round:r.round,oslot:o,ghost:o<0,oname:op?op.name:'Schatten',oav:op?op.av:'',board:src!=null?(r.ready[src]||r.last[src]||[]):[]},p.slot)}}
- async tCheckRes(r){const need=r.players.filter(p=>p.alive&&!p.gone);if(!need.every(p=>r.res[p.slot])){await this.tSave(r);return}
+ async tCheckRes(r){const need=r.players.filter(p=>p.alive&&!p.gone&&!p.bot);if(!need.every(p=>r.res[p.slot])){await this.tSave(r);return}
+  for(const p of r.players){const o=r.pairs[p.slot];if(p.bot&&p.alive&&o>p.slot){const q=r.players[o];if(q&&q.bot&&q.alive){const l=Math.random()<.5?p:q;l.hp-=3+Math.floor(r.round/2)+Math.floor(Math.random()*5)}}}
   const alive=r.players.filter(p=>p.alive),dying=alive.filter(p=>p.hp<=0).sort((x,y)=>y.hp-x.hp),after=alive.length-dying.length;
   dying.forEach((p,i)=>{p.alive=0;p.place=after>0?after+1+i:1+i});const rest=r.players.filter(p=>p.alive);if(rest.length===1)rest[0].place=1;
   for(const p of dying)if(!p.gone)this.tSend(r,{t:'tend',place:p.place},p.slot);
   if(rest.length<=1){if(rest.length===1&&!rest[0].gone)this.tSend(r,{t:'tend',place:1},rest[0].slot);await this.tDel(r.rid);return}
-  const hum=rest.filter(p=>!p.gone);if(hum.length===1){rest.filter(p=>p.gone).sort((x,y)=>y.hp-x.hp).forEach((p,i)=>{p.alive=0;p.place=2+i});hum[0].place=1;this.tSend(r,{t:'tend',place:1},hum[0].slot);await this.tDel(r.rid);return}
-  r.round++;r.phase='plan';r.ready={};r.res={};r.pairs={};await this.tSave(r);
-  this.tSend(r,{t:'tstate',round:r.round,pt:this.tPT(r.round),players:r.players.map(p=>({slot:p.slot,hp:Math.max(0,p.hp),alive:p.alive,gone:p.gone,place:p.place}))});
-  if(!r.players.some(p=>p.alive&&!p.gone))await this.tDel(r.rid)}
+  const hum=rest.filter(p=>!p.gone&&!p.bot);if(hum.length===1&&!rest.some(p=>p.bot)){rest.filter(p=>p.gone).sort((x,y)=>y.hp-x.hp).forEach((p,i)=>{p.alive=0;p.place=2+i});hum[0].place=1;this.tSend(r,{t:'tend',place:1},hum[0].slot);await this.tDel(r.rid);return}
+  if(!rest.some(p=>!p.gone&&!p.bot)){await this.tDel(r.rid);return}const bh=r.players.find(p=>!p.gone&&!p.bot&&p.alive)||r.players.find(p=>!p.gone&&!p.bot);r.bh=bh?bh.slot:-1;
+  r.round++;r.phase='plan';r.ready={};r.res={};r.pairs={};r.rt=0;await this.tSave(r);
+  this.tSend(r,{t:'tstate',round:r.round,bh:r.bh,players:r.players.map(p=>({slot:p.slot,hp:Math.max(0,p.hp),alive:p.alive,gone:p.gone,place:p.place,bot:p.bot?1:0}))})}
  async tftGone(a){const r=await this.tLoad(a.rid);if(!r)return;const p=r.players[a.slot];if(!p||p.gone)return;p.gone=1;this.tSend(r,{t:'tgone',slot:a.slot});
-  if(!r.players.some(q=>!q.gone)){await this.tDel(r.rid);return}if(r.phase==='plan')await this.tCheckReady(r);else await this.tCheckRes(r)}
+  if(!r.players.some(q=>!q.gone&&!q.bot)){await this.tDel(r.rid);return}if(r.bh===a.slot){const nb=r.players.find(q=>!q.gone&&!q.bot);r.bh=nb?nb.slot:-1;if(nb)this.tSend(r,{t:'tbh',bh:r.bh,round:r.round})}if(r.phase==='plan')await this.tCheckReady(r);else await this.tCheckRes(r)}
  async webSocketError(ws){await this.webSocketClose(ws)}
  async alarm(){const st=this.state.storage;if(!st)return;const all=await st.list({prefix:'m:'}),old=Date.now()-36e5,del=[];for(const [k,v] of all)if(!v||v.ts<old)del.push(k);try{const rr=await st.list({prefix:'r:'});for(const [k,v] of rr)if(!v||v.ts<Date.now()-3*36e5)del.push(k)}catch(e){}for(let i=0;i<del.length;i+=100)await st.delete(del.slice(i,i+100));if(all.size-del.length>0)await st.setAlarm(Date.now()+36e5)}}
 const MDS=['m4','r8','ms'];
