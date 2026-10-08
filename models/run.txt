@@ -1,104 +1,88 @@
 Start both ['wolf', 'frosch']
 TRELLIS fehlgeschlagen wolf KeyError('storage')
-[0;93m2026-10-08 21:17:23.166792917 [W:onnxruntime:Default, device_discovery.cc:146 GetPciBusId] Skipping pci_bus_id for PCI path at "/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/5620e0c7-8062-4dce-aeb7-520c7ef76171" because filename "5620e0c7-8062-4dce-aeb7-520c7ef76171" did not match expected pattern of [0-9a-f]+:[0-9a-f]+:[0-9a-f]+[.][0-9a-f]+[m
-2026-10-08 21:18:09,942 - INFO - Initializing model ...
-Downloading config.yaml:   0%|          | 0.00/987 [00:00<?, ?B/s]Downloading config.yaml: 100%|██████████| 987/987 [00:00<00:00, 8.47MB/s]
-Downloading model.ckpt:   0%|          | 0.00/1.68G [00:00<?, ?B/s]Downloading model.ckpt:   1%|          | 10.5M/1.68G [00:00<00:40, 41.1MB/s]Downloading model.ckpt:   1%|▏         | 21.0M/1.68G [00:00<00:26, 62.4MB/s]Downloading model.ckpt:   2%|▏         | 31.5M/1.68G [00:00<00:23, 68.6MB/s]Downloading model.ckpt:   3%|▎         | 52.4M/1.68G [00:00<00:18, 86.8MB/s]Downloading model.ckpt:   4%|▍         | 62.9M/1.68G [00:00<00:18, 85.6MB/s]Downloading model.ckpt:   4%|▍         | 73.4M/1.68G [00:01<00:23, 69.6MB/s]Downloading model.ckpt:   5%|▌         | 83.9M/1.68G [00:01<00:22, 71.8MB/s]Downloading model.ckpt:   6%|▌         | 94.4M/1.68G [00:01<00:21, 74.4MB/s]Downloading model.ckpt:   6%|▋         | 105M/1.68G [00:01<00:20, 76.3MB/s] Downloading model.ckpt:   8%|▊         | 126M/1.68G [00:01<00:16, 93.2MB/s]Downloading model.ckpt:   8%|▊         | 136M/1.68G [00:01<00:20, 74.4MB/s]Downloading model.ckpt:   9%|▉         | 157M/1.68G [00:02<00:17, 87.7MB/s]Downloading model.ckpt:  10%|█         | 168M/1.68G [00:02<00:17, 85.5MB/s]Downloading model.ckpt:  11%|█         | 178M/1.68G [00:02<00:17, 87.0MB/s]Downloading model.ckpt:  11%|█▏        | 189M/1.68G [00:02<00:17, 83.6MB/s]Downloading model.ckpt:  12%|█▏        | 199M/1.68G [00:02<00:18, 78.7MB/s]Downloading model.ckpt:  13%|█▎        | 210M/1.68G [00:02<00:20, 73.2MB/s]Downloading model.ckpt:  13%|█▎        | 220M/1.68G [00:02<00:20, 70.3MB/s]Downloading model.ckpt:  14%|█▍        | 231M/1.68G [00:03<00:20, 69.7MB/s]Downloading model.ckpt:  14%|█▍        | 241M/1.68G [00:03<00:19, 73.3MB/s]Downloading model.ckpt:  15%|█▌        | 252M/1.68G [00:03<00:18, 78.2MB/s]Downloading model.ckpt:  16%|█▌        | 262M/1.68G [00:03<00:16, 84.1MB/s]Downloading model.ckpt:  17%|█▋        | 283M/1.68G [00:03<00:15, 88.9MB/s]Downloading model.ckpt:  18%|█▊        | 294M/1.68G [00:03<00:16, 82.5MB/s]Downloading model.ckpt:  18%|█▊        | 304M/1.68G [00:03<00:17, 79.7MB/s]Downloading model.ckpt:  19%|█▉        | 315M/1.68G [00:04<00:17, 77.5MB/s]Downloading model.ckpt:  19%|█▉        | 325M/1.68G [00:04<00:17, 78.4MB/s]Downloading model.ckpt:  20%|██        | 336M/1.68G [00:04<00:17, 77.1MB/s]Downloading model.ckpt:  21%|██        | 346M/1.68G [00:04<00:17, 77.4MB/s]Downloading model.ckpt:  21%|██▏       | 357M/1.68G [00:04<00:17, 74.7MB/s]Downloading model.ckpt:  22%|██▏       | 367M/1.68G [00:04<00:18, 72.0MB/s]Downloading model.ckpt:  23%|██▎       | 377M/1.68G [00:04<00:17, 72.9MB/s]Downloading model.ckpt:  23%|██▎       | 388M/1.68G [00:05<00:17, 74.1MB/s]Downloading model.ckpt:  24%|██▍       | 409M/1.68G [00:05<00:14, 86.3MB/s]Downloading model.ckpt:  25%|██▌       | 419M/1.68G [00:05<00:13, 90.0MB/s]Downloading model.ckpt:  26%|██▌       | 430M/1.68G [00:05<00:13, 93.4MB/s]Downloading model.ckpt:  26%|██▋       | 440M/1.68G [00:05<00:13, 92.8MB/s]Downloading model.ckpt:  27%|██▋       | 451M/1.68G [00:05<00:13, 88.9MB/s]Downloading model.ckpt:  28%|██▊       | 461M/1.68G [00:05<00:14, 86.3MB/s]Downloading model.ckpt:  28%|██▊       | 472M/1.68G [00:05<00:13, 86.5MB/s]Downloading model.ckpt:  29%|██▉       | 482M/1.68G [00:06<00:13, 85.8MB/s]Downloading model.ckpt:  29%|██▉       | 493M/1.68G [00:06<00:13, 86.2MB/s]Downloading model.ckpt:  30%|███       | 503M/1.68G [00:06<00:14, 80.6MB/s]Downloading model.ckpt:  31%|███       | 514M/1.68G [00:06<00:14, 82.5MB/s]Downloading model.ckpt:  32%|███▏      | 535M/1.68G [00:06<00:12, 90.1MB/s]Downloading model.ckpt:  33%|███▎      | 545M/1.68G [00:06<00:13, 86.7MB/s]Downloading model.ckpt:  33%|███▎      | 556M/1.68G [00:06<00:13, 85.7MB/s]Downloading model.ckpt:  34%|███▍      | 566M/1.68G [00:07<00:14, 77.7MB/s]Downloading model.ckpt:  34%|███▍      | 577M/1.68G [00:07<00:14, 76.5MB/s]Downloading model.ckpt:  35%|███▌      | 587M/1.68G [00:07<00:14, 75.3MB/s]Downloading model.ckpt:  36%|███▌      | 598M/1.68G [00:07<00:15, 69.4MB/s]Downloading model.ckpt:  36%|███▋      | 608M/1.68G [00:07<00:15, 68.2MB/s]Downloading model.ckpt:  37%|███▋      | 619M/1.68G [00:07<00:15, 68.5MB/s]Downloading model.ckpt:  38%|███▊      | 629M/1.68G [00:07<00:14, 70.8MB/s]Downloading model.ckpt:  39%|███▉      | 650M/1.68G [00:08<00:11, 87.7MB/s]Downloading model.ckpt:  39%|███▉      | 661M/1.68G [00:08<00:11, 89.1MB/s]Downloading model.ckpt:  40%|████      | 671M/1.68G [00:08<00:11, 89.3MB/s]Downloading model.ckpt:  41%|████      | 682M/1.68G [00:08<00:11, 85.8MB/s]Downloading model.ckpt:  41%|████▏     | 692M/1.68G [00:08<00:11, 88.5MB/s]Downloading model.ckpt:  43%|████▎     | 713M/1.68G [00:08<00:08, 111MB/s] Downloading model.ckpt:  44%|████▍     | 734M/1.68G [00:09<00:09, 98.9MB/s]Downloading model.ckpt:  44%|████▍     | 744M/1.68G [00:09<00:09, 94.9MB/s]Downloading model.ckpt:  45%|████▌     | 755M/1.68G [00:09<00:09, 95.1MB/s]Downloading model.ckpt:  46%|████▌     | 765M/1.68G [00:09<00:09, 94.6MB/s]Downloading model.ckpt:  46%|████▋     | 776M/1.68G [00:09<00:09, 95.9MB/s]Downloading model.ckpt:  48%|████▊     | 797M/1.68G [00:09<00:08, 102MB/s] Downloading model.ckpt:  49%|████▉     | 818M/1.68G [00:09<00:07, 108MB/s]Downloading model.ckpt:  50%|█████     | 839M/1.68G [00:10<00:07, 111MB/s]Downloading model.ckpt:  51%|█████▏    | 860M/1.68G [00:10<00:08, 92.1MB/s]Downloading model.ckpt:  52%|█████▏    | 870M/1.68G [00:10<00:08, 90.7MB/s]Downloading model.ckpt:  53%|█████▎    | 881M/1.68G [00:10<00:09, 83.5MB/s]Downloading model.ckpt:  53%|█████▎    | 891M/1.68G [00:10<00:09, 85.9MB/s]Downloading model.ckpt:  54%|█████▍    | 912M/1.68G [00:10<00:08, 92.1MB/s]Downloading model.ckpt:  56%|█████▌    | 933M/1.68G [00:11<00:07, 100MB/s] Downloading model.ckpt:  56%|█████▋    | 944M/1.68G [00:11<00:07, 99.6MB/s]Downloading model.ckpt:  57%|█████▋    | 954M/1.68G [00:11<00:07, 93.8MB/s]Downloading model.ckpt:  58%|█████▊    | 965M/1.68G [00:11<00:10, 65.0MB/s]Downloading model.ckpt:  59%|█████▉    | 986M/1.68G [00:11<00:08, 78.9MB/s]Downloading model.ckpt:  59%|█████▉    | 996M/1.68G [00:11<00:08, 81.0MB/s]Downloading model.ckpt:  60%|██████    | 1.01G/1.68G [00:12<00:07, 84.0MB/s]Downloading model.ckpt:  61%|██████    | 1.02G/1.68G [00:12<00:08, 82.2MB/s]Downloading model.ckpt:  61%|██████▏   | 1.03G/1.68G [00:12<00:08, 77.5MB/s]Downloading model.ckpt:  62%|██████▏   | 1.04G/1.68G [00:12<00:08, 72.5MB/s]Downloading model.ckpt:  63%|██████▎   | 1.05G/1.68G [00:12<00:08, 70.4MB/s]Downloading model.ckpt:  63%|██████▎   | 1.06G/1.68G [00:12<00:08, 69.9MB/s]Downloading model.ckpt:  64%|██████▍   | 1.07G/1.68G [00:12<00:08, 73.6MB/s]Downloading model.ckpt:  64%|██████▍   | 1.08G/1.68G [00:13<00:08, 74.0MB/s]Downloading model.ckpt:  65%|██████▌   | 1.09G/1.68G [00:13<00:07, 79.7MB/s]Downloading model.ckpt:  66%|██████▋   | 1.11G/1.68G [00:13<00:05, 101MB/s] Downloading model.ckpt:  68%|██████▊   | 1.13G/1.68G [00:13<00:04, 110MB/s]Downloading model.ckpt:  69%|██████▉   | 1.15G/1.68G [00:13<00:04, 112MB/s]Downloading model.ckpt:  70%|███████   | 1.17G/1.68G [00:13<00:04, 111MB/s]Downloading model.ckpt:  71%|███████▏  | 1.20G/1.68G [00:14<00:04, 104MB/s]Downloading model.ckpt:  73%|███████▎  | 1.22G/1.68G [00:14<00:04, 102MB/s]Downloading model.ckpt:  74%|███████▍  | 1.24G/1.68G [00:14<00:04, 102MB/s]Downloading model.ckpt:  74%|███████▍  | 1.25G/1.68G [00:14<00:04, 97.7MB/s]Downloading model.ckpt:  76%|███████▌  | 1.27G/1.68G [00:14<00:03, 106MB/s] Downloading model.ckpt:  77%|███████▋  | 1.29G/1.68G [00:14<00:03, 120MB/s]Downloading model.ckpt:  78%|███████▊  | 1.31G/1.68G [00:15<00:02, 132MB/s]Downloading model.ckpt:  79%|███████▉  | 1.33G/1.68G [00:15<00:03, 107MB/s]Downloading model.ckpt:  81%|████████  | 1.35G/1.68G [00:15<00:03, 99.5MB/s]Downloading model.ckpt:  82%|████████▏ | 1.37G/1.68G [00:15<00:03, 96.5MB/s]Downloading model.ckpt:  83%|████████▎ | 1.38G/1.68G [00:15<00:03, 97.3MB/s]Downloading model.ckpt:  84%|████████▍ | 1.41G/1.68G [00:16<00:02, 104MB/s] Downloading model.ckpt:  85%|████████▌ | 1.43G/1.68G [00:16<00:02, 124MB/s]Downloading model.ckpt:  87%|████████▋ | 1.46G/1.68G [00:16<00:01, 159MB/s]Downloading model.ckpt:  88%|████████▊ | 1.48G/1.68G [00:16<00:01, 135MB/s]Downloading model.ckpt:  89%|████████▉ | 1.50G/1.68G [00:16<00:01, 120MB/s]Downloading model.ckpt:  91%|█████████ | 1.52G/1.68G [00:17<00:01, 108MB/s]Downloading model.ckpt:  92%|█████████▏| 1.54G/1.68G [00:17<00:01, 95.9MB/s]Downloading model.ckpt:  93%|█████████▎| 1.56G/1.68G [00:17<00:01, 91.8MB/s]Downloading model.ckpt:  94%|█████████▍| 1.57G/1.68G [00:17<00:01, 90.5MB/s]Downloading model.ckpt:  95%|█████████▌| 1.59G/1.68G [00:17<00:00, 94.1MB/s]Downloading model.ckpt:  96%|█████████▌| 1.60G/1.68G [00:17<00:00, 92.6MB/s]Downloading model.ckpt:  96%|█████████▋| 1.61G/1.68G [00:18<00:00, 93.7MB/s]Downloading model.ckpt:  98%|█████████▊| 1.64G/1.68G [00:18<00:00, 98.3MB/s]Downloading model.ckpt:  98%|█████████▊| 1.65G/1.68G [00:18<00:00, 99.5MB/s]Downloading model.ckpt:  99%|█████████▉| 1.66G/1.68G [00:18<00:00, 95.1MB/s]Downloading model.ckpt: 100%|██████████| 1.68G/1.68G [00:18<00:00, 100MB/s] Downloading model.ckpt: 100%|██████████| 1.68G/1.68G [00:18<00:00, 89.7MB/s]
+ "/home/runner/work/Frontlings/Frontlings/tools/gen3d/gen.py", line 47, in <module>
+    trellis(i, png); say('TRELLIS ok', i, round(time.time() - t0), 's'); continue
+    ^^^^^^^^^^^^^^^
+  File "/home/runner/work/Frontlings/Frontlings/tools/gen3d/gen.py", line 24, in trellis
+    c = Client(sp, token=tok) if tok else Client(sp)
+                                          ^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/gradio_client/client.py", line 139, in __init__
+    state = self._get_space_state()
+            ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/gradio_client/client.py", line 462, in _get_space_state
+    info = huggingface_hub.get_space_runtime(self.space_id, token=self.hf_token)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 118, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/huggingface_hub/hf_api.py", line 5348, in get_space_runtime
+    return SpaceRuntime(r.json())
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/huggingface_hub/_space_api.py", line 122, in __init__
+    self.storage = data["storage"]
+                   ~~~~^^^^^^^^^^^
+KeyError: 'storage'
+
+[0;93m2026-10-08 21:22:01.720099254 [W:onnxruntime:Default, device_discovery.cc:146 GetPciBusId] Skipping pci_bus_id for PCI path at "/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/5620e0c7-8062-4dce-aeb7-520c7ef76171" because filename "5620e0c7-8062-4dce-aeb7-520c7ef76171" did not match expected pattern of [0-9a-f]+:[0-9a-f]+:[0-9a-f]+[.][0-9a-f]+[m
+2026-10-08 21:22:42,111 - INFO - Initializing model ...
+Downloading config.yaml:   0%|          | 0.00/987 [00:00<?, ?B/s]Downloading config.yaml: 100%|██████████| 987/987 [00:00<00:00, 7.05MB/s]
+Downloading model.ckpt:   0%|          | 0.00/1.68G [00:00<?, ?B/s]Downloading model.ckpt:   1%|          | 10.5M/1.68G [00:00<00:50, 32.9MB/s]Downloading model.ckpt:   1%|▏         | 21.0M/1.68G [00:00<00:33, 49.9MB/s]Downloading model.ckpt:   2%|▏         | 31.5M/1.68G [00:00<00:26, 63.3MB/s]Downloading model.ckpt:   3%|▎         | 41.9M/1.68G [00:00<00:24, 68.1MB/s]Downloading model.ckpt:   3%|▎         | 52.4M/1.68G [00:00<00:26, 60.9MB/s]Downloading model.ckpt:   4%|▍         | 62.9M/1.68G [00:01<00:28, 56.0MB/s]Downloading model.ckpt:   4%|▍         | 73.4M/1.68G [00:01<00:27, 57.3MB/s]Downloading model.ckpt:   5%|▌         | 83.9M/1.68G [00:01<00:26, 61.0MB/s]Downloading model.ckpt:   6%|▌         | 94.4M/1.68G [00:01<00:24, 63.5MB/s]Downloading model.ckpt:   6%|▋         | 105M/1.68G [00:01<00:23, 66.4MB/s] Downloading model.ckpt:   7%|▋         | 115M/1.68G [00:01<00:21, 73.3MB/s]Downloading model.ckpt:   8%|▊         | 136M/1.68G [00:02<00:16, 93.4MB/s]Downloading model.ckpt:   9%|▉         | 157M/1.68G [00:02<00:13, 114MB/s] Downloading model.ckpt:  11%|█▏        | 189M/1.68G [00:02<00:10, 139MB/s]Downloading model.ckpt:  13%|█▎        | 210M/1.68G [00:02<00:11, 123MB/s]Downloading model.ckpt:  14%|█▍        | 231M/1.68G [00:02<00:12, 118MB/s]Downloading model.ckpt:  15%|█▌        | 252M/1.68G [00:02<00:11, 125MB/s]Downloading model.ckpt:  16%|█▋        | 273M/1.68G [00:03<00:11, 127MB/s]Downloading model.ckpt:  18%|█▊        | 294M/1.68G [00:03<00:10, 130MB/s]Downloading model.ckpt:  19%|█▉        | 315M/1.68G [00:03<00:13, 102MB/s]Downloading model.ckpt:  20%|██        | 336M/1.68G [00:03<00:17, 76.9MB/s]Downloading model.ckpt:  21%|██        | 346M/1.68G [00:04<00:17, 76.3MB/s]Downloading model.ckpt:  21%|██▏       | 357M/1.68G [00:04<00:16, 80.2MB/s]Downloading model.ckpt:  22%|██▏       | 367M/1.68G [00:04<00:15, 82.9MB/s]Downloading model.ckpt:  23%|██▎       | 377M/1.68G [00:04<00:15, 82.6MB/s]Downloading model.ckpt:  23%|██▎       | 388M/1.68G [00:04<00:14, 86.9MB/s]Downloading model.ckpt:  24%|██▍       | 409M/1.68G [00:04<00:17, 72.6MB/s]Downloading model.ckpt:  26%|██▌       | 430M/1.68G [00:04<00:14, 88.6MB/s]Downloading model.ckpt:  26%|██▋       | 440M/1.68G [00:05<00:14, 86.7MB/s]Downloading model.ckpt:  28%|██▊       | 461M/1.68G [00:05<00:12, 96.2MB/s]Downloading model.ckpt:  28%|██▊       | 472M/1.68G [00:05<00:16, 75.1MB/s]Downloading model.ckpt:  29%|██▉       | 482M/1.68G [00:05<00:15, 77.0MB/s]Downloading model.ckpt:  30%|███       | 503M/1.68G [00:05<00:13, 90.1MB/s]Downloading model.ckpt:  31%|███▏      | 524M/1.68G [00:06<00:11, 101MB/s] Downloading model.ckpt:  33%|███▎      | 545M/1.68G [00:06<00:11, 101MB/s]Downloading model.ckpt:  34%|███▍      | 566M/1.68G [00:06<00:09, 114MB/s]Downloading model.ckpt:  35%|███▌      | 587M/1.68G [00:06<00:10, 101MB/s]Downloading model.ckpt:  36%|███▋      | 608M/1.68G [00:06<00:11, 93.4MB/s]Downloading model.ckpt:  37%|███▋      | 619M/1.68G [00:07<00:11, 89.8MB/s]Downloading model.ckpt:  38%|███▊      | 629M/1.68G [00:07<00:11, 91.9MB/s]Downloading model.ckpt:  38%|███▊      | 640M/1.68G [00:07<00:11, 90.2MB/s]Downloading model.ckpt:  39%|███▉      | 650M/1.68G [00:07<00:12, 85.3MB/s]Downloading model.ckpt:  39%|███▉      | 661M/1.68G [00:07<00:12, 84.5MB/s]Downloading model.ckpt:  40%|████      | 671M/1.68G [00:07<00:11, 89.1MB/s]Downloading model.ckpt:  41%|████      | 682M/1.68G [00:07<00:10, 90.9MB/s]Downloading model.ckpt:  41%|████▏     | 692M/1.68G [00:07<00:10, 90.2MB/s]Downloading model.ckpt:  43%|████▎     | 713M/1.68G [00:08<00:09, 101MB/s] Downloading model.ckpt:  44%|████▍     | 734M/1.68G [00:08<00:08, 116MB/s]Downloading model.ckpt:  45%|████▌     | 755M/1.68G [00:08<00:07, 129MB/s]Downloading model.ckpt:  46%|████▋     | 776M/1.68G [00:08<00:06, 138MB/s]Downloading model.ckpt:  48%|████▊     | 797M/1.68G [00:08<00:06, 139MB/s]Downloading model.ckpt:  49%|████▉     | 818M/1.68G [00:08<00:05, 149MB/s]Downloading model.ckpt:  50%|█████     | 839M/1.68G [00:08<00:06, 137MB/s]Downloading model.ckpt:  51%|█████▏    | 860M/1.68G [00:09<00:05, 142MB/s]Downloading model.ckpt:  53%|█████▎    | 881M/1.68G [00:09<00:09, 83.3MB/s]Downloading model.ckpt:  54%|█████▍    | 902M/1.68G [00:09<00:08, 89.9MB/s]Downloading model.ckpt:  55%|█████▌    | 923M/1.68G [00:09<00:07, 97.9MB/s]Downloading model.ckpt:  56%|█████▋    | 944M/1.68G [00:10<00:11, 65.9MB/s]Downloading model.ckpt:  57%|█████▋    | 954M/1.68G [00:10<00:10, 68.9MB/s]Downloading model.ckpt:  58%|█████▊    | 965M/1.68G [00:10<00:09, 71.9MB/s]Downloading model.ckpt:  58%|█████▊    | 975M/1.68G [00:10<00:09, 77.3MB/s]Downloading model.ckpt:  59%|█████▉    | 986M/1.68G [00:10<00:08, 82.2MB/s]Downloading model.ckpt:  60%|██████    | 1.01G/1.68G [00:11<00:07, 91.6MB/s]Downloading model.ckpt:  61%|██████    | 1.02G/1.68G [00:11<00:07, 84.9MB/s]Downloading model.ckpt:  61%|██████▏   | 1.03G/1.68G [00:11<00:07, 83.8MB/s]Downloading model.ckpt:  62%|██████▏   | 1.04G/1.68G [00:11<00:07, 84.2MB/s]Downloading model.ckpt:  63%|██████▎   | 1.05G/1.68G [00:11<00:07, 78.6MB/s]Downloading model.ckpt:  63%|██████▎   | 1.06G/1.68G [00:11<00:08, 77.2MB/s]Downloading model.ckpt:  64%|██████▍   | 1.07G/1.68G [00:12<00:11, 53.9MB/s]Downloading model.ckpt:  64%|██████▍   | 1.08G/1.68G [00:12<00:09, 61.0MB/s]Downloading model.ckpt:  65%|██████▌   | 1.09G/1.68G [00:12<00:08, 68.5MB/s]Downloading model.ckpt:  66%|██████▌   | 1.10G/1.68G [00:12<00:07, 75.8MB/s]Downloading model.ckpt:  66%|██████▋   | 1.11G/1.68G [00:12<00:07, 77.6MB/s]Downloading model.ckpt:  67%|██████▋   | 1.12G/1.68G [00:12<00:06, 80.6MB/s]Downloading model.ckpt:  68%|██████▊   | 1.13G/1.68G [00:12<00:06, 80.2MB/s]Downloading model.ckpt:  68%|██████▊   | 1.14G/1.68G [00:12<00:06, 78.6MB/s]Downloading model.ckpt:  69%|██████▉   | 1.15G/1.68G [00:13<00:06, 83.4MB/s]Downloading model.ckpt:  70%|███████   | 1.17G/1.68G [00:13<00:05, 98.1MB/s]Downloading model.ckpt:  71%|███████▏  | 1.20G/1.68G [00:13<00:04, 105MB/s] Downloading model.ckpt:  73%|███████▎  | 1.22G/1.68G [00:13<00:04, 114MB/s]Downloading model.ckpt:  74%|███████▍  | 1.24G/1.68G [00:13<00:03, 118MB/s]Downloading model.ckpt:  75%|███████▌  | 1.26G/1.68G [00:13<00:03, 105MB/s]Downloading model.ckpt:  76%|███████▋  | 1.28G/1.68G [00:14<00:03, 108MB/s]Downloading model.ckpt:  78%|███████▊  | 1.30G/1.68G [00:14<00:03, 115MB/s]Downloading model.ckpt:  79%|███████▉  | 1.32G/1.68G [00:14<00:03, 102MB/s]Downloading model.ckpt:  80%|████████  | 1.34G/1.68G [00:14<00:03, 109MB/s]Downloading model.ckpt:  81%|████████▏ | 1.36G/1.68G [00:14<00:02, 120MB/s]Downloading model.ckpt:  83%|████████▎ | 1.38G/1.68G [00:15<00:02, 119MB/s]Downloading model.ckpt:  84%|████████▍ | 1.41G/1.68G [00:15<00:02, 105MB/s]Downloading model.ckpt:  85%|████████▌ | 1.43G/1.68G [00:15<00:02, 93.1MB/s]Downloading model.ckpt:  86%|████████▋ | 1.45G/1.68G [00:15<00:02, 98.7MB/s]Downloading model.ckpt:  88%|████████▊ | 1.47G/1.68G [00:15<00:01, 109MB/s] Downloading model.ckpt:  89%|████████▉ | 1.49G/1.68G [00:16<00:01, 105MB/s]Downloading model.ckpt:  90%|█████████ | 1.51G/1.68G [00:16<00:01, 99.5MB/s]Downloading model.ckpt:  91%|█████████ | 1.52G/1.68G [00:16<00:01, 94.9MB/s]Downloading model.ckpt:  91%|█████████▏| 1.53G/1.68G [00:16<00:01, 90.5MB/s]Downloading model.ckpt:  92%|█████████▏| 1.54G/1.68G [00:16<00:01, 87.0MB/s]Downloading model.ckpt:  93%|█████████▎| 1.55G/1.68G [00:16<00:01, 83.7MB/s]Downloading model.ckpt:  93%|█████████▎| 1.56G/1.68G [00:17<00:01, 85.1MB/s]Downloading model.ckpt:  94%|█████████▍| 1.57G/1.68G [00:17<00:01, 79.5MB/s]Downloading model.ckpt:  94%|█████████▍| 1.58G/1.68G [00:17<00:01, 75.4MB/s]Downloading model.ckpt:  95%|█████████▌| 1.59G/1.68G [00:17<00:01, 78.0MB/s]Downloading model.ckpt:  96%|█████████▌| 1.60G/1.68G [00:17<00:00, 78.0MB/s]Downloading model.ckpt:  96%|█████████▋| 1.61G/1.68G [00:17<00:00, 78.4MB/s]Downloading model.ckpt:  97%|█████████▋| 1.63G/1.68G [00:17<00:00, 77.8MB/s]Downloading model.ckpt:  98%|█████████▊| 1.64G/1.68G [00:17<00:00, 83.0MB/s]Downloading model.ckpt:  98%|█████████▊| 1.65G/1.68G [00:18<00:00, 84.3MB/s]Downloading model.ckpt:  99%|█████████▉| 1.67G/1.68G [00:18<00:00, 102MB/s] Downloading model.ckpt: 100%|██████████| 1.68G/1.68G [00:18<00:00, 91.5MB/s]
 /opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/transformers/utils/generic.py:441: FutureWarning: `torch.utils._pytree._register_pytree_node` is deprecated. Please use `torch.utils._pytree.register_pytree_node` instead.
   _torch_pytree._register_pytree_node(
 The cache for model files in Transformers v4.22.0 has been updated. Migrating your old cache. This is a one-time only operation. You can interrupt this and resume the migration later on by calling `transformers.utils.move_cache()`.
 0it [00:00, ?it/s]0it [00:00, ?it/s]
 /opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/transformers/utils/generic.py:309: FutureWarning: `torch.utils._pytree._register_pytree_node` is deprecated. Please use `torch.utils._pytree.register_pytree_node` instead.
   _torch_pytree._register_pytree_node(
-Downloading config.json:   0%|          | 0.00/454 [00:00<?, ?B/s]Downloading config.json: 100%|██████████| 454/454 [00:00<00:00, 3.04MB/s]
-2026-10-08 21:18:32,015 - INFO - Initializing model finished in 22073.19ms.
-2026-10-08 21:18:32,015 - INFO - Processing images ...
-2026-10-08 21:18:32,024 - INFO - Processing images finished in 8.29ms.
-2026-10-08 21:18:32,024 - INFO - Running image 1/1 ...
-2026-10-08 21:18:32,024 - INFO - Running model ...
-2026-10-08 21:18:51,452 - INFO - Running model finished in 19427.97ms.
-2026-10-08 21:18:51,452 - INFO - Extracting mesh ...
-2026-10-08 21:19:23,205 - INFO - Extracting mesh finished in 31752.83ms.
-2026-10-08 21:19:23,205 - INFO - Exporting mesh ...
-Traceback (most recent call last):
-  File "/home/runner/work/Frontlings/Frontlings/TripoSR/run.py", line 190, in <module>
-    meshes[0].export(out_mesh_path)
-  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/trimesh/base.py", line 2862, in export
-    return export_mesh(mesh=self, file_obj=file_obj, file_type=file_type, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/trimesh/exchange/export.py", line 85, in export_mesh
-    export = _mesh_exporters[file_type](mesh, **kwargs)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/trimesh/exchange/gltf.py", line 198, in export_glb
-    tree, buffer_items = _create_gltf_structure(
-                         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/trimesh/exchange/gltf.py", line 711, in _create_gltf_structure
-    nodes = scene.graph.to_gltf(scene=scene, mesh_index=mesh_index)
-            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/trimesh/scene/transforms.py", line 304, in to_gltf
-    if not util.allclose(matrix, _identity):
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/trimesh/util.py", line 2243, in allclose
-    return float((a - b).ptp()) < atol
-                 ^^^^^^^^^^^
-AttributeError: 'numpy.ndarray' object has no attribute 'ptp'
-TripoSR fehlgeschlagen wolf CalledProcessError(1, ['/opt/hostedtoolcache/Python/3.11.17/x64/bin/python', 'TripoSR/run.py', 'in3d/wolf_rgb.png', '--output-dir', 'tsr_wolf', '--model-save-format', 'glb', '--device', 'cpu', '--mc-resolution', '256', '--foreground-ratio', '0.85', '--no-remove-bg'])
-Traceback (most recent call last):
-  File "/home/runner/work/Frontlings/Frontlings/tools/gen3d/gen.py", line 52, in <module>
-    triposr(i, png) and say('TripoSR ok', i, round(time.time() - t0), 's')
-    ^^^^^^^^^^^^^^^
-  File "/home/runner/work/Frontlings/Frontlings/tools/gen3d/gen.py", line 35, in triposr
-    d = f'tsr_{i}'; os.makedirs(f'{d}/0', exist_ok=True); subprocess.run([sys.executable, 'TripoSR/run.py', rgb, '--output-dir', d, '--model-save-format', 'glb', '--device', 'cpu', '--mc-resolution', '256', '--foreground-ratio', '0.85', '--no-remove-bg'], check=True)
-                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/subprocess.py", line 571, in run
-    raise CalledProcessError(retcode, process.args,
-subprocess.CalledProcessError: Command '['/opt/hostedtoolcache/Python/3.11.17/x64/bin/python', 'TripoSR/run.py', 'in3d/wolf_rgb.png', '--output-dir', 'tsr_wolf', '--model-save-format', 'glb', '--device', 'cpu', '--mc-resolution', '256', '--foreground-ratio', '0.85', '--no-remove-bg']' returned non-zero exit status 1.
+Downloading config.json:   0%|          | 0.00/454 [00:00<?, ?B/s]Downloading config.json: 100%|██████████| 454/454 [00:00<00:00, 4.03MB/s]
+2026-10-08 21:23:03,927 - INFO - Initializing model finished in 21816.33ms.
+2026-10-08 21:23:03,927 - INFO - Processing images ...
+2026-10-08 21:23:03,936 - INFO - Processing images finished in 8.42ms.
+2026-10-08 21:23:03,936 - INFO - Running image 1/1 ...
+2026-10-08 21:23:03,936 - INFO - Running model ...
+2026-10-08 21:23:15,904 - INFO - Running model finished in 11967.75ms.
+2026-10-08 21:23:15,904 - INFO - Extracting mesh ...
+2026-10-08 21:23:34,182 - INFO - Extracting mesh finished in 18278.25ms.
+2026-10-08 21:23:34,182 - INFO - Exporting mesh ...
+2026-10-08 21:23:34,189 - INFO - Exporting mesh finished in 6.23ms.
+TripoSR ok wolf 95 s
 TRELLIS fehlgeschlagen frosch KeyError('storage')
-[0;93m2026-10-08 21:19:24.987612647 [W:onnxruntime:Default, device_discovery.cc:146 GetPciBusId] Skipping pci_bus_id for PCI path at "/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/5620e0c7-8062-4dce-aeb7-520c7ef76171" because filename "5620e0c7-8062-4dce-aeb7-520c7ef76171" did not match expected pattern of [0-9a-f]+:[0-9a-f]+:[0-9a-f]+[.][0-9a-f]+[m
-2026-10-08 21:19:27,191 - INFO - Initializing model ...
+ "/home/runner/work/Frontlings/Frontlings/tools/gen3d/gen.py", line 47, in <module>
+    trellis(i, png); say('TRELLIS ok', i, round(time.time() - t0), 's'); continue
+    ^^^^^^^^^^^^^^^
+  File "/home/runner/work/Frontlings/Frontlings/tools/gen3d/gen.py", line 24, in trellis
+    c = Client(sp, token=tok) if tok else Client(sp)
+                                          ^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/gradio_client/client.py", line 139, in __init__
+    state = self._get_space_state()
+            ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/gradio_client/client.py", line 462, in _get_space_state
+    info = huggingface_hub.get_space_runtime(self.space_id, token=self.hf_token)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 118, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/huggingface_hub/hf_api.py", line 5348, in get_space_runtime
+    return SpaceRuntime(r.json())
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/huggingface_hub/_space_api.py", line 122, in __init__
+    self.storage = data["storage"]
+                   ~~~~^^^^^^^^^^^
+KeyError: 'storage'
+
+[0;93m2026-10-08 21:23:36.004512899 [W:onnxruntime:Default, device_discovery.cc:146 GetPciBusId] Skipping pci_bus_id for PCI path at "/sys/devices/LNXSYSTM:00/LNXSYBUS:00/ACPI0004:00/MSFT1000:00/5620e0c7-8062-4dce-aeb7-520c7ef76171" because filename "5620e0c7-8062-4dce-aeb7-520c7ef76171" did not match expected pattern of [0-9a-f]+:[0-9a-f]+:[0-9a-f]+[.][0-9a-f]+[m
+2026-10-08 21:23:37,942 - INFO - Initializing model ...
 /opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/transformers/utils/generic.py:441: FutureWarning: `torch.utils._pytree._register_pytree_node` is deprecated. Please use `torch.utils._pytree.register_pytree_node` instead.
   _torch_pytree._register_pytree_node(
 /opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/transformers/utils/generic.py:309: FutureWarning: `torch.utils._pytree._register_pytree_node` is deprecated. Please use `torch.utils._pytree.register_pytree_node` instead.
   _torch_pytree._register_pytree_node(
-2026-10-08 21:19:30,215 - INFO - Initializing model finished in 3024.33ms.
-2026-10-08 21:19:30,215 - INFO - Processing images ...
-2026-10-08 21:19:30,223 - INFO - Processing images finished in 8.17ms.
-2026-10-08 21:19:30,223 - INFO - Running image 1/1 ...
-2026-10-08 21:19:30,223 - INFO - Running model ...
-2026-10-08 21:19:49,668 - INFO - Running model finished in 19444.45ms.
-2026-10-08 21:19:49,668 - INFO - Extracting mesh ...
-2026-10-08 21:20:21,650 - INFO - Extracting mesh finished in 31981.55ms.
-2026-10-08 21:20:21,650 - INFO - Exporting mesh ...
-Traceback (most recent call last):
-  File "/home/runner/work/Frontlings/Frontlings/TripoSR/run.py", line 190, in <module>
-    meshes[0].export(out_mesh_path)
-  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/trimesh/base.py", line 2862, in export
-    return export_mesh(mesh=self, file_obj=file_obj, file_type=file_type, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/trimesh/exchange/export.py", line 85, in export_mesh
-    export = _mesh_exporters[file_type](mesh, **kwargs)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/trimesh/exchange/gltf.py", line 198, in export_glb
-    tree, buffer_items = _create_gltf_structure(
-                         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/trimesh/exchange/gltf.py", line 711, in _create_gltf_structure
-    nodes = scene.graph.to_gltf(scene=scene, mesh_index=mesh_index)
-            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/trimesh/scene/transforms.py", line 304, in to_gltf
-    if not util.allclose(matrix, _identity):
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/trimesh/util.py", line 2243, in allclose
-    return float((a - b).ptp()) < atol
-                 ^^^^^^^^^^^
-AttributeError: 'numpy.ndarray' object has no attribute 'ptp'
-TripoSR fehlgeschlagen frosch CalledProcessError(1, ['/opt/hostedtoolcache/Python/3.11.17/x64/bin/python', 'TripoSR/run.py', 'in3d/frosch_rgb.png', '--output-dir', 'tsr_frosch', '--model-save-format', 'glb', '--device', 'cpu', '--mc-resolution', '256', '--foreground-ratio', '0.85', '--no-remove-bg'])
-Traceback (most recent call last):
-  File "/home/runner/work/Frontlings/Frontlings/tools/gen3d/gen.py", line 52, in <module>
-    triposr(i, png) and say('TripoSR ok', i, round(time.time() - t0), 's')
-    ^^^^^^^^^^^^^^^
-  File "/home/runner/work/Frontlings/Frontlings/tools/gen3d/gen.py", line 35, in triposr
-    d = f'tsr_{i}'; os.makedirs(f'{d}/0', exist_ok=True); subprocess.run([sys.executable, 'TripoSR/run.py', rgb, '--output-dir', d, '--model-save-format', 'glb', '--device', 'cpu', '--mc-resolution', '256', '--foreground-ratio', '0.85', '--no-remove-bg'], check=True)
-                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/subprocess.py", line 571, in run
-    raise CalledProcessError(retcode, process.args,
-subprocess.CalledProcessError: Command '['/opt/hostedtoolcache/Python/3.11.17/x64/bin/python', 'TripoSR/run.py', 'in3d/frosch_rgb.png', '--output-dir', 'tsr_frosch', '--model-save-format', 'glb', '--device', 'cpu', '--mc-resolution', '256', '--foreground-ratio', '0.85', '--no-remove-bg']' returned non-zero exit status 1.
+2026-10-08 21:23:41,142 - INFO - Initializing model finished in 3200.00ms.
+2026-10-08 21:23:41,142 - INFO - Processing images ...
+2026-10-08 21:23:41,151 - INFO - Processing images finished in 8.59ms.
+2026-10-08 21:23:41,151 - INFO - Running image 1/1 ...
+2026-10-08 21:23:41,151 - INFO - Running model ...
+2026-10-08 21:23:52,789 - INFO - Running model finished in 11637.78ms.
+2026-10-08 21:23:52,789 - INFO - Extracting mesh ...
+2026-10-08 21:24:10,989 - INFO - Extracting mesh finished in 18199.98ms.
+2026-10-08 21:24:10,989 - INFO - Exporting mesh ...
+2026-10-08 21:24:10,996 - INFO - Exporting mesh finished in 6.65ms.
+TripoSR ok frosch 36 s
