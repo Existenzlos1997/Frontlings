@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: ['twa/**', '.github/workflows/android.yml']
+    paths: ['twa/**', '.github/workflows/android.yml', 'game/manifest.webmanifest', 'game/icon-192.png', 'game/icon-512.png']
 permissions:
   contents: write
   id-token: write
