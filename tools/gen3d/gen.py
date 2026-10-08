@@ -18,17 +18,10 @@ def fetch(i):
         c = Image.new('RGBA', (s, s), (0, 0, 0, 0)); c.paste(im, ((s - w) // 2, (s - h) // 2)); c = c.resize((512, 512), Image.LANCZOS); c.save(p)
     return p
 def trellis(i, png):
-    from gradio_client import Client, handle_file
-    tok = os.environ.get('HF_TOKEN') or None
-    sp = os.environ.get('TRELLIS_SPACE', 'trellis-community/TRELLIS')
-    c = Client(sp, token=tok) if tok else Client(sp)
-    try: c.predict(api_name='/start_session')
-    except Exception as e: say('start_session', e)
-    pre = c.predict(image=handle_file(png), api_name='/preprocess_image')
-    r = c.predict(image=handle_file(pre), multiimages=[], is_multiimage=False, seed=7, ss_guidance_strength=7.5, ss_sampling_steps=12, slat_guidance_strength=3, slat_sampling_steps=12, multiimage_algo='stochastic', mesh_simplify=0.95, texture_size=1024, api_name='/generate_and_extract_glb')
-    glb = r[2] if isinstance(r, (list, tuple)) else r
-    if isinstance(glb, dict): glb = glb.get('value') or glb.get('path')
-    shutil.copy(glb, f'out3d/{i}.glb'); return True
+    r = subprocess.run(['/tmp/gc/bin/python', 'tools/gen3d/trellis_one.py', png, f'out3d/{i}.glb'], capture_output=True, text=True, timeout=900)
+    say(r.stdout[-400:], r.stderr[-1500:])
+    if r.returncode != 0 or not os.path.exists(f'out3d/{i}.glb'): raise RuntimeError('TRELLIS-Aufruf fehlgeschlagen')
+    return True
 def triposr(i, png):
     if not os.path.isdir('TripoSR'): return False
     rgb = f'in3d/{i}_rgb.png'; im = Image.open(png); bg = Image.new('RGBA', im.size, (127, 127, 127, 255)); bg.alpha_composite(im); bg.convert('RGB').save(rgb)
