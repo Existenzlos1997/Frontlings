@@ -34,3 +34,8 @@ Kämpfe laufen auf dem Handy (Snapshot-Duell, nicht live synchron). Kein Schutz 
 
 ## Später: echte App für Google Play / App Store
 Die Web-Version lässt sich mit **Capacitor** (kostenlos) in eine Android-/iOS-App verpacken. Für Google Play reicht auch eine „Trusted Web Activity“ (Tool: Bubblewrap) mit der Cloudflare-Adresse. Konten: Google Play einmalig 25 $, Apple 99 $/Jahr.
+
+## Live-Kämpfe (Version 3)
+- Echtzeit-PvP über einen Cloudflare **Durable Object** (`Lobby`, SQLite-basiert, im Gratis-Tarif enthalten). Konfiguration steht in `wrangler.jsonc` (`durable_objects` + `migrations`), Cloudflare richtet ihn beim automatischen Deploy selbst ein.
+- Ablauf: Spieler A sucht → wartet; Spieler B sucht → beide werden gepaart. A ist „Host“ und rechnet den Kampf, B sieht ihn gespiegelt und schickt nur seine Karten-Züge. Freundes-Live-Kampf: beide tippen beim Freund auf ⚡.
+- Verbindung: `wss://<adresse>/api/live?id=…&token=…`

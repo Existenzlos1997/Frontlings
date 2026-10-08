@@ -16,6 +16,8 @@ async function api(req,env,u){const p=u.pathname.slice(5),DB=env.DB;let b={};if(
  if(p=='top'){const r=await DB.prepare('SELECT id,name,tr,lv FROM players ORDER BY tr DESC LIMIT 20').all();return J({top:r.results})}
  if(p=='search'){const q=String(u.searchParams.get('q')||'').trim().toLowerCase().replace(/[%_]/g,'');if(q.length<2)return J({players:[]});const r=await DB.prepare('SELECT id,name,tr,lv FROM players WHERE lname LIKE ? ORDER BY tr DESC LIMIT 10').bind(q+'%').all();return J({players:r.results})}
  if(p=='alliances'){const r=await DB.prepare('SELECT a.id,a.name,(SELECT COUNT(*) FROM players WHERE al=a.id) AS n FROM alliances a ORDER BY n DESC,a.ts DESC LIMIT 30').all();return J({alliances:r.results})}
+ if(p=='live'){if(req.headers.get('Upgrade')!=='websocket')return J({error:'WebSocket nötig'},426);const me=await auth(env,{id:u.searchParams.get('id')||'',token:u.searchParams.get('token')||''});if(!me)return J({error:'Nicht angemeldet'},401);
+  const nu=new URL(req.url);nu.searchParams.delete('token');nu.searchParams.set('pid',me.id);nu.searchParams.set('name',me.name);return env.LOBBY.get(env.LOBBY.idFromName('main')).fetch(new Request(nu.toString(),req))}
  const me=await auth(env,b);if(!me)return J({error:'Nicht angemeldet'},401);
  if(p=='me')return J({id:me.id,name:me.name,tr:me.tr,lv:me.lv,al:me.al});
  if(p=='sync'){const now=Date.now(),mins=Math.max(0,(now-(me.ts||now))/6e4),first=!me.deck||me.deck=='[]',maxTr=first?99999:(me.tr||0)+35+Math.ceil(mins/2)*35,maxLv=first?999:(me.lv||1)+1+Math.ceil(mins/10);await DB.prepare('UPDATE players SET tr=?,lv=?,deck=?,fort=?,ts=? WHERE id=?').bind(Math.min(num(b.tr,0,99999),maxTr),Math.min(num(b.lv,1,999),maxLv),JSON.stringify(ids(b.deck,8)),JSON.stringify((Array.isArray(b.fort)?b.fort.slice(0,3):[]).map(k=>typeof k=='string'&&CID.test(k)?k:'')),Date.now(),me.id).run();return J({ok:1})}
@@ -40,3 +42,23 @@ async function api(req,env,u){const p=u.pathname.slice(5),DB=env.DB;let b={};if(
   await DB.batch([DB.prepare('UPDATE reqs SET got=got+1 WHERE id=? AND got<need').bind(q.id),DB.prepare('INSERT INTO gifts(pid,card,n,src,ts) VALUES(?,?,1,?,?)').bind(q.pid,q.card,me.name,Date.now()),DB.prepare('INSERT INTO dons(pid,ts) VALUES(?,?)').bind(me.id,Date.now())]);return J({ok:1})}
  if(p=='gifts'){const r=await DB.prepare('SELECT id,card,n,src FROM gifts WHERE pid=? AND done=0 LIMIT 50').bind(me.id).all();if(r.results.length)await DB.prepare('UPDATE gifts SET done=1 WHERE pid=? AND done=0 AND id<=?').bind(me.id,Math.max(...r.results.map(g=>g.id))).run();return J({gifts:r.results})}
  return J({error:'Unbekannt'},404)}
+
+// Live-Kämpfe: Durable Object als Lobby + Weiterleitung (WebSocket Hibernation)
+export class Lobby{constructor(state,env){this.state=state}
+ async fetch(req){const u=new URL(req.url);if(req.headers.get('Upgrade')!=='websocket')return new Response('WebSocket nötig',{status:426});const pid=u.searchParams.get('pid')||'',name=u.searchParams.get('name')||'Spieler';
+  for(const w of this.state.getWebSockets(pid)){try{w.close(4000,'ersetzt')}catch(e){}}
+  const pair=new WebSocketPair(),[c,s]=Object.values(pair);this.state.acceptWebSocket(s,[pid]);s.serializeAttachment({pid,name,st:'idle'});return new Response(null,{status:101,webSocket:c})}
+ partner(a){if(!a||!a.partner)return null;for(const p of this.state.getWebSockets(a.partner)){const b=p.deserializeAttachment();if(b&&b.mid===a.mid)return p}return null}
+ webSocketMessage(ws,msg){let m;try{m=JSON.parse(typeof msg==='string'?msg:new TextDecoder().decode(msg))}catch(e){return}const a=ws.deserializeAttachment()||{};
+  if(m.t==='find'){a.st='wait';a.code=String(m.code||'').slice(0,40);a.info=m.info||{};a.info.name=a.name;a.since=Date.now();ws.serializeAttachment(a);
+   let best=null,bd=1e9;for(const o of this.state.getWebSockets()){if(o===ws)continue;const b=o.deserializeAttachment();if(!b||b.st!=='wait'||b.pid===a.pid||(b.code||'')!==a.code)continue;const d=Math.abs(((b.info||{}).tr||0)-((a.info||{}).tr||0));if(d<bd){bd=d;best=o}}
+   if(best){const b=best.deserializeAttachment(),mid=Math.random().toString(36).slice(2,10);b.st='play';b.partner=a.pid;b.mid=mid;a.st='play';a.partner=b.pid;a.mid=mid;best.serializeAttachment(b);ws.serializeAttachment(a);
+    try{best.send(JSON.stringify({t:'start',role:'host',mid,opp:a.info}));ws.send(JSON.stringify({t:'start',role:'guest',mid,opp:b.info}))}catch(e){}return}
+   try{ws.send(JSON.stringify({t:'wait'}))}catch(e){}return}
+  if(m.t==='cancel'){a.st='idle';ws.serializeAttachment(a);return}
+  if(m.t==='ping'){try{ws.send('{"t":"pong"}')}catch(e){}return}
+  if(a.st==='play'){const p=this.partner(a);if(!p){try{ws.send('{"t":"left"}')}catch(e){}a.st='idle';ws.serializeAttachment(a);return}
+   try{p.send(typeof msg==='string'?msg:JSON.stringify(m))}catch(e){}
+   if(m.t==='end'||m.t==='bye'){a.st='idle';ws.serializeAttachment(a);const b=p.deserializeAttachment();b.st='idle';p.serializeAttachment(b)}}}
+ webSocketClose(ws){const a=ws.deserializeAttachment();if(a&&a.st==='play'){const p=this.partner(a);if(p){try{p.send('{"t":"left"}')}catch(e){}const b=p.deserializeAttachment();b.st='idle';p.serializeAttachment(b)}}}
+ webSocketError(ws){this.webSocketClose(ws)}}
