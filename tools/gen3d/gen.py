@@ -20,7 +20,8 @@ def fetch(i):
 def trellis(i, png):
     from gradio_client import Client, handle_file
     tok = os.environ.get('HF_TOKEN') or None
-    c = Client(os.environ.get('TRELLIS_SPACE', 'trellis-community/TRELLIS'), hf_token=tok)
+    sp = os.environ.get('TRELLIS_SPACE', 'trellis-community/TRELLIS')
+    c = Client(sp, token=tok) if tok else Client(sp)
     try: c.predict(api_name='/start_session')
     except Exception as e: say('start_session', e)
     pre = c.predict(image=handle_file(png), api_name='/preprocess_image')
