@@ -25,7 +25,7 @@ jobs:
           if [ "${{ inputs.mode }}" != "trellis" ]; then
             pip install -q torch torchvision --index-url https://download.pytorch.org/whl/cpu
             git clone -q --depth 1 https://github.com/VAST-AI-Research/TripoSR
-            pip install -q omegaconf==2.3.0 einops==0.7.0 transformers==4.35.0 trimesh==4.0.5 rembg[cpu] huggingface-hub PyMCubes imageio[ffmpeg] xatlas==0.0.9 moderngl==5.10.0 > /tmp/pip.txt 2>&1 || true
+            pip install -q omegaconf==2.3.0 einops==0.7.0 transformers==4.35.0 trimesh==4.5.3 'numpy<2' rembg[cpu] huggingface-hub PyMCubes imageio[ffmpeg] xatlas==0.0.9 moderngl==5.10.0 > /tmp/pip.txt 2>&1 || true
             python tools/gen3d/patch_tsr.py >> /tmp/pip.txt 2>&1
             mkdir -p out3d; tail -30 /tmp/pip.txt > out3d/pip.txt
           fi

@@ -46,7 +46,7 @@ for i in ids:
         try:
             trellis(i, png); say('TRELLIS ok', i, round(time.time() - t0), 's'); continue
         except Exception as e:
-            say('TRELLIS fehlgeschlagen', i, repr(e)[:300])
+            say('TRELLIS fehlgeschlagen', i, repr(e)[:300]); say(traceback.format_exc()[-1500:])
     if mode in ('tsr', 'both', 'trellis'):
         try:
             triposr(i, png) and say('TripoSR ok', i, round(time.time() - t0), 's')
