@@ -21,7 +21,7 @@ jobs:
           python-version: '3.11'
       - name: Werkzeuge installieren
         run: |
-          pip install -q gradio_client pillow
+          pip install -q 'gradio_client==1.10.4' pillow
           if [ "${{ inputs.mode }}" != "trellis" ]; then
             pip install -q torch torchvision --index-url https://download.pytorch.org/whl/cpu
             git clone -q --depth 1 https://github.com/VAST-AI-Research/TripoSR

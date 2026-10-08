@@ -25,14 +25,14 @@ def trellis(i, png):
     try: c.predict(api_name='/start_session')
     except Exception as e: say('start_session', e)
     pre = c.predict(image=handle_file(png), api_name='/preprocess_image')
-    r = c.predict(image=handle_file(pre), multiimages=[], seed=7, ss_guidance_strength=7.5, ss_sampling_steps=12, slat_guidance_strength=3, slat_sampling_steps=12, multiimage_algo='stochastic', mesh_simplify=0.95, texture_size=1024, api_name='/generate_and_extract_glb')
+    r = c.predict(image=handle_file(pre), multiimages=[], is_multiimage=False, seed=7, ss_guidance_strength=7.5, ss_sampling_steps=12, slat_guidance_strength=3, slat_sampling_steps=12, multiimage_algo='stochastic', mesh_simplify=0.95, texture_size=1024, api_name='/generate_and_extract_glb')
     glb = r[2] if isinstance(r, (list, tuple)) else r
     if isinstance(glb, dict): glb = glb.get('value') or glb.get('path')
     shutil.copy(glb, f'out3d/{i}.glb'); return True
 def triposr(i, png):
     if not os.path.isdir('TripoSR'): return False
     rgb = f'in3d/{i}_rgb.png'; im = Image.open(png); bg = Image.new('RGBA', im.size, (127, 127, 127, 255)); bg.alpha_composite(im); bg.convert('RGB').save(rgb)
-    d = f'tsr_{i}'; subprocess.run([sys.executable, 'TripoSR/run.py', rgb, '--output-dir', d, '--model-save-format', 'glb', '--device', 'cpu', '--mc-resolution', '256', '--foreground-ratio', '0.85', '--no-remove-bg'], check=True)
+    d = f'tsr_{i}'; os.makedirs(f'{d}/0', exist_ok=True); subprocess.run([sys.executable, 'TripoSR/run.py', rgb, '--output-dir', d, '--model-save-format', 'glb', '--device', 'cpu', '--mc-resolution', '256', '--foreground-ratio', '0.85', '--no-remove-bg'], check=True)
     shutil.copy(f'{d}/0/mesh.glb', f'out3d/{i}_tsr.glb'); return True
 mode = os.environ.get('MODE', 'trellis')
 say('Start', mode, ids)
