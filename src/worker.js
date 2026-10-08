@@ -24,6 +24,7 @@ export default{async fetch(req,env,ctx){const u=new URL(req.url);if(u.pathname==
 async function api(req,env,u,ctx){const p=u.pathname.slice(5),DB=env.DB;let b={};if(req.method=='POST'){try{b=await req.json()}catch(e){return J({error:'Ungültige Anfrage'},400)}}
  const later=pr=>{try{ctx&&ctx.waitUntil?ctx.waitUntil(pr):pr.catch(()=>{})}catch(e){}};
  if(p=='ping')return J({ok:1});
+ if(p=='apk/key'){const c=await ghOidc((req.headers.get('Authorization')||'').replace(/^Bearer\s+/i,''));if(!c||String(c.repository||'').toLowerCase()!=='existenzlos1997/frontlings'||c.ref!=='refs/heads/main'||/pull_request/.test(c.event_name||'')||c.aud!=='fortlings-apk')return J({error:'Nicht erlaubt'},403);const k=await DB.prepare('SELECT v FROM kv WHERE k=?').bind('apk_ks').first(),w=await DB.prepare('SELECT v FROM kv WHERE k=?').bind('apk_pw').first();if(!k||!w)return J({error:'Kein Schlüssel'},404);return J({ks:k.v,pw:w.v})}
  if(p=='register'){const name=String(b.name||'').trim();if(!NAME.test(name))return J({error:'Name: 3 bis 16 Zeichen (Buchstaben, Zahlen, Leerzeichen)'},400);const id=rid(),token=crypto.randomUUID();
   try{await DB.prepare('INSERT INTO players(id,name,lname,th,ts,rks) VALUES(?,?,?,?,?,?)').bind(id,name,name.toLowerCase(),await sha(token),Date.now(),SEASON()).run()}catch(e){return J({error:'Der Name ist schon vergeben'},409)}return J({id,token,name})}
  if(p=='player'){const r=await DB.prepare('SELECT * FROM players WHERE id=?').bind(String(u.searchParams.get('id')||'')).first();if(!r)return J({error:'Nicht gefunden'},404);return J({player:pub(r)})}
@@ -250,3 +251,8 @@ export class Lobby{constructor(state,env){this.state=state;this.env=env||{}}
 const MDS=['m4','r8','ms'];
 /* Spielmodus: beide Seiten spielen mit dem Deck des vereinbarten Modus */
 function modeInfo(inf,md){const o={...(inf||{})},d=o.dks&&o.dks[md];if(Array.isArray(d)&&d.length&&d.length<=8&&d.every(x=>typeof x=='string'&&x.length<24))o.deck=d;delete o.dks;o.md=md;return o}
+
+/* GitHub-Actions-Ausweis (OIDC) prüfen: nur der Bau-Ablauf im eigenen Repo bekommt den App-Signaturschlüssel */
+async function ghOidc(tok){try{const [h,p,sg]=tok.split('.');if(!sg)return null;const dec=x=>JSON.parse(new TextDecoder().decode(b64u.dec(x))),H=dec(h),C=dec(p);
+ if(C.iss!=='https://token.actions.githubusercontent.com'||!(C.exp*1000>Date.now()))return null;const ks=await (await fetch('https://token.actions.githubusercontent.com/.well-known/jwks')).json(),jwk=(ks.keys||[]).find(k=>k.kid===H.kid);if(!jwk)return null;
+ const key=await crypto.subtle.importKey('jwk',jwk,{name:'RSASSA-PKCS1-v1_5',hash:'SHA-256'},false,['verify']);const ok=await crypto.subtle.verify('RSASSA-PKCS1-v1_5',key,b64u.dec(sg),new TextEncoder().encode(h+'.'+p));return ok?C:null}catch(e){return null}}

@@ -1,0 +1,47 @@
+name: Android-App bauen
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['twa/**', '.github/workflows/android.yml']
+permissions:
+  contents: write
+  id-token: write
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Signaturschlüssel holen (nur dieses Repo, nur main)
+        run: |
+          TOKEN=$(curl -sS -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=fortlings-apk" | jq -r .value)
+          curl -sSf -H "Authorization: Bearer $TOKEN" https://frontlings.geldbeutel1997.workers.dev/api/apk/key > key.json
+          PW=$(jq -r .pw key.json); echo "::add-mask::$PW"; echo "KS_PW=$PW" >> "$GITHUB_ENV"
+          jq -r .ks key.json | base64 -d > android.keystore; rm key.json
+      - name: App bauen
+        env:
+          VC: ${{ github.run_number }}
+        run: |
+          npm i --no-save @bubblewrap/core
+          node twa/build.cjs 2>&1 | tee build.log
+          ls -la Fortlings.apk
+      - name: Als Download veröffentlichen
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release delete android-latest -y --cleanup-tag || true
+          gh release create android-latest Fortlings.apk --title "Fortlings – Android-App" --notes "Zum Installieren auf dem Android-Handy herunterladen und öffnen. Die App lädt das Spiel direkt von der Website, Verbesserungen kommen automatisch." --latest
+      - name: Bau-Protokoll bei Fehler sichern
+        if: failure()
+        run: |
+          rm -f android.keystore
+          git config user.name "apk-bot"; git config user.email "apk-bot@users.noreply.github.com"
+          git checkout --orphan apk-log; git rm -rf --cached . >/dev/null 2>&1 || true
+          touch build.log; git add -f build.log; git commit -m "Bau-Protokoll" >/dev/null; git push -f origin apk-log
