@@ -1609,7 +1609,7 @@ const TOURS={
   {s:'.tro',t:'Pokale',d:'Sieg bringt Pokale, Niederlage kostet welche. Mehr Pokale schalten neue Arenen und Karten frei. Tippe darauf für die Pokalstraße mit Belohnungen.'},
   {s:'.srow .chip:nth-child(2)',t:'Gold & Edelsteine',d:'Gold brauchst du zum Verbessern von Karten und im Shop. Edelsteine für Truhen, den Gold-Pass und Turniere.'},
   {s:'#frb',t:'Freunde',d:'Freundesliste: Freunde suchen, einladen, live herausfordern oder zusammen 2v2 spielen.'},
-  {s:'#bell',t:'Einstellungen',d:'Effekte, Musik, weniger Bewegung, Benachrichtigungen und diesen Rundgang findest du hier.'},
+  {s:'#bell',t:'Einstellungen ⚙️',d:'Ton, Musik, weniger Bewegung, Benachrichtigungen, App installieren, Spielstand und diesen Rundgang findest du hier.'},
   {s:'#hero',t:'Deine Arena',d:'Zeigt deine aktuelle Arena. Tippe darauf, um die Pokalstraße zu sehen.'},
   {s:'#modes',t:'Deck-Modus',d:'Klassik: 4 Karten, immer alle spielbar. Rotation: 8 Karten, 4 auf der Hand. Duo: 4 Monster und 4 Zauber.'},
   {s:'#go',t:'Kampf',d:'Startet einen Kampf gegen einen Gegner deiner Stärke. Auch der große runde Knopf unten startet einen Kampf.'},
@@ -2218,6 +2218,22 @@ function alTidy(){const v=$('#al');if(!v)return;
 {const _su=setUI;setUI=function(){_su();try{const w=$('#mdx .md'),stx=$('#stx');if(!w||!stx||w.querySelector('#stdel'))return;const h=el('h2','','Konto & Rechtliches');h.style.cssText='font-size:16px;margin:14px 0 4px';stx.before(h);
   if(NET&&ACC){const b=el('button','go g2','Online-Konto löschen');b.id='stdel';b.onclick=async()=>{if(!confirm('Dein Online-Konto, deine Nachrichten und Freundschaften werden endgültig gelöscht. Fortfahren?'))return;try{await api('delete',{});localStorage.removeItem('kn');ACC=null;toast('Konto gelöscht.');mdOff();renderN()}catch(e){toast(e.message)}};stx.before(b)}
   const box=el('div','');box.style.textAlign='left';try{legalUI(box)}catch(e){}stx.before(box);const d=box.querySelector('details');if(d)d.style.margin='6px 0'}catch(e){}}}
+
+/* ===== Einstellungen sichtbar (Zahnrad) und Installieren in jedem Browser ===== */
+try{const b=$('#bell');if(b){b.innerHTML='<svg viewBox="0 0 24 24" style="fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>';b.setAttribute('aria-label','Einstellungen');b.title='Einstellungen';b.style.opacity=1}}catch(e){}
+{const _su=setUI;setUI=function(){_su();try{const b=$('#bell');if(b)b.style.opacity=1}catch(e){}}}
+canInstall=function(){return !isApp()&&!inFrame()};
+function instHow(){const ua=navigator.userAgent;if(isIOS())return {t:'iPhone / iPad (Safari)',s:['Das Spiel in <b>Safari</b> öffnen (nicht in Chrome).','Unten auf <span class="ib2">Teilen ⬆️</span> tippen.','<span class="ib2">Zum Home-Bildschirm ➕</span> wählen und <span class="ib2">Hinzufügen</span> tippen.']};
+ if(/SamsungBrowser/.test(ua))return {t:'Samsung Internet',s:['Unten rechts auf <span class="ib2">☰ Menü</span> tippen.','<span class="ib2">Seite hinzufügen zu</span> → <span class="ib2">Startbildschirm</span> wählen.']};
+ if(/Firefox/.test(ua))return {t:'Firefox',s:['Oben rechts auf <span class="ib2">⋮</span> tippen.','<span class="ib2">Installieren</span> bzw. <span class="ib2">Zum Startbildschirm hinzufügen</span> wählen.']};
+ if(/Android/.test(ua))return {t:'Android (Chrome)',s:['Oben rechts auf <span class="ib2">⋮</span> tippen.','<span class="ib2">App installieren</span> oder <span class="ib2">Zum Startbildschirm hinzufügen</span> wählen.','Mit <span class="ib2">Installieren</span> bestätigen.']};
+ return {t:'Computer (Chrome / Edge)',s:['Rechts in der Adressleiste auf das Symbol <span class="ib2">⊕ Installieren</span> klicken – oder Menü <span class="ib2">⋮</span> → <span class="ib2">Fortlings installieren</span>.','Mit <span class="ib2">Installieren</span> bestätigen.']}}
+doInstall=async function(){if(INSTP){INSTP.prompt();try{const r=await INSTP.userChoice;if(r&&r.outcome=='accepted'){P.inst=1;saveP()}}catch(e){}INSTP=null;const b=$('#instb');if(b)b.remove();return}
+ const h=instHow(),w=md('<h1 style="font-size:26px">📲 App installieren</h1><p class="s" style="margin-top:0">'+h.t+'</p><div class="insto">'+h.s.map((x,i)=>'<p><b>'+(i+1)+'.</b> '+x+'</p>').join('')+'</div><p class="s">Danach startet Fortlings wie eine richtige App: eigenes Symbol, Vollbild, Benachrichtigungen. Verbesserungen kommen automatisch.</p><button class="go" id="insx">Verstanden</button>');w.querySelector('#insx').onclick=mdOff};
+/* Hinweis im Hauptmenü auch ohne Browser-Ereignis zeigen */
+{const _mn=menu;menu=function(){_mn();try{instBanner()}catch(e){}}}
+/* Einstellungen: Installieren ganz oben */
+{const _su=setUI;setUI=function(){_su();try{if(!canInstall())return;const w=$('#mdx .md'),h=w&&w.querySelector('h1');if(!w||!h||w.querySelector('#stin2'))return;const old=w.querySelector('#stin');if(old)old.closest('.alr').remove();const b=el('button','go','📲 Als App installieren');b.id='stin2';b.style.margin='4px 0 8px';b.onclick=()=>{mdOff();doInstall()};h.after(b)}catch(e){}}}
 
 menu();onl();
 
