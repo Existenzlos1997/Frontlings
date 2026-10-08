@@ -10,6 +10,6 @@ const {TwaManifest,TwaGenerator,Config,JdkHelper,AndroidSdkTools,GradleWrapper,C
  try{await sdk.installBuildTools()}catch(e){log.warn('installBuildTools: '+e.message)}
  const gradle=new GradleWrapper(process,sdk,dir);await gradle.assembleRelease();
  const unsigned=path.join(dir,'app/build/outputs/apk/release/app-release-unsigned.apk'),aligned=path.join(dir,'aligned.apk');
- await sdk.zipalignOptimize(unsigned,aligned);const pw=process.env.KS_PW,ks=path.resolve('android.keystore');
+ await sdk.zipalignOnlyVerification(unsigned);fs.copyFileSync(unsigned,aligned);const pw='"'+process.env.KS_PW+'"',ks=path.resolve('android.keystore');
  await sdk.apksigner(ks,pw,'fortlings',pw,aligned,path.resolve('Fortlings.apk'));
  log.info('Fertig: Fortlings.apk')})().catch(e=>{console.error(e&&e.stack||e);process.exit(1)});
