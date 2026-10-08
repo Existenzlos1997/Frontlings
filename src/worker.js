@@ -176,6 +176,9 @@ export class Lobby{constructor(state,env){this.state=state;this.env=env||{}}
    if(teams.length>=2){const grp=[...teams[0],...teams[1]],mid=Math.random().toString(36).slice(2,10),att=grp.map(o=>o.deserializeAttachment()),pids=att.map(x=>x.pid),infos=att.map(x=>modeInfo(x.info,'r8'));
     grp.forEach((o,i)=>{const x=att[i];x.st='play2';x.mid=mid;x.slot=i;x.grp=pids;o.serializeAttachment(x)});grp.forEach((o,i)=>{try{o.send(JSON.stringify({t:'start2',slot:i,mid,md:'r8',players:infos}))}catch(e){}});return}
    try{ws.send(JSON.stringify({t:'wait'}))}catch(e){}return}
+  if(m.t==='find'&&m.mode==='tft'){a.st='twait';a.info={name:a.name,av:String((m.info||{}).av||'').slice(0,16)};a.since=Date.now();ws.serializeAttachment(a);await this.tftTry(false);return}
+  if(m.t==='tgo'){if(a.st==='twait')await this.tftTry(true);return}
+  if(a.st==='troom'&&typeof m.t==='string'&&m.t[0]==='t'){await this.tftMsg(ws,a,m);return}
   if(m.t==='find'){a.st='wait';a.code=String(m.code||'').slice(0,40);a.info=m.info||{};a.info.name=a.name;a.info.rk=a.rk;a.info.id=a.pid;a.since=Date.now();ws.serializeAttachment(a);
    const ranked=!a.code;a.md=MDS.includes(a.info.md)?a.info.md:'r8';ws.serializeAttachment(a);let best=null,bd=1e9;for(const o of this.state.getWebSockets()){if(o===ws)continue;const b=o.deserializeAttachment();if(!b||b.st!=='wait'||b.pid===a.pid||(b.code||'')!==a.code)continue;if(!a.code&&(b.md||'r8')!==a.md)continue;const d=ranked?Math.abs((b.rk||1000)-(a.rk||1000)):Math.abs(((b.info||{}).tr||0)-((a.info||{}).tr||0));if(d<bd){bd=d;best=o}}
    if(best){const b=best.deserializeAttachment(),mid=Math.random().toString(36).slice(2,10);b.st='play';b.partner=a.pid;b.mid=mid;a.st='play';a.partner=b.pid;a.mid=mid;b.role='host';a.role='guest';best.serializeAttachment(b);ws.serializeAttachment(a);
@@ -197,12 +200,49 @@ export class Lobby{constructor(state,env){this.state=state;this.env=env||{}}
    if(a.role==='host'||m.t==='bye'||m.t==='emo')this.toWatchers(a.mid,typeof msg==='string'?msg:JSON.stringify(m),m.t==='end'||m.t==='bye');
    if(m.t==='end'||m.t==='bye'){a.st='idle';ws.serializeAttachment(a);const b=p.deserializeAttachment();b.st='idle';p.serializeAttachment(b);
     const r=await this.rec(a.mid);if(r){if(m.t==='bye')await this.settle(a.mid,{force:a.pid===r.h?r.g:r.h});else if(a.pid===r.h)await this.settle(a.mid,{ch:m.w?r.h:r.g})}}}}
- async webSocketClose(ws){const a0=ws.deserializeAttachment();if(a0&&a0.st==='play2'){const others=this.grp2(a0);a0.st='idle';try{ws.serializeAttachment(a0)}catch(e){}
+ async webSocketClose(ws){const a0=ws.deserializeAttachment();if(a0&&a0.st==='troom'){await this.tftGone(a0);return}if(a0&&a0.st==='play2'){const others=this.grp2(a0);a0.st='idle';try{ws.serializeAttachment(a0)}catch(e){}
    if(a0.slot===0){for(const o of others){try{o.send('{"t":"left"}')}catch(e){}const x=o.deserializeAttachment();x.st='idle';o.serializeAttachment(x)}}else{const h=others.find(o=>o.deserializeAttachment().slot===0);if(h){try{h.send(JSON.stringify({t:'bye',sl:a0.slot}))}catch(e){}}}return}
   const a=ws.deserializeAttachment();if(a&&a.st==='play'){a.st='idle';try{ws.serializeAttachment(a)}catch(e){}this.toWatchers(a.mid,'{"t":"left"}',1);const p=this.partner(a);if(p){try{p.send('{"t":"left"}')}catch(e){}const b=p.deserializeAttachment();b.st='idle';p.serializeAttachment(b)}
    const r=await this.rec(a.mid);if(r&&!r.done)await this.settle(a.mid,{force:a.pid===r.h?r.g:r.h})}}
+
+ /* ---------- Festungstaktik live: 2–4 Spieler, Bereit-Knopf, gleichzeitige Runden ---------- */
+ async tLoad(rid){const st=this.state.storage;if(st)return await st.get('r:'+rid);return (this.rooms||{})[rid]||null}
+ async tSave(r){r.ts=Date.now();const st=this.state.storage;if(st)await st.put('r:'+r.rid,r);else{(this.rooms=this.rooms||{})[r.rid]=r}}
+ async tDel(rid){const st=this.state.storage;if(st)await st.delete('r:'+rid);else if(this.rooms)delete this.rooms[rid]}
+ tSend(r,m,only){const raw=JSON.stringify(m);for(const p of r.players){if(p.gone||(only!=null&&p.slot!==only))continue;for(const w of this.state.getWebSockets(p.pid)){const x=w.deserializeAttachment();if(x&&x.st==='troom'&&x.rid===r.rid){try{w.send(raw)}catch(e){}}}}}
+ tPT(round){return round<=1?30000:round<=3?35000:40000}
+ async tftTry(force){const seen=new Set(),W=[];for(const o of this.state.getWebSockets()){const b=o.deserializeAttachment();if(!b||b.st!=='twait'||seen.has(b.pid))continue;seen.add(b.pid);W.push([o,b])}W.sort((p,q)=>p[1].since-q[1].since);
+  if(W.length>=4||(force&&W.length>=2)){const grp=W.slice(0,4),rid=Math.random().toString(36).slice(2,10),players=grp.map(([o,b],i)=>({pid:b.pid,name:b.name,av:(b.info||{}).av||'',slot:i,hp:100,alive:1,gone:0,place:0}));
+   const r={rid,round:1,phase:'plan',players,ready:{},last:{},res:{},pairs:{}};await this.tSave(r);
+   grp.forEach(([o,b],i)=>{b.st='troom';b.rid=rid;b.slot=i;o.serializeAttachment(b)});
+   grp.forEach(([o],i)=>{try{o.send(JSON.stringify({t:'tstart',rid,slot:i,round:1,pt:this.tPT(1),players:players.map(p=>({slot:p.slot,name:p.name,av:p.av}))}))}catch(e){}});
+   try{const al=await this.state.storage.getAlarm();if(!al)await this.state.storage.setAlarm(Date.now()+36e5)}catch(e){}return}
+  const raw=JSON.stringify({t:'twait',n:W.length});for(const [o] of W){try{o.send(raw)}catch(e){}}}
+ tBoard(b){if(!Array.isArray(b))return [];return b.slice(0,8).map(u=>Array.isArray(u)&&typeof u[0]=='string'&&/^[a-z]{2,12}$/.test(u[0])&&[1,2,3].includes(u[1])?[u[0],u[1]]:null)}
+ async tftMsg(ws,a,m){const r=await this.tLoad(a.rid);if(!r){a.st='idle';ws.serializeAttachment(a);return}const me=r.players[a.slot];if(!me)return;
+  if(m.t==='tready'){if(r.phase!=='plan'||m.round!==r.round||!me.alive)return;const b=this.tBoard(m.board);r.ready[a.slot]=b;r.last[a.slot]=b;this.tSend(r,{t:'trd',slot:a.slot,r:1});await this.tCheckReady(r);return}
+  if(m.t==='tunready'){if(r.phase!=='plan')return;delete r.ready[a.slot];this.tSend(r,{t:'trd',slot:a.slot,r:0});await this.tSave(r);return}
+  if(m.t==='tres'){if(r.phase!=='fight'||m.round!==r.round||r.res[a.slot]||!me.alive)return;const win=!!m.win,dmg=Math.max(0,Math.min(40,Math.floor(Number(m.dmg))||0));r.res[a.slot]={win,dmg};
+   if(!win)me.hp-=dmg;else{const o=r.pairs[a.slot];if(o!=null&&o>=0){const op=r.players[o];if(op&&op.gone&&op.alive)op.hp-=dmg}}await this.tCheckRes(r);return}
+  if(m.t==='tleave'){a.st='idle';ws.serializeAttachment(a);await this.tftGone({...a,st:'troom'});return}}
+ async tCheckReady(r){const need=r.players.filter(p=>p.alive&&!p.gone);if(!need.length){await this.tDel(r.rid);return}if(!need.every(p=>r.ready[p.slot])){await this.tSave(r);return}
+  const al=r.players.filter(p=>p.alive).map(p=>p.slot).sort(()=>Math.random()-.5),pairs={};for(let i=0;i+1<al.length;i+=2){pairs[al[i]]=al[i+1];pairs[al[i+1]]=al[i]}let gh=null;
+  if(al.length%2){const z=al[al.length-1],others=al.filter(s=>s!==z);pairs[z]=-1;gh=others.length?others[Math.floor(Math.random()*others.length)]:null}
+  r.pairs=pairs;r.res={};r.phase='fight';await this.tSave(r);
+  for(const p of need){const o=pairs[p.slot],src=o>=0?o:gh,op=src!=null?r.players[src]:null;this.tSend(r,{t:'tfight',round:r.round,oslot:o,ghost:o<0,oname:op?op.name:'Schatten',oav:op?op.av:'',board:src!=null?(r.ready[src]||r.last[src]||[]):[]},p.slot)}}
+ async tCheckRes(r){const need=r.players.filter(p=>p.alive&&!p.gone);if(!need.every(p=>r.res[p.slot])){await this.tSave(r);return}
+  const alive=r.players.filter(p=>p.alive),dying=alive.filter(p=>p.hp<=0).sort((x,y)=>y.hp-x.hp),after=alive.length-dying.length;
+  dying.forEach((p,i)=>{p.alive=0;p.place=after>0?after+1+i:1+i});const rest=r.players.filter(p=>p.alive);if(rest.length===1)rest[0].place=1;
+  for(const p of dying)if(!p.gone)this.tSend(r,{t:'tend',place:p.place},p.slot);
+  if(rest.length<=1){if(rest.length===1&&!rest[0].gone)this.tSend(r,{t:'tend',place:1},rest[0].slot);await this.tDel(r.rid);return}
+  const hum=rest.filter(p=>!p.gone);if(hum.length===1){rest.filter(p=>p.gone).sort((x,y)=>y.hp-x.hp).forEach((p,i)=>{p.alive=0;p.place=2+i});hum[0].place=1;this.tSend(r,{t:'tend',place:1},hum[0].slot);await this.tDel(r.rid);return}
+  r.round++;r.phase='plan';r.ready={};r.res={};r.pairs={};await this.tSave(r);
+  this.tSend(r,{t:'tstate',round:r.round,pt:this.tPT(r.round),players:r.players.map(p=>({slot:p.slot,hp:Math.max(0,p.hp),alive:p.alive,gone:p.gone,place:p.place}))});
+  if(!r.players.some(p=>p.alive&&!p.gone))await this.tDel(r.rid)}
+ async tftGone(a){const r=await this.tLoad(a.rid);if(!r)return;const p=r.players[a.slot];if(!p||p.gone)return;p.gone=1;this.tSend(r,{t:'tgone',slot:a.slot});
+  if(!r.players.some(q=>!q.gone)){await this.tDel(r.rid);return}if(r.phase==='plan')await this.tCheckReady(r);else await this.tCheckRes(r)}
  async webSocketError(ws){await this.webSocketClose(ws)}
- async alarm(){const st=this.state.storage;if(!st)return;const all=await st.list({prefix:'m:'}),old=Date.now()-36e5,del=[];for(const [k,v] of all)if(!v||v.ts<old)del.push(k);for(let i=0;i<del.length;i+=100)await st.delete(del.slice(i,i+100));if(all.size-del.length>0)await st.setAlarm(Date.now()+36e5)}}
+ async alarm(){const st=this.state.storage;if(!st)return;const all=await st.list({prefix:'m:'}),old=Date.now()-36e5,del=[];for(const [k,v] of all)if(!v||v.ts<old)del.push(k);try{const rr=await st.list({prefix:'r:'});for(const [k,v] of rr)if(!v||v.ts<Date.now()-3*36e5)del.push(k)}catch(e){}for(let i=0;i<del.length;i+=100)await st.delete(del.slice(i,i+100));if(all.size-del.length>0)await st.setAlarm(Date.now()+36e5)}}
 const MDS=['m4','r8','ms'];
 /* Spielmodus: beide Seiten spielen mit dem Deck des vereinbarten Modus */
 function modeInfo(inf,md){const o={...(inf||{})},d=o.dks&&o.dks[md];if(Array.isArray(d)&&d.length&&d.length<=8&&d.every(x=>typeof x=='string'&&x.length<24))o.deck=d;delete o.dks;o.md=md;return o}
