@@ -22,3 +22,9 @@ Ohne App Store geht es auf dem iPhone schon jetzt: Safari → Teilen → „Zum 
 - Impressum und Datenschutz in `public/datenschutz.html` und im Spiel (Allianz-Seite unten) ausfüllen.
 - Echtgeld-Käufe: in den Stores nur über deren Bezahlsystem (Google Play Billing / Apple In-App-Kauf). Der Shop im Spiel ist dafür vorbereitet („Edelsteine“ → „Bald“).
 - Altersfreigabe-Fragebogen (IARC) in der Play Console ausfüllen.
+
+## Android-App ohne Play Store (APK)
+- Wird automatisch per GitHub Actions gebaut (`.github/workflows/android.yml`, Einstellungen in `twa/twa-manifest.json`).
+- Download für alle: https://github.com/Existenzlos1997/Frontlings/releases/download/android-latest/Fortlings.apk (im Spiel unter ⚙️ → Android-App).
+- Die App öffnet das Spiel im Vollbild und lädt Verbesserungen direkt von der Website – ein neues APK ist nur bei Änderungen an Name, Symbol oder Paket nötig.
+- Signaturschlüssel: liegt geschützt in der Datenbank; nur der Bau-Ablauf dieses Repos (Zweig main) bekommt ihn über den GitHub-Ausweis. Sicherungskopie beim Besitzer. Derselbe Schlüssel kann später als Upload-Schlüssel für Google Play dienen (Paketname `app.fortlings.game`).
