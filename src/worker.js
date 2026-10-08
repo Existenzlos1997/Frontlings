@@ -18,7 +18,7 @@ async function sfix(DB,r){const S=SEASON();if(!r||r.rks===S)return r;const last=
  await DB.prepare('UPDATE players SET rk=?,rkb=?,rkw=0,rkl=0,rks=?,rlast=? WHERE id=?').bind(rk,rk,S,last,r.id).run();return {...r,rk,rkb:rk,rkw:0,rkl:0,rks:S,rlast:last}}
 const curRk=r=>r.rks===SEASON()?(r.rk||1000):1000+Math.floor(Math.max(0,(r.rk||1000)-1000)/2);
 const pub=r=>({id:r.id,name:r.name,tr:r.tr,lv:r.lv,deck:pj(r.deck,[]),fort:pj(r.fort,[]),on:Date.now()-(r.seen||0)<150000?1:0,seen:r.seen||0,st:pj(r.st,{}),rk:curRk(r),lg:league(curRk(r))});
-export default{async fetch(req,env,ctx){const u=new URL(req.url);if(!u.pathname.startsWith('/api/'))return env.ASSETS.fetch(req);
+export default{async fetch(req,env,ctx){const u=new URL(req.url);if(u.pathname=='/.well-known/assetlinks.json'){const r=await env.DB.prepare('SELECT v FROM kv WHERE k=?').bind('assetlinks').first();return new Response(r?r.v:'[]',{headers:{'content-type':'application/json','cache-control':'max-age=300'}})}if(!u.pathname.startsWith('/api/'))return env.ASSETS.fetch(req);
  try{return await api(req,env,u,ctx)}catch(e){return J({error:'Serverfehler'},500)}},
  async scheduled(ev,env,ctx){ctx.waitUntil(cron(env))}};
 async function api(req,env,u,ctx){const p=u.pathname.slice(5),DB=env.DB;let b={};if(req.method=='POST'){try{b=await req.json()}catch(e){return J({error:'Ungültige Anfrage'},400)}}
@@ -27,6 +27,7 @@ async function api(req,env,u,ctx){const p=u.pathname.slice(5),DB=env.DB;let b={}
  if(p=='register'){const name=String(b.name||'').trim();if(!NAME.test(name))return J({error:'Name: 3 bis 16 Zeichen (Buchstaben, Zahlen, Leerzeichen)'},400);const id=rid(),token=crypto.randomUUID();
   try{await DB.prepare('INSERT INTO players(id,name,lname,th,ts,rks) VALUES(?,?,?,?,?,?)').bind(id,name,name.toLowerCase(),await sha(token),Date.now(),SEASON()).run()}catch(e){return J({error:'Der Name ist schon vergeben'},409)}return J({id,token,name})}
  if(p=='player'){const r=await DB.prepare('SELECT * FROM players WHERE id=?').bind(String(u.searchParams.get('id')||'')).first();if(!r)return J({error:'Nicht gefunden'},404);return J({player:pub(r)})}
+ if(p=='tft/top'){const r=await DB.prepare('SELECT name,tp FROM players WHERE tp>0 ORDER BY tp DESC LIMIT 50').all();return J({top:r.results})}
  if(p=='top'){const r=await DB.prepare('SELECT id,name,tr,lv,st FROM players ORDER BY tr DESC LIMIT 50').all();return J({top:r.results.map(x=>({id:x.id,name:x.name,tr:x.tr,lv:x.lv,bn:pj(x.st,{}).bn||''}))})}
  if(p=='rank/top'){const S=SEASON(),r=await DB.prepare('SELECT id,name,rk,rkw,rkl,st FROM players WHERE rks=? AND rkw+rkl>0 ORDER BY rk DESC LIMIT 50').bind(S).all();return J({season:S,ends:seasonEnd(),top:r.results.map(x=>({id:x.id,name:x.name,rk:x.rk,w:x.rkw,l:x.rkl,lg:league(x.rk),bn:pj(x.st,{}).bn||''}))})}
  if(p=='search'){const q=String(u.searchParams.get('q')||'').trim().toLowerCase().replace(/[%_]/g,'');if(q.length<2)return J({players:[]});const r=await DB.prepare('SELECT id,name,tr,lv FROM players WHERE lname LIKE ? ORDER BY tr DESC LIMIT 10').bind(q+'%').all();return J({players:r.results})}
@@ -97,6 +98,11 @@ async function api(req,env,u,ctx){const p=u.pathname.slice(5),DB=env.DB;let b={}
   const mine=await DB.prepare('SELECT id,an,bn,rk,w,ts FROM tv WHERE a=? OR b=? ORDER BY ts DESC LIMIT 5').bind(me.id,me.id).all();return J({top:top.results,friends:fr.results,mine:mine.results})}
  // ===== Push =====
  if(p=='push/sub'){const s=b.sub||{};if(typeof s.endpoint!='string'||!/^https:\/\//.test(s.endpoint)||!s.keys||typeof s.keys.p256dh!='string'||typeof s.keys.auth!='string')return J({error:'Ungültig'},400);await DB.prepare('INSERT OR REPLACE INTO pushs(pid,ep,p256,auth,ts) VALUES(?,?,?,?,?)').bind(me.id,s.endpoint.slice(0,800),s.keys.p256dh.slice(0,200),s.keys.auth.slice(0,60),Date.now()).run();return J({ok:1})}
+ if(p=='tft/submit'){const pl=num(b.place,1,4),R0=Array.isArray(b.rounds)?b.rounds.slice(0,30):[];const ok=R0.length&&R0.every(r=>Array.isArray(r)&&r.length<=8&&r.every(u=>u===null||(Array.isArray(u)&&typeof u[0]=='string'&&CID.test(u[0])&&[1,2,3].includes(u[1]))));if(!ok)return J({error:'Ungültig'},400);
+  const l=await DB.prepare('SELECT ts FROM tftr WHERE pid=? ORDER BY id DESC LIMIT 1').bind(me.id).first();if(l&&Date.now()-l.ts<45000)return J({error:'Zu schnell'},429);
+  const d=[40,20,-10,-20][pl-1];await DB.batch([DB.prepare('INSERT INTO tftr(pid,name,ts,place,data) VALUES(?,?,?,?,?)').bind(me.id,me.name,Date.now(),pl,JSON.stringify(R0)),DB.prepare('UPDATE players SET tp=MAX(0,tp+?) WHERE id=?').bind(d,me.id)]);
+  await DB.prepare('DELETE FROM tftr WHERE id NOT IN (SELECT id FROM tftr ORDER BY id DESC LIMIT 3000)').run();const r=await DB.prepare('SELECT tp FROM players WHERE id=?').bind(me.id).first();return J({ok:1,d,tp:r?r.tp:0})}
+ if(p=='tft/ghosts'){const r=await DB.prepare('SELECT name,data FROM tftr WHERE pid<>? AND ts>? ORDER BY RANDOM() LIMIT 3').bind(me.id,Date.now()-14*864e5).all();return J({runs:r.results.map(x=>{let rounds=[];try{rounds=JSON.parse(x.data)}catch(e){}return {name:x.name,rounds}})})}
  if(p=='push/unsub'){await DB.prepare('DELETE FROM pushs WHERE pid=?').bind(me.id).run();return J({ok:1})}
  if(p=='push/test'){const r=await pushTo(env,me.id,{t:'Fortlings',b:'Benachrichtigungen sind aktiv. 🎉',tag:'test'});return J({ok:r?1:0})}
 

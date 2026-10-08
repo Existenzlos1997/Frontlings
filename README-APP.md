@@ -3,11 +3,15 @@
 Fortlings ist eine installierbare Web-App (PWA). Daraus lassen sich ohne Neuprogrammierung Store-Apps bauen.
 
 ## Android (Google Play) – empfohlen zuerst
-1. Entwicklerkonto bei Google Play anlegen (einmalig 25 US-Dollar).
-2. https://www.pwabuilder.com öffnen, die Spiel-Adresse eingeben, „Package for stores“ → **Android**.
-3. Paketname wählen, z. B. `app.fortlings.game`. PWABuilder erzeugt ein `.aab` (für Google Play) und eine Datei `assetlinks.json`.
-4. Die `assetlinks.json` an Claude geben: sie kommt nach `public/.well-known/assetlinks.json`, damit die App ohne Browser-Leiste startet.
-5. Das `.aab` in der Google Play Console hochladen, Screenshots (`public/shot-*.jpg`), Beschreibung, Datenschutz-Link `https://<deine-adresse>/datenschutz.html` eintragen.
+1. Entwicklerkonto bei Google Play anlegen (einmalig 25 US-Dollar): https://play.google.com/console
+2. https://www.pwabuilder.com öffnen, die Spiel-Adresse eingeben und auf „Package for stores“ → **Android** tippen.
+3. Paketname wählen, z. B. `app.fortlings.game`, Rest so lassen. PWABuilder lädt eine ZIP-Datei herunter. Darin sind
+   - eine `.aab`-Datei (die eigentliche App für Google Play),
+   - eine `assetlinks.json` und eine Signatur-Datei (`signing.keystore` + Passwort-Datei): **gut aufheben**, ohne sie gibt es keine Updates des Store-Pakets.
+4. Die `assetlinks.json` an Claude geben. Sie wird in der Datenbank hinterlegt und unter `/.well-known/assetlinks.json` ausgeliefert, damit die App ohne Browser-Leiste im Vollbild startet. Ein neues Hochladen des Spiels ist dafür nicht nötig.
+5. In der Play Console: App anlegen, `.aab` hochladen (zuerst „Interner Test“), Screenshots (`public/shot-*.jpg`), Beschreibung, Datenschutz-Link `https://<deine-adresse>/datenschutz.html`, Altersfreigabe-Fragebogen.
+
+**Updates:** Die Store-App lädt das Spiel von unserer Adresse. Jede Verbesserung ist deshalb sofort auch in der Store-App, ohne neues Hochladen. Ein neues `.aab` braucht es nur, wenn sich Name, Symbol oder Paket-Einstellungen ändern.
 
 ## iPhone (App Store)
 1. Apple-Entwicklerprogramm (99 US-Dollar pro Jahr). Zum Bauen braucht man einen Mac mit Xcode.
