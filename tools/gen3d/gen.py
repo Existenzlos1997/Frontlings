@@ -13,7 +13,7 @@ def say(*a):
 def fetch(i):
     p = f'in3d/{i}.png'
     if not os.path.exists(p):
-        raw = f'in3d/{i}.webp'; urllib.request.urlretrieve(BASE + immap[i], raw)
+        raw = f'in3d/{i}.webp'; rq = urllib.request.Request(BASE + immap[i], headers={'User-Agent': 'Mozilla/5.0 Fortlings-3D'}); open(raw, 'wb').write(urllib.request.urlopen(rq, timeout=60).read())
         im = Image.open(raw).convert('RGBA'); w, h = im.size; s = max(w, h)
         c = Image.new('RGBA', (s, s), (0, 0, 0, 0)); c.paste(im, ((s - w) // 2, (s - h) // 2)); c = c.resize((512, 512), Image.LANCZOS); c.save(p)
     return p
@@ -34,10 +34,13 @@ def triposr(i, png):
     d = f'tsr_{i}'; subprocess.run([sys.executable, 'TripoSR/run.py', rgb, '--output-dir', d, '--model-save-format', 'glb', '--device', 'cpu', '--mc-resolution', '256', '--foreground-ratio', '0.85', '--no-remove-bg'], check=True)
     shutil.copy(f'{d}/0/mesh.glb', f'out3d/{i}_tsr.glb'); return True
 mode = os.environ.get('MODE', 'trellis')
+say('Start', mode, ids)
 for i in ids:
     if i not in immap: say('unbekannt', i); continue
     if os.path.exists(f'out3d/{i}.glb'): continue
-    png = fetch(i); t0 = time.time()
+    try: png = fetch(i)
+    except Exception as e: say('Bild laden fehlgeschlagen', i, repr(e)[:200]); continue
+    t0 = time.time()
     if mode in ('trellis', 'both'):
         try:
             trellis(i, png); say('TRELLIS ok', i, round(time.time() - t0), 's'); continue
