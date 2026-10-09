@@ -1905,7 +1905,7 @@ function instBanner(){if(!canInstall()||$('#instb'))return;const games=(P.st&&P.
 {const _mn=menu;menu=function(){_mn();try{instBanner()}catch(e){}}}
 
 /* ---------- Updates: neue Version erkennen, „Was ist neu“ ---------- */
-const APPV='2026.10.09a',NEWS=[['2026.10.09a',['Kämpfe mit mehr Wucht: Funken, Einschlagblitze, Staubwolken bei Landung und Laufen','Türme stürzen mit Trümmern und Rauchsäule ein, besiegte Monster lösen sich in einer Wolke auf','Monster stehen gestaffelt statt übereinander – Gedränge bleibt lesbar','Handkarten im Kampf im neuen Kartenlook, Arena-Banner im Menü lebt']],['2026.10.08i',['Karten mit eigener Arena-Landschaft im Hintergrund','Seltenheitsrahmen: Silber, Orange, Lila und schimmerndes Gold für Legendäre']],['2026.10.08h',['Echte Android-App zum Herunterladen (⚙️ → Android-App)','Einstellungen jetzt über das Zahnrad oben','Installieren-Anleitung für jeden Browser']],['2026.10.08g',['Festungstaktik live: bis zu 4 echte Spieler, fehlende Plätze füllen Bots','Kein Zeitdruck: Die Runde startet, wenn alle auf „Bereit“ getippt haben','Jede Synergie hat jetzt einen eigenen Effekt – antippen zeigt alle Details','Allianz aufgeräumt: Reiter Übersicht, Chat, Mitglieder; Freunde über 👥 oben, Konto in den Einstellungen']],['2026.10.08e',['Festungstaktik im neuen Look: leuchtende Podeste, Karten mit Seltenheitsrahmen, Synergie-Abzeichen','Monster per Ziehen und Ablegen aufstellen, zum Verkaufen auf den Laden ziehen','VS-Einblendung, Sieg- und Niederlage-Banner, fliegende Münzen, Siegertreppchen','Kamera zoomt im Kampf näher heran, ruhige Musik beim Planen']],['2026.10.08d',['Neuer Modus: ♟ Festungstaktik – kaufen, aufstellen, verschmelzen, gegen 3 Gegner','Online-Taktik gegen Aufstellungen echter Spieler und eigene Taktik-Rangliste','Gekaufte Shop-Angebote bleiben bis zum Tageswechsel grau','App-Verknüpfungen: lange aufs Symbol drücken für Taktik oder Shop']],['2026.10.08c',['Neuer Look für Pokalstraße und Saison-Pass','Shop und Jagd überarbeitet','Fortlings lässt sich als App installieren','KI und Live-Gegner spielen immer in deinem Modus','Karten-Popups mit ✕ und „Zurück“']]];
+const APPV='2026.10.09b',NEWS=[['2026.10.09b',['Neuer Sound: echte Aufnahmen statt Pieptöne – Treffer, Einschläge, Turmeinsturz, Karten, Münzen und Truhen','Jeder Zauber klingt eigen: Pfeilhagel zischt und schlägt ein, Frost klirrt, Fledermäuse flattern','Kurze Fanfaren bei Kampfbeginn, Krone, Sieg und Niederlage','Klänge: Kenney.nl (CC0)']],['2026.10.09a',['Kämpfe mit mehr Wucht: Funken, Einschlagblitze, Staubwolken bei Landung und Laufen','Türme stürzen mit Trümmern und Rauchsäule ein, besiegte Monster lösen sich in einer Wolke auf','Monster stehen gestaffelt statt übereinander – Gedränge bleibt lesbar','Handkarten im Kampf im neuen Kartenlook, Arena-Banner im Menü lebt']],['2026.10.08i',['Karten mit eigener Arena-Landschaft im Hintergrund','Seltenheitsrahmen: Silber, Orange, Lila und schimmerndes Gold für Legendäre']],['2026.10.08h',['Echte Android-App zum Herunterladen (⚙️ → Android-App)','Einstellungen jetzt über das Zahnrad oben','Installieren-Anleitung für jeden Browser']],['2026.10.08g',['Festungstaktik live: bis zu 4 echte Spieler, fehlende Plätze füllen Bots','Kein Zeitdruck: Die Runde startet, wenn alle auf „Bereit“ getippt haben','Jede Synergie hat jetzt einen eigenen Effekt – antippen zeigt alle Details','Allianz aufgeräumt: Reiter Übersicht, Chat, Mitglieder; Freunde über 👥 oben, Konto in den Einstellungen']],['2026.10.08e',['Festungstaktik im neuen Look: leuchtende Podeste, Karten mit Seltenheitsrahmen, Synergie-Abzeichen','Monster per Ziehen und Ablegen aufstellen, zum Verkaufen auf den Laden ziehen','VS-Einblendung, Sieg- und Niederlage-Banner, fliegende Münzen, Siegertreppchen','Kamera zoomt im Kampf näher heran, ruhige Musik beim Planen']],['2026.10.08d',['Neuer Modus: ♟ Festungstaktik – kaufen, aufstellen, verschmelzen, gegen 3 Gegner','Online-Taktik gegen Aufstellungen echter Spieler und eigene Taktik-Rangliste','Gekaufte Shop-Angebote bleiben bis zum Tageswechsel grau','App-Verknüpfungen: lange aufs Symbol drücken für Taktik oder Shop']],['2026.10.08c',['Neuer Look für Pokalstraße und Saison-Pass','Shop und Jagd überarbeitet','Fortlings lässt sich als App installieren','KI und Live-Gegner spielen immer in deinem Modus','Karten-Popups mit ✕ und „Zurück“']]];
 function newsChk(){if(!P.tut){P.seenV=APPV;saveP();return}if(P.seenV===APPV)return;if(G||($('#mdx')&&$('#mdx').style.display=='flex'))return;const n=NEWS.find(x=>x[0]===APPV);P.seenV=APPV;saveP();if(!n)return;
  const w=md('<h1 style="font-size:26px">✨ Neu in Fortlings</h1><ul class="nwl">'+n[1].map(t=>'<li>'+esc(t)+'</li>').join('')+'</ul><button class="go" id="nwx">Los geht’s!</button>');w.querySelector('#nwx').onclick=mdOff}
 let UPD=0;function updBanner(){if(!UPD||$('#updb'))return;if(G&&!G.over)return;const b=el('div','');b.id='updb';b.innerHTML='<b>✨ Neue Version bereit</b><small>Tippe zum Aktualisieren</small>';b.onclick=()=>location.reload();const h=$('#hero');if(h)h.before(b);else document.body.append(b)}
@@ -2326,6 +2326,64 @@ function dzSort(U){if(!G||G.tft)return U;for(const u of U)if(u._dz==null){G._dzc
 function heroLife(){const h=$('#hero');if(!h)return;let L=h.querySelector('.hlife');if(!L){L=el('div','hlife');L.innerHTML='<i class="hc hc1"></i><i class="hc hc2"></i><i class="hc hc3"></i>'+Array.from({length:9},(_,i)=>'<b class="hs" style="left:'+(8+i*10.5)%96+'%;top:'+(10+(i*37)%55)+'%;animation-delay:'+(i*.53).toFixed(2)+'s"></b>').join('')+'<span class="hsw"></span><img class="hm" alt="">';h.prepend(L)}
  try{const d=((typeof deck!='undefined'&&deck)||[]).filter(i=>R[i]&&R[i].t!='s'&&IM[i]);const hid=(P.hero&&R[P.hero]&&IM[P.hero])?P.hero:d[0];const m=L.querySelector('.hm');if(hid&&IM[hid]){if(m.dataset.id!=hid){m.src=IM[hid];m.dataset.id=hid}m.style.display=''}else m.style.display='none'}catch(e){}}
 {const _m=menu;menu=function(){const r=_m.apply(this,arguments);try{heroLife()}catch(e){}return r}}
+
+
+/* feat21: Profi-Sounds (Kenney.nl, CC0) – echte Aufnahmen mit Tonhöhen-Variation, Synth bleibt als Rückfall */
+const SND_D={"click": ["a/603327e8b5b6.mp3", "a/2eee5aef71b5.mp3", "a/4e77145074f8.mp3"], "err": ["a/4da6207a3e45.mp3", "a/a9f9c13e4559.mp3"], "place": ["a/cdeb5890f26c.mp3", "a/c4e426386ddd.mp3", "a/20a43dafd006.mp3", "a/e613b85817ea.mp3"], "thump": ["a/d5d886927cd3.mp3", "a/0740cf50e5f9.mp3", "a/0d6dd9d11e4c.mp3", "a/24d613c01ab5.mp3", "a/68f52d3428c2.mp3"], "punch": ["a/c2deebf16be3.mp3", "a/3252472d3a5a.mp3", "a/6bdd404656f1.mp3", "a/bc883006d1f0.mp3", "a/19c9dada6c4d.mp3"], "punchH": ["a/b0064463ca6a.mp3", "a/cc84e0f64933.mp3", "a/58e14cb5f72a.mp3", "a/e6fc65f77ef0.mp3", "a/6d8986af7964.mp3"], "soft": ["a/b4f8a3fa2e51.mp3", "a/e8cbd7c17e77.mp3", "a/7f48433472fb.mp3", "a/0b19a5e95b91.mp3", "a/fdf5aa981d57.mp3"], "boom": ["a/0539ee5fd665.mp3", "a/a06c8878d108.mp3", "a/c1a8605a05d4.mp3", "a/8cfc67e28f94.mp3", "a/3d380ed2be19.mp3"], "lowboom": ["a/46e199527451.mp3", "a/31e38bf9cae2.mp3"], "rubble": ["a/08b32c4f52d2.mp3", "a/e3f9e7ea8be2.mp3", "a/296f5f7a47ec.mp3", "a/296c7dd45ef6.mp3", "a/a2c9a8e08e4b.mp3"], "wood": ["a/4f566bd105d7.mp3", "a/d7eb81426688.mp3", "a/d58a4c4d3e45.mp3"], "woodL": ["a/6babc4ad739f.mp3", "a/64b6aaac701d.mp3", "a/0e3a9ea4f3db.mp3", "a/8a45326813ef.mp3", "a/6f6f4bfeaf12.mp3"], "bell": ["a/7d78df7db8bc.mp3", "a/1c154f75eebe.mp3", "a/946d0769b4bd.mp3"], "glass": ["a/89b39fac7db2.mp3", "a/c5b87408efc7.mp3", "a/6b06d870ee15.mp3"], "glassH": ["a/bd348d691b97.mp3", "a/0cb97e6445ca.mp3"], "metalH": ["a/4148edf79014.mp3", "a/8f1a780cf077.mp3", "a/2e2cc286fe06.mp3"], "plateH": ["a/6f87d7838832.mp3", "a/03cedb3ae9b8.mp3"], "swish": ["a/5e5483843cdd.mp3", "a/cb2fe2bd2414.mp3", "a/21f2554ba519.mp3"], "slice": ["a/135d1af6c088.mp3", "a/4f270f091b4d.mp3"], "cloth": ["a/a22c51c858e4.mp3", "a/60cb55fcdd33.mp3", "a/626770f56b31.mp3", "a/d4458ce3666f.mp3"], "coins": ["a/2bd558f37277.mp3", "a/d71b178879a5.mp3"], "chips": ["a/292d789fb0fd.mp3", "a/f3f70dfe154a.mp3", "a/343823937f84.mp3"], "pack": ["a/59e96d0fcbe9.mp3", "a/758dac3fa993.mp3"], "latch": ["a/895fb5967797.mp3"], "fire": ["a/4edf761b347e.mp3", "a/7559280ef9d8.mp3", "a/d1affa90bbf0.mp3"], "field": ["a/4c440a81ebd6.mp3", "a/b9ba0ffbff9e.mp3", "a/412bcb0a913f.mp3"], "slime": ["a/75d7ea5b9f96.mp3", "a/dac5d18afec3.mp3"], "whirl": ["a/1247d2a4253f.mp3", "a/107fcd9c6e3e.mp3"], "rumble": ["a/66f7f1a4f9f4.mp3"], "zap": ["a/d11545451cdc.mp3", "a/6884747725f9.mp3"], "conf": ["a/3f10d32c6ab8.mp3"], "sel": ["a/bc326cdc1fd3.mp3"], "chime": ["a/cea6d87c475f.mp3", "a/e389398cbee7.mp3", "a/a8c0cfc918d4.mp3"], "jWin": ["a/bec911092f9a.mp3"], "jLose": ["a/705023177caa.mp3"], "jCrown": ["a/e8f21eb44769.mp3"], "jChest": ["a/e4e2c0a6feba.mp3"], "jUp": ["a/736a186b3fd7.mp3"], "jStart": ["a/7f3a269d9480.mp3"]};
+const SB={},SBA={},SBv={},SBt={};let SBst=0;
+function sbFetch(){try{for(const k in SND_D){SBA[k]=SBA[k]||[];SND_D[k].forEach((u,i)=>{if(!SBA[k][i])SBA[k][i]=fetch(u).then(r=>r.ok?r.arrayBuffer():null).catch(()=>null)})}}catch(e){}}
+function sbDecode(){if(SBst||!AC)return;SBst=1;sbFetch();for(const k in SND_D){SB[k]=[];SND_D[k].forEach((u,i)=>{SBA[k][i].then(b=>b&&new Promise((res,rej)=>AC.decodeAudioData(b.slice(0),res,rej))).then(buf=>{if(buf)SB[k][i]=buf}).catch(()=>{})})}}
+{const _a=au;au=function(){const r=_a.apply(this,arguments);try{sbDecode()}catch(e){}return r}}
+setTimeout(sbFetch,1500);
+function sbOk(k){const a=SB[k];return !!(a&&a.some(Boolean))}
+function sbPlay(k,del,vol,r0,r1){const a=(SB[k]||[]).filter(Boolean);if(!a.length)return null;const b=a[Math.random()*a.length|0],n=AC.currentTime+(del||0),s=AC.createBufferSource(),g=AC.createGain();s.buffer=b;const lo=r0==null?1:r0,hi=r1==null?lo:r1;s.playbackRate.value=lo+Math.random()*(hi-lo);g.gain.value=vol==null?.5:vol;s.connect(g);g.connect(MG);s.start(n);return s}
+function sbC(L,key){if(!L||!AC||!MG)return false;for(const l of L)if(!sbOk(l[0]))return false;const now=AC.currentTime;if(SBt[key]!=null&&now-SBt[key]<.045)return true;if((SBv[key]||0)>=4)return true;SBt[key]=now;SBv[key]=(SBv[key]||0)+1;let last=null,end=-1;for(const l of L){const s=sbPlay(l[0],l[1],l[2],l[3],l[4]);if(s&&l[1]>=end){end=l[1];last=s}}if(last)last.onended=()=>{SBv[key]=Math.max(0,(SBv[key]||1)-1)};else SBv[key]=Math.max(0,SBv[key]-1);return true}
+const SBC={
+ tap:[['click',0,.32,1,1.08]],
+ no:[['err',0,.38,1,1]],
+ spawn:[['place',0,.5,.95,1.08],['thump',.2,.42,.9,1.05]],
+ hit:[['punch',0,.4,.9,1.15]],
+ hitH:[['punchH',0,.55,.85,1.05],['soft',0,.28,.8,.9]],
+ death:[['soft',0,.42,1.1,1.35],['cloth',.02,.28,1.2,1.5]],
+ tower:[['boom',0,.75,.8,.9],['lowboom',0,.7,1,1],['rubble',.12,.55,.9,1.1],['rubble',.3,.45,.8,1],['wood',.2,.45,.8,.95]],
+ crown:[['jCrown',0,.55,1,1],['chime',.05,.22,1,1.1]],
+ win:[['jWin',0,.7,1,1],['chime',.6,.28,1,1]],
+ lose:[['jLose',0,.6,1,1]],
+ chest:[['pack',0,.55,1,1.05],['coins',.15,.5,1,1.1],['jChest',.1,.42,1,1]],
+ spell:[['field',0,.4,1,1.2]],
+ vs:[['jStart',0,.5,1,1]]
+};
+const SBSP={
+ pfeil:[['swish',0,.3,1.1,1.4],['swish',.06,.28,1.1,1.4],['swish',.12,.28,1.1,1.4],['swish',.19,.26,1.1,1.4],['woodL',.42,.34,.9,1.2],['woodL',.47,.32,.9,1.2],['woodL',.52,.32,.9,1.2],['woodL',.58,.3,.9,1.2],['woodL',.64,.28,.9,1.2]],
+ feuer:[['fire',0,.5,1,1.1],['boom',.33,.6,.9,1]],
+ meteor:[['fire',0,.4,.6,.7],['boom',.45,.7,.7,.8],['lowboom',.45,.6,1,1]],
+ blitz:[['zap',0,.35,.5,.6],['boom',.02,.5,1.4,1.6]],
+ kette:[['zap',0,.3,1,1.2],['zap',.08,.28,1.1,1.3],['zap',.16,.26,1.2,1.4],['zap',.24,.24,1.3,1.6]],
+ prisma:[['chime',0,.35,1,1.1],['chime',.08,.32,1.2,1.3],['chime',.16,.3,1.4,1.5],['glass',.05,.35,1,1.1]],
+ frost:[['glassH',0,.5,1,1.1],['glass',.08,.4,1,1.2],['chime',.1,.3,.7,.8]],
+ mond:[['field',0,.45,.6,.7],['bell',.1,.35,.5,.6]],
+ gift:[['slime',0,.5,1,1.1],['slime',.15,.35,1.3,1.5]],
+ vulkan:[['lowboom',0,.6,1,1],['boom',.2,.6,.7,.8],['rubble',.35,.4,.9,1.1]],
+ heil:[['chime',0,.6,1,1.1],['bell',0,.4,1.6,1.8],['chime',.12,.5,1.2,1.3]],
+ herz:[['chime',0,.6,.9,1],['bell',0,.4,1.4,1.6],['chime',.12,.5,1.1,1.2]],
+ rune:[['bell',0,.4,.7,.8],['field',0,.35,1.2,1.3]],
+ wut:[['punchH',0,.5,.6,.7],['fire',0,.4,1.2,1.4]],
+ loch:[['rumble',0,.6,.6,.7],['field',0,.35,.5,.6]],
+ tornado:[['whirl',0,.6,.9,1.1]],
+ wasser:[['slime',0,.5,.8,.9],['soft',.05,.35,1.3,1.5]],
+ kaefig:[['metalH',0,.5,.95,1.05],['latch',.15,.5,1,1]],
+ hand:[['soft',0,.55,.6,.7],['rubble',.05,.4,.8,.9]],
+ dorn:[['woodL',0,.35,1.3,1.4],['woodL',.06,.33,1.3,1.5],['woodL',.12,.3,1.3,1.5],['slice',.05,.4,1,1.1]],
+ fleder:[['cloth',0,.45,1.6,2],['cloth',.05,.42,1.6,2],['cloth',.1,.42,1.6,2],['cloth',.15,.4,1.6,2],['cloth',.2,.38,1.6,2]],
+ laterne:[['bell',0,.4,1.2,1.3],['field',.05,.3,1.4,1.5]],
+ wall:[['rubble',0,.55,.9,1],['plateH',.1,.45,.7,.8],['rubble',.2,.4,.8,.9]],
+ pilzw:[['slime',0,.4,1.4,1.6],['thump',.05,.45,.9,1]],
+ portal:[['field',0,.5,.8,.9],['zap',.2,.3,.6,.7]]
+};
+for(const k in SBC){const o=SFX[k];SFX[k]=function(){if(!sbC(SBC[k],k)&&o)o()}}
+for(const k in SBSP){const o=SPS[k];SPS[k]=function(){if(!sbC(SBSP[k],'s_'+k))(o||SFX.spell)()}}
+{const _h=hit;hit=function(t,d){_h(t,d);try{if(SND&&AC&&d>=70&&G&&!G.rp)sbC(SBC.hitH,'hitH')}catch(e){}}}
+{const _st=start;start=function(){const r=_st.apply(this,arguments);try{if(SND&&AC)sbC(SBC.vs,'vs')}catch(e){}return r}}
 
 menu();onl();
 
