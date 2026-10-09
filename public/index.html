@@ -620,6 +620,48 @@ body.rotL #bt .pbg .md{max-height:calc(100vw - 24px);overflow-y:auto}
 #hero .hm::after{content:''}
 @keyframes hbr{0%,100%{transform:scale(1,1)}50%{transform:scale(1.025,.965) translateY(1px)}}
 @media (prefers-reduced-motion:reduce){#hero .hc,#hero .hs,#hero .hsw,#hero .hm{animation:none}}
+
+/* feat23: aufgeräumtes Menü */
+#instb{padding:6px 8px 6px 10px;margin-top:8px;border-radius:14px;gap:8px}#instb img{width:30px;height:30px;border-radius:8px}#instb small{display:none}#instb b{font-size:15px}#instb .go{min-height:34px;font-size:13px;padding:2px 12px}
+.bmsw{display:flex;margin:12px auto 0;width:max-content;padding:3px;border-radius:14px;background:#0d0820;border:2px solid #3a2a80;gap:2px}
+.bmsw[hidden]{display:none}
+.bmsw button{border:0;background:none;color:var(--mut);font:600 13px Fredoka,sans-serif;padding:6px 14px;border-radius:10px;cursor:pointer}
+.bmsw button.on{background:linear-gradient(#7a63d6,#5a44b0);color:#fff;box-shadow:0 2px 0 #2a1a66}
+#v_k .bar{padding-top:8px}#v_k .bar #pvp{display:none}#v_k .bar #go{flex:1;width:100%;line-height:1.05}
+#go .gsub{display:block;font:600 13px Fredoka,sans-serif;opacity:.8;letter-spacing:0;margin-top:1px}
+#mdesc{margin-top:6px!important;font-size:12px}
+#v_k #sum{display:none!important}
+.dstr{display:flex;align-items:center;gap:8px;margin:10px 14px 0;padding:6px 8px;border-radius:16px;background:linear-gradient(#3a4a63,#1f2a3d);border:2px solid #5a6f92;box-shadow:0 3px 0 #0b0f1a;cursor:pointer}
+.dstr[hidden]{display:none}
+.dstr .dsi{flex:1;display:grid;grid-template-columns:repeat(8,1fr);gap:3px;min-width:0}
+.dstr .dsi span{position:relative;aspect-ratio:1;border-radius:8px;background:#0d1220;overflow:hidden}
+.dstr .dsi img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 2px 1px #000a)}
+.dstr .dsi i{position:absolute;left:1px;top:1px;font:700 9px/1 Fredoka,sans-serif;font-style:normal;background:#8a2bd6;border-radius:6px;padding:1px 3px;color:#fff}
+.dstr .dsm{flex:none;text-align:center;line-height:1.1}.dstr .dsm b{display:block;font:400 15px 'Lilita One',Fredoka,sans-serif}.dstr .dsm b::after{content:' ›'}.dstr .dsm small{font-size:11px;color:#c9d6ea}
+.tday{margin:12px 14px 0;border-radius:18px;background:linear-gradient(#4a3a9a,#2e2370);border:2px solid #6a58c8;box-shadow:0 4px 0 #120c2a;overflow:hidden}
+.tdh{display:flex;align-items:center;gap:10px;width:100%;padding:10px 12px;border:0;background:none;color:#fff;cursor:pointer;text-align:left}
+.tdi{font-size:24px}.tdt{flex:1;min-width:0;line-height:1.15}.tdt b{display:block;font:400 18px 'Lilita One',Fredoka,sans-serif}.tdt small{display:block;font-size:12px;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tdb{flex:none;padding:3px 10px;border-radius:12px;background:linear-gradient(#5ee08a,#2fb85a);font:700 12px Fredoka,sans-serif;color:#0a3a1a;box-shadow:0 0 12px #5ee08a88}.tdb[hidden]{display:none}
+.tdc{transition:transform .2s;font-size:16px;opacity:.8}.tday.open .tdc{transform:rotate(180deg)}
+.tdbody{display:none;padding:0 0 10px}.tday.open .tdbody{display:block}
+.tdbody #evc>*{margin-left:10px!important;margin-right:10px!important}.tdbody h2{margin-top:6px;font-size:18px}.tdbody #qs>*{margin-left:10px;margin-right:10px}
+.mnhid{display:none!important}
+#v_k{padding-bottom:calc(var(--navh,90px) + 104px)!important}
+#cdock[hidden]{display:none}#cdock{position:fixed;left:0;right:0;margin:0 auto;max-width:var(--navw,100%);box-sizing:border-box;border-radius:18px 18px 0 0;bottom:calc(var(--navh,90px) - 4px);z-index:5;padding:8px 10px 10px;background:linear-gradient(#1a1040e8,#120a30f5);border-top:2px solid #4a3a90;box-shadow:0 -6px 16px #0006;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+#cdock #chs{padding:0;gap:6px}
+#cdock .ch{min-height:66px;padding:4px 2px;font-size:10.5px;border-width:2px;border-radius:12px;box-shadow:0 3px 0 var(--ink)}
+#cdock .ch .chi{height:34px;width:auto}#cdock .ch br:first-of-type{display:none}#cdock .ch .chi{display:block;margin:0 auto 2px}
+#cdock .ch.em{font-size:11px}
+#cdock #oddb{position:absolute;top:-14px;right:10px;width:26px;height:26px;padding:0;border-radius:50%;font-size:13px;line-height:1;z-index:1}
+#ttl.ttln{font-size:20px;max-width:46vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#shr{display:none!important}
+#clv.cmp{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 14px 0}
+#clv.cmp>.alr,#clv.cmp>#mstp>.alr{margin:0!important;padding:8px 6px!important;flex-direction:column;align-items:center;justify-content:center;gap:4px;text-align:center;min-height:0;cursor:pointer}
+#clv.cmp .alr span,#clv.cmp .alr br{display:none}
+#clv.cmp .alr b{font-size:13px!important;line-height:1.1}#clv.cmp .alr>b:first-child,#clv.cmp .alr .mi{font-size:20px!important}
+#clv.cmp .alr .go{font-size:11px!important;min-height:28px!important;padding:2px 6px!important;width:100%!important}
+#clv.cmp .alr .pb{margin-top:4px!important;width:100%}
+#clv.cmp>#mstp{display:contents}#clv.cmp>#mstp>.alr~*{grid-column:1/-1}
 </style>
 </head><body>
 <div id="mn"><div id="top"><div class="trow"><div class="lvb"><b id="lv">1</b></div><b id="ttl">Fortlings</b><button class="ib" id="frb" aria-label="Freunde" style="position:relative;font-size:20px">👥<i class="frn"></i></button><button class="ib" id="bell" aria-label="Ton"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9zM16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg></button><button class="ib" id="shr" aria-label="Teilen"><svg viewBox="0 0 24 24"><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8 11l8-4M8 13l8 4"/></svg></button></div><div id="xpb"><div></div></div><div class="srow"><div class="chip tro"><img alt="" style="width:30px;height:30px;object-fit:contain" src="a/a929153ac154.png"><div><small id="trt"></small><div class="tb"><div id="trb"></div></div></div></div><div class="chip"><i class="coin"></i><b id="gd"></b><u class="plus" id="gp">+</u></div><div class="chip"><i class="gem"></i><b id="gm"></b><u class="plus" id="gq">+</u></div></div></div>
@@ -1905,7 +1947,7 @@ function instBanner(){if(!canInstall()||$('#instb'))return;const games=(P.st&&P.
 {const _mn=menu;menu=function(){_mn();try{instBanner()}catch(e){}}}
 
 /* ---------- Updates: neue Version erkennen, „Was ist neu“ ---------- */
-const APPV='2026.10.09c',NEWS=[['2026.10.09c',['Echte Musik statt Synthesizer: eigenes Menü-Thema im Mittelalter-Stil','Jede Arena-Gruppe hat ihre eigene Kampfmusik, in der letzten Minute wird es episch','Festungstaktik: ruhige Planungsmusik, eigene Kampfmusik','Musik pausiert, wenn du die App verlässt','Musik: RandomMind, TAD, Wolfgang, Emma_MA, LushoGames, request (OpenGameArt, CC0)']],['2026.10.09b',['Neuer Sound: echte Aufnahmen statt Pieptöne – Treffer, Einschläge, Turmeinsturz, Karten, Münzen und Truhen','Jeder Zauber klingt eigen: Pfeilhagel zischt und schlägt ein, Frost klirrt, Fledermäuse flattern','Kurze Fanfaren bei Kampfbeginn, Krone, Sieg und Niederlage','Klänge: Kenney.nl (CC0)']],['2026.10.09a',['Kämpfe mit mehr Wucht: Funken, Einschlagblitze, Staubwolken bei Landung und Laufen','Türme stürzen mit Trümmern und Rauchsäule ein, besiegte Monster lösen sich in einer Wolke auf','Monster stehen gestaffelt statt übereinander – Gedränge bleibt lesbar','Handkarten im Kampf im neuen Kartenlook, Arena-Banner im Menü lebt']],['2026.10.08i',['Karten mit eigener Arena-Landschaft im Hintergrund','Seltenheitsrahmen: Silber, Orange, Lila und schimmerndes Gold für Legendäre']],['2026.10.08h',['Echte Android-App zum Herunterladen (⚙️ → Android-App)','Einstellungen jetzt über das Zahnrad oben','Installieren-Anleitung für jeden Browser']],['2026.10.08g',['Festungstaktik live: bis zu 4 echte Spieler, fehlende Plätze füllen Bots','Kein Zeitdruck: Die Runde startet, wenn alle auf „Bereit“ getippt haben','Jede Synergie hat jetzt einen eigenen Effekt – antippen zeigt alle Details','Allianz aufgeräumt: Reiter Übersicht, Chat, Mitglieder; Freunde über 👥 oben, Konto in den Einstellungen']],['2026.10.08e',['Festungstaktik im neuen Look: leuchtende Podeste, Karten mit Seltenheitsrahmen, Synergie-Abzeichen','Monster per Ziehen und Ablegen aufstellen, zum Verkaufen auf den Laden ziehen','VS-Einblendung, Sieg- und Niederlage-Banner, fliegende Münzen, Siegertreppchen','Kamera zoomt im Kampf näher heran, ruhige Musik beim Planen']],['2026.10.08d',['Neuer Modus: ♟ Festungstaktik – kaufen, aufstellen, verschmelzen, gegen 3 Gegner','Online-Taktik gegen Aufstellungen echter Spieler und eigene Taktik-Rangliste','Gekaufte Shop-Angebote bleiben bis zum Tageswechsel grau','App-Verknüpfungen: lange aufs Symbol drücken für Taktik oder Shop']],['2026.10.08c',['Neuer Look für Pokalstraße und Saison-Pass','Shop und Jagd überarbeitet','Fortlings lässt sich als App installieren','KI und Live-Gegner spielen immer in deinem Modus','Karten-Popups mit ✕ und „Zurück“']]];
+const APPV='2026.10.09d',NEWS=[['2026.10.09d',['Aufgeräumte Startseite: Arena, Kampf und Truhen auf einen Blick','Truhen immer sichtbar direkt über der unteren Leiste','Ein Kampf-Knopf mit Schalter: Online gegen Spieler oder Training gegen die KI','Deck als schmale Leiste, Event und Aufgaben in der aufklappbaren Karte „Heute“','Karten-Bereich kompakter, rote Punkte nur noch bei Neuem','Teilen jetzt in den Einstellungen, oben steht dein Spielername']],['2026.10.09c',['Echte Musik statt Synthesizer: eigenes Menü-Thema im Mittelalter-Stil','Jede Arena-Gruppe hat ihre eigene Kampfmusik, in der letzten Minute wird es episch','Festungstaktik: ruhige Planungsmusik, eigene Kampfmusik','Musik pausiert, wenn du die App verlässt','Musik: RandomMind, TAD, Wolfgang, Emma_MA, LushoGames, request (OpenGameArt, CC0)']],['2026.10.09b',['Neuer Sound: echte Aufnahmen statt Pieptöne – Treffer, Einschläge, Turmeinsturz, Karten, Münzen und Truhen','Jeder Zauber klingt eigen: Pfeilhagel zischt und schlägt ein, Frost klirrt, Fledermäuse flattern','Kurze Fanfaren bei Kampfbeginn, Krone, Sieg und Niederlage','Klänge: Kenney.nl (CC0)']],['2026.10.09a',['Kämpfe mit mehr Wucht: Funken, Einschlagblitze, Staubwolken bei Landung und Laufen','Türme stürzen mit Trümmern und Rauchsäule ein, besiegte Monster lösen sich in einer Wolke auf','Monster stehen gestaffelt statt übereinander – Gedränge bleibt lesbar','Handkarten im Kampf im neuen Kartenlook, Arena-Banner im Menü lebt']],['2026.10.08i',['Karten mit eigener Arena-Landschaft im Hintergrund','Seltenheitsrahmen: Silber, Orange, Lila und schimmerndes Gold für Legendäre']],['2026.10.08h',['Echte Android-App zum Herunterladen (⚙️ → Android-App)','Einstellungen jetzt über das Zahnrad oben','Installieren-Anleitung für jeden Browser']],['2026.10.08g',['Festungstaktik live: bis zu 4 echte Spieler, fehlende Plätze füllen Bots','Kein Zeitdruck: Die Runde startet, wenn alle auf „Bereit“ getippt haben','Jede Synergie hat jetzt einen eigenen Effekt – antippen zeigt alle Details','Allianz aufgeräumt: Reiter Übersicht, Chat, Mitglieder; Freunde über 👥 oben, Konto in den Einstellungen']],['2026.10.08e',['Festungstaktik im neuen Look: leuchtende Podeste, Karten mit Seltenheitsrahmen, Synergie-Abzeichen','Monster per Ziehen und Ablegen aufstellen, zum Verkaufen auf den Laden ziehen','VS-Einblendung, Sieg- und Niederlage-Banner, fliegende Münzen, Siegertreppchen','Kamera zoomt im Kampf näher heran, ruhige Musik beim Planen']],['2026.10.08d',['Neuer Modus: ♟ Festungstaktik – kaufen, aufstellen, verschmelzen, gegen 3 Gegner','Online-Taktik gegen Aufstellungen echter Spieler und eigene Taktik-Rangliste','Gekaufte Shop-Angebote bleiben bis zum Tageswechsel grau','App-Verknüpfungen: lange aufs Symbol drücken für Taktik oder Shop']],['2026.10.08c',['Neuer Look für Pokalstraße und Saison-Pass','Shop und Jagd überarbeitet','Fortlings lässt sich als App installieren','KI und Live-Gegner spielen immer in deinem Modus','Karten-Popups mit ✕ und „Zurück“']]];
 function newsChk(){if(!P.tut){P.seenV=APPV;saveP();return}if(P.seenV===APPV)return;if(G||($('#mdx')&&$('#mdx').style.display=='flex'))return;const n=NEWS.find(x=>x[0]===APPV);P.seenV=APPV;saveP();if(!n)return;
  const w=md('<h1 style="font-size:26px">✨ Neu in Fortlings</h1><ul class="nwl">'+n[1].map(t=>'<li>'+esc(t)+'</li>').join('')+'</ul><button class="go" id="nwx">Los geht’s!</button>');w.querySelector('#nwx').onclick=mdOff}
 let UPD=0;function updBanner(){if(!UPD||$('#updb'))return;if(G&&!G.over)return;const b=el('div','');b.id='updb';b.innerHTML='<b>✨ Neue Version bereit</b><small>Tippe zum Aktualisieren</small>';b.onclick=()=>location.reload();const h=$('#hero');if(h)h.before(b);else document.body.append(b)}
@@ -2403,6 +2445,48 @@ function mbStart(k){mbStop(.4);MPL.cur=k;MPL.g=AC.createGain();MPL.g.connect(MG)
 {const _d=duck;duck=function(){_d();try{if(MPL.g&&AC){const n=AC.currentTime,g=MPL.g.gain;g.cancelScheduledValues(n);g.setValueAtTime(.4,n);g.linearRampToValueAtTime(.13,n+.05);g.linearRampToValueAtTime(.4,n+.7)}}catch(e){}}}
 {const _a=au;au=function(){const r=_a.apply(this,arguments);try{if(!MBP.menu){mbLoad('menu');mbLoad('b1')}}catch(e){}return r}}
 document.addEventListener('visibilitychange',()=>{try{if(!AC)return;if(document.visibilityState==='hidden')AC.suspend();else if(SND)AC.resume()}catch(e){}});
+
+
+/* feat23: Übersichtliches Menü – Truhen-Leiste über der Navigation, ein Kampf-Knopf mit Online/Training-Schalter, Mini-Deck, „Heute“-Karte, Kopfzeile mit Spielername, kompakter Karten-Bereich, rote Punkte nur bei Neuem */
+function mnBm(){if(!NET)return 'ki';if(P.bm)return P.bm;return ACC?'on':'ki'}
+function mnSetup(){const vk=$('#v_k');if(!vk||vk.dataset.mn)return;vk.dataset.mn=1;
+ // Kampf-Schalter
+ const bar=vk.querySelector('.bar');if(bar){const sw=el('div','bmsw');sw.id='bmsw';sw.innerHTML='<button data-m="on">🌐 Online</button><button data-m="ki">🤖 Training</button>';sw.onclick=e=>{const b=e.target.closest('button');if(!b)return;P.bm=b.dataset.m;saveP();sfx('tap');mnRefresh()};bar.before(sw)}
+ // Mini-Deck
+ const sum=$('#sum');if(sum){const ds=el('div','dstr');ds.id='dstr';ds.onclick=()=>{sfx('tap');document.querySelector('#nav [data-v=d]').click()};($('#evc')||sum).before(ds)}
+ // Heute-Karte
+ const evc=$('#evc'),qs=$('#qs');if(evc&&qs){const tw=el('div','tday');tw.id='tday';tw.innerHTML='<button class="tdh"><span class="tdi">📅</span><span class="tdt"><b>Heute</b><small></small></span><span class="tdb"></span><span class="tdc">▾</span></button><div class="tdbody"></div>';const body=tw.querySelector('.tdbody');evc.before(tw);const h2=[...vk.querySelectorAll('h2')].find(x=>x.textContent=='Tagesaufgaben');body.append(evc);if(h2)body.append(h2);body.append(qs);tw.querySelector('.tdh').onclick=()=>{P.hto=!tw.classList.contains('open');saveP();sfx('tap');tw.classList.toggle('open',P.hto)}}
+ // Truhen-Leiste
+ const chs=$('#chs');if(chs){const dk=el('div','cdock');dk.id='cdock';const h2=[...vk.querySelectorAll('h2')].find(x=>x.textContent=='Truhen');if(h2)h2.classList.add('mnhid');dk.append(chs);($('#mn')||vk).append(dk)}
+ // Klick auf Kampf: Online leitet zum Online-Knopf um (Fenster-Erfassung läuft vor allen anderen Handlern)
+ window.addEventListener('click',e=>{const g=e.target&&e.target.closest&&e.target.closest('#go');if(!g||G||mnBm()!='on')return;if(!$('#mn')||$('#mn').style.display=='none')return;e.stopImmediatePropagation();e.preventDefault();const p=$('#pvp');if(p)p.click()},true);
+ // Titel: Profil öffnen
+ const t=$('#ttl');if(t){t.style.cursor='pointer';t.onclick=()=>{try{sfx('tap');openProf()}catch(x){}}}
+}
+function mnRefresh(){try{
+ const m=mnBm(),sw=$('#bmsw');if(sw){sw.hidden=!NET;sw.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.m==m))}
+ const g=$('#go');if(g){const sub=!NET?'':m=='on'?(P.tftSel?'Online gegen Spieler':'Gegen echte Spieler'):(P.tftSel?'Gegen Bots':'Training gegen die KI');let sm=g.querySelector('.gsub');if(!sm&&sub){sm=el('small','gsub');g.append(sm)}if(sm)sm.textContent=sub}
+ const ds=$('#dstr');if(ds){const ids=(typeof slots=='function'?slots():[]).filter(Boolean),avg=ids.length?(ids.reduce((a,k)=>a+R[k].c,0)/ids.length).toFixed(1):'–';ds.innerHTML='<div class="dsi">'+ids.map(i=>'<span><img src="'+IM[i]+'" alt=""><i>'+R[i].c+'</i></span>').join('')+'</div><div class="dsm"><b>Deck</b><small>⚡ '+avg+'</small></div>';ds.hidden=!!P.tftSel}
+ const tw=$('#tday');if(tw){qinit();const done=QD.filter(([k,t,n])=>(P.q.p[k]||0)>=n).length,ready=QD.filter(([k,t,n])=>(P.q.p[k]||0)>=n&&!P.q.c[k]).length,cl=QD.filter(([k])=>P.q.c[k]).length;let ev='';try{ev=EVS[evI()][0]}catch(x){}
+  tw.querySelector('.tdt small').textContent=(ev?'Event: '+ev+' · ':'')+'Aufgaben '+Math.min(done,QD.length)+'/'+QD.length;const b=tw.querySelector('.tdb');b.textContent=ready?ready+' bereit':'';b.hidden=!ready;tw.classList.toggle('open',P.hto==null?!!ready:!!P.hto);if(ready&&P.hto===false&&!tw.dataset.rd){tw.dataset.rd=1}}
+ const t=$('#ttl');if(t){const nm=ACC&&ACC.name?ACC.name:'Fortlings';if(t.textContent!==nm)t.textContent=nm;t.classList.toggle('ttln',!!(ACC&&ACC.name))}
+ $('#v_k')&&$('#v_k').querySelectorAll('h2').forEach(h=>{if(/^\s*Truhen\s*$/.test(h.textContent))h.classList.add('mnhid')});const ob=$('#oddb'),dk=$('#cdock');if(ob&&dk&&ob.parentNode!==dk){ob.textContent='ℹ️';ob.setAttribute('aria-label','Truhen-Quoten');dk.prepend(ob)}
+ const nav=$('#nav');if(nav){document.documentElement.style.setProperty('--navh',nav.offsetHeight+'px');document.documentElement.style.setProperty('--navw',nav.offsetWidth+'px')}if(dk)dk.hidden=!!$('#v_k').hidden;
+ // Karten-Bereich kompakt
+ const clv=$('#clv');if(clv){clv.classList.add('cmp');const rows=[...clv.children].flatMap(c=>c.id=='mstp'?[...c.children].slice(0,1):[c]).filter(r=>r.classList&&r.classList.contains('alr'));
+  rows.forEach(r=>{const sp=r.querySelector('span'),b=r.querySelector(':scope > div b');if(sp&&!r.dataset.tip)r.dataset.tip=sp.textContent;if(b&&!r.dataset.cm){r.dataset.cm=1;let s=b.textContent;s=s.replace('Sammlungsstufe','Sammlung').replace('Wähle einen Helden','Held wählen');const mm=(r.dataset.tip||'').match(/(\d+) von (\d+)/);if(/Meisterschaft/.test(s)&&mm)s='Meister '+mm[1]+'/'+mm[2];b.textContent=s}
+   if(!r.dataset.oc){r.dataset.oc=1;r.addEventListener('click',e=>{if(e.target.closest('button'))return;if(r.dataset.tip)toast(r.dataset.tip,3800)})}})}
+}catch(e){console.error(e)}}
+{const _mn=menu;menu=function(){const r=_mn.apply(this,arguments);try{mnSetup();mnRefresh()}catch(e){}return r}}
+{const _c=chs;chs=function(){const r=_c.apply(this,arguments);try{mnRefresh()}catch(e){}return r}}
+{const _s=setUI;setUI=function(){const r=_s.apply(this,arguments);try{const w=document.querySelector('#pop .md')||document.querySelector('.md');if(w&&!w.querySelector('#shr2')){const row=el('div','alr');row.innerHTML='<div style="flex:1;text-align:left"><b>Spiel teilen</b><br><span>Link an Freunde schicken</span></div>';const b=el('button','go g2','📤 Teilen');b.id='shr2';b.style.width='auto';b.onclick=()=>{const s=$('#shr');s&&s.onclick&&s.onclick()};row.append(b);w.append(row)}}catch(e){}return r}}
+/* Rote Punkte: Karten und Jagd nur, bis du den Bereich angesehen hast – erst Neues lässt sie wieder leuchten */
+function bdSig(){try{return Object.keys(R).filter(k=>canUp(k)).sort().join(',')+'|'+(mstAll().length)+'|'+(CLV()>=((P.clc||0)+1)*10?1:0)}catch(e){return ''}}
+{const _b=badges;badges=function(){_b();try{const d=document.querySelector('#nav [data-v=d] .dot');if(d&&d.style.display=='block'){const sig=bdSig(),seen=(P.bds||'').split('|')[0].split(',').filter(Boolean),now=sig.split('|')[0].split(',').filter(Boolean);const fresh=now.some(x=>!seen.includes(x))||sig.split('|')[1]!=(P.bds||'').split('|')[1]&&+sig.split('|')[1]>0||sig.split('|')[2]=='1'&&(P.bds||'').split('|')[2]!='1';if(!fresh)d.style.display='none'}
+ const j=document.querySelector('#nav [data-v=j] .dot');if(j&&j.style.display=='block'&&P.jseen==today)j.style.display='none'}catch(e){}}}
+document.addEventListener('click',e=>{const b=e.target&&e.target.closest&&e.target.closest('#nav [data-v]');if(!b)return;setTimeout(()=>{try{const v=b.dataset.v;if(v=='d'){P.bds=bdSig();saveP()}if(v=='j'){P.jseen=today;saveP()}badges();mnRefresh()}catch(x){}},30)});
+
+try{const M=TOURS.main,f=s=>M.find(x=>x.s==s);let x=f('#go');if(x)x.d='Startet einen Kampf. Darüber wählst du: Online gegen echte Spieler oder Training gegen die KI. Auch der große runde Knopf unten startet einen Kampf.';x=f('#pvp');if(x){x.s='#bmsw';x.t='Online oder Training';x.d='Online: Rangkampf live, 2v2 oder gegen das Deck eines echten Spielers. Training: gegen die KI, ganz ohne Risiko.'}x=f('#chs');if(x)x.d='Deine vier Truhenplätze, immer unten über der Leiste. Tippe eine Truhe zum Freischalten an, ist die Zeit um, öffnest du sie. ℹ️ zeigt die Quoten.';x=f('#qs');if(x){x.s='#tday';x.t='Heute';x.d='Tages-Event und Tagesaufgaben. Tippe zum Aufklappen – der grüne Zähler zeigt fertige Belohnungen.'}const l=M[M.length-1];if(l&&l.d)l.d=l.d.replace('(Lautsprecher-Knopf oben)','(Zahnrad oben)')}catch(e){}
 
 menu();onl();
 
