@@ -5,6 +5,8 @@ on:
       packs:
         description: 'Kenney-Pakete (CC0), mit Komma getrennt'
         default: 'impact-sounds,rpg-audio,interface-sounds,ui-audio,casino-audio,music-jingles,sci-fi-sounds,digital-audio'
+permissions:
+  contents: write
 jobs:
   fetch:
     runs-on: ubuntu-latest
@@ -24,10 +26,9 @@ jobs:
           wc -l ../list.txt
           while read f; do d=$(ffprobe -v quiet -show_entries format=duration -of csv=p=0 "$f"); echo "$d $f"; done < ../list.txt > ../dur.txt
           find . -type f \( -name '*.txt' -o -name '*.url' -o -name '*.png' -o -name '*.jpg' \) -delete
-      - uses: actions/upload-artifact@v4
-        with:
-          name: kenney-snd
-          path: |
-            snd
-            dur.txt
-          retention-days: 3
+      - name: Auf Zweig snd-raw ablegen
+        run: |
+          mv dur.txt snd/ && cd snd
+          git init -q -b snd-raw && git add -A
+          git -c user.name=bot -c user.email=bot@users.noreply.github.com commit -qm "Kenney CC0 Sounds"
+          git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" snd-raw
