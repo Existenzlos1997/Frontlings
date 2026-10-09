@@ -1,0 +1,33 @@
+name: Sound-Pakete holen
+on:
+  workflow_dispatch:
+    inputs:
+      packs:
+        description: 'Kenney-Pakete (CC0), mit Komma getrennt'
+        default: 'impact-sounds,rpg-audio,interface-sounds,ui-audio,casino-audio,music-jingles,sci-fi-sounds,digital-audio'
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Herunterladen
+        run: |
+          sudo apt-get -qq install -y ffmpeg >/dev/null 2>&1 || true
+          mkdir -p snd && cd snd
+          for p in $(echo "${{ inputs.packs }}" | tr ',' ' '); do
+            url=$(curl -sL "https://kenney.nl/assets/$p" | grep -o 'https://kenney.nl/media/pages/assets/[^"]*\.zip' | head -1)
+            echo "$p -> $url"
+            [ -z "$url" ] && continue
+            curl -sL "$url" -o "$p.zip" && mkdir -p "$p" && unzip -q -o "$p.zip" -d "$p" && rm "$p.zip"
+          done
+          find . -type f \( -name '*.ogg' -o -name '*.wav' -o -name '*.mp3' \) | sort > ../list.txt
+          wc -l ../list.txt
+          while read f; do d=$(ffprobe -v quiet -show_entries format=duration -of csv=p=0 "$f"); echo "$d $f"; done < ../list.txt > ../dur.txt
+          find . -type f \( -name '*.txt' -o -name '*.url' -o -name '*.png' -o -name '*.jpg' \) -delete
+      - uses: actions/upload-artifact@v4
+        with:
+          name: kenney-snd
+          path: |
+            snd
+            dur.txt
+          retention-days: 3
