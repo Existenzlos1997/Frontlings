@@ -1,0 +1,611 @@
+0.720816 ./casino-audio/Audio/card-fan-1.ogg
+1.306508 ./casino-audio/Audio/card-fan-2.ogg
+0.689116 ./casino-audio/Audio/card-place-1.ogg
+0.459388 ./casino-audio/Audio/card-place-2.ogg
+0.883492 ./casino-audio/Audio/card-place-3.ogg
+0.600771 ./casino-audio/Audio/card-place-4.ogg
+0.765873 ./casino-audio/Audio/card-shove-1.ogg
+0.766848 ./casino-audio/Audio/card-shove-2.ogg
+0.692834 ./casino-audio/Audio/card-shove-3.ogg
+0.809297 ./casino-audio/Audio/card-shove-4.ogg
+3.063492 ./casino-audio/Audio/card-shuffle.ogg
+0.600771 ./casino-audio/Audio/card-slide-1.ogg
+0.584082 ./casino-audio/Audio/card-slide-2.ogg
+0.598118 ./casino-audio/Audio/card-slide-3.ogg
+0.459410 ./casino-audio/Audio/card-slide-4.ogg
+0.600748 ./casino-audio/Audio/card-slide-5.ogg
+0.600771 ./casino-audio/Audio/card-slide-6.ogg
+0.636122 ./casino-audio/Audio/card-slide-7.ogg
+0.671429 ./casino-audio/Audio/card-slide-8.ogg
+0.937392 ./casino-audio/Audio/cards-pack-open-1.ogg
+0.732041 ./casino-audio/Audio/cards-pack-open-2.ogg
+0.495578 ./casino-audio/Audio/cards-pack-take-out-1.ogg
+0.630726 ./casino-audio/Audio/cards-pack-take-out-2.ogg
+0.172494 ./casino-audio/Audio/chip-lay-1.ogg
+0.229977 ./casino-audio/Audio/chip-lay-2.ogg
+0.244354 ./casino-audio/Audio/chip-lay-3.ogg
+0.258753 ./casino-audio/Audio/chips-collide-1.ogg
+0.229977 ./casino-audio/Audio/chips-collide-2.ogg
+0.258753 ./casino-audio/Audio/chips-collide-3.ogg
+0.215624 ./casino-audio/Audio/chips-collide-4.ogg
+0.616259 ./casino-audio/Audio/chips-handle-1.ogg
+0.546213 ./casino-audio/Audio/chips-handle-2.ogg
+0.230000 ./casino-audio/Audio/chips-handle-3.ogg
+0.359342 ./casino-audio/Audio/chips-handle-4.ogg
+0.833719 ./casino-audio/Audio/chips-handle-5.ogg
+0.459977 ./casino-audio/Audio/chips-handle-6.ogg
+0.287483 ./casino-audio/Audio/chips-stack-1.ogg
+0.172494 ./casino-audio/Audio/chips-stack-2.ogg
+0.373719 ./casino-audio/Audio/chips-stack-3.ogg
+0.230000 ./casino-audio/Audio/chips-stack-4.ogg
+0.186871 ./casino-audio/Audio/chips-stack-5.ogg
+0.186871 ./casino-audio/Audio/chips-stack-6.ogg
+0.704354 ./casino-audio/Audio/dice-grab-1.ogg
+0.826576 ./casino-audio/Audio/dice-grab-2.ogg
+1.480567 ./casino-audio/Audio/dice-shake-1.ogg
+1.379932 ./casino-audio/Audio/dice-shake-2.ogg
+1.523696 ./casino-audio/Audio/dice-shake-3.ogg
+0.632472 ./casino-audio/Audio/dice-throw-1.ogg
+0.402472 ./casino-audio/Audio/dice-throw-2.ogg
+0.574989 ./casino-audio/Audio/dice-throw-3.ogg
+0.531859 ./casino-audio/Audio/die-throw-1.ogg
+0.646871 ./casino-audio/Audio/die-throw-2.ogg
+0.733084 ./casino-audio/Audio/die-throw-3.ogg
+0.474376 ./casino-audio/Audio/die-throw-4.ogg
+35.106938 ./casino-audio/Preview.ogg
+0.522449 ./digital-audio/Audio/highDown.ogg
+0.548571 ./digital-audio/Audio/highUp.ogg
+1.100363 ./digital-audio/Audio/laser1.ogg
+1.090952 ./digital-audio/Audio/laser2.ogg
+0.984490 ./digital-audio/Audio/laser3.ogg
+1.131859 ./digital-audio/Audio/laser4.ogg
+1.013673 ./digital-audio/Audio/laser5.ogg
+0.971383 ./digital-audio/Audio/laser6.ogg
+0.932948 ./digital-audio/Audio/laser7.ogg
+0.986780 ./digital-audio/Audio/laser8.ogg
+1.009388 ./digital-audio/Audio/laser9.ogg
+0.783673 ./digital-audio/Audio/lowDown.ogg
+0.548571 ./digital-audio/Audio/lowRandom.ogg
+1.018776 ./digital-audio/Audio/lowThreeTone.ogg
+0.522449 ./digital-audio/Audio/pepSound1.ogg
+0.548571 ./digital-audio/Audio/pepSound2.ogg
+0.444082 ./digital-audio/Audio/pepSound3.ogg
+0.626939 ./digital-audio/Audio/pepSound4.ogg
+0.626939 ./digital-audio/Audio/pepSound5.ogg
+0.470204 ./digital-audio/Audio/phaseJump1.ogg
+0.391837 ./digital-audio/Audio/phaseJump2.ogg
+0.444082 ./digital-audio/Audio/phaseJump3.ogg
+0.470204 ./digital-audio/Audio/phaseJump4.ogg
+0.417959 ./digital-audio/Audio/phaseJump5.ogg
+0.470204 ./digital-audio/Audio/phaserDown1.ogg
+0.313469 ./digital-audio/Audio/phaserDown2.ogg
+0.496327 ./digital-audio/Audio/phaserDown3.ogg
+0.496327 ./digital-audio/Audio/phaserUp1.ogg
+0.417959 ./digital-audio/Audio/phaserUp2.ogg
+0.522449 ./digital-audio/Audio/phaserUp3.ogg
+0.365714 ./digital-audio/Audio/phaserUp4.ogg
+0.313469 ./digital-audio/Audio/phaserUp5.ogg
+0.339592 ./digital-audio/Audio/phaserUp6.ogg
+0.365714 ./digital-audio/Audio/phaserUp7.ogg
+1.201633 ./digital-audio/Audio/powerUp1.ogg
+0.653061 ./digital-audio/Audio/powerUp10.ogg
+0.679184 ./digital-audio/Audio/powerUp11.ogg
+0.862041 ./digital-audio/Audio/powerUp12.ogg
+0.470204 ./digital-audio/Audio/powerUp2.ogg
+1.149388 ./digital-audio/Audio/powerUp3.ogg
+0.548571 ./digital-audio/Audio/powerUp4.ogg
+0.444082 ./digital-audio/Audio/powerUp5.ogg
+0.444082 ./digital-audio/Audio/powerUp6.ogg
+0.522449 ./digital-audio/Audio/powerUp7.ogg
+0.574694 ./digital-audio/Audio/powerUp8.ogg
+0.548571 ./digital-audio/Audio/powerUp9.ogg
+1.451315 ./digital-audio/Audio/spaceTrash1.ogg
+1.474785 ./digital-audio/Audio/spaceTrash2.ogg
+1.535011 ./digital-audio/Audio/spaceTrash3.ogg
+1.477256 ./digital-audio/Audio/spaceTrash4.ogg
+1.425669 ./digital-audio/Audio/spaceTrash5.ogg
+0.827052 ./digital-audio/Audio/threeTone1.ogg
+0.865760 ./digital-audio/Audio/threeTone2.ogg
+0.660726 ./digital-audio/Audio/tone1.ogg
+0.723810 ./digital-audio/Audio/twoTone1.ogg
+0.731247 ./digital-audio/Audio/twoTone2.ogg
+1.018776 ./digital-audio/Audio/zap1.ogg
+1.227755 ./digital-audio/Audio/zap2.ogg
+1.332245 ./digital-audio/Audio/zapThreeToneDown.ogg
+1.201633 ./digital-audio/Audio/zapThreeToneUp.ogg
+1.306122 ./digital-audio/Audio/zapTwoTone.ogg
+1.201633 ./digital-audio/Audio/zapTwoTone2.ogg
+49.224688 ./digital-audio/Preview.ogg
+0.144785 ./impact-sounds/Audio/footstep_carpet_000.ogg
+0.144785 ./impact-sounds/Audio/footstep_carpet_001.ogg
+0.144785 ./impact-sounds/Audio/footstep_carpet_002.ogg
+0.144785 ./impact-sounds/Audio/footstep_carpet_003.ogg
+0.144785 ./impact-sounds/Audio/footstep_carpet_004.ogg
+0.105918 ./impact-sounds/Audio/footstep_concrete_000.ogg
+0.107642 ./impact-sounds/Audio/footstep_concrete_001.ogg
+0.112789 ./impact-sounds/Audio/footstep_concrete_002.ogg
+0.110499 ./impact-sounds/Audio/footstep_concrete_003.ogg
+0.114354 ./impact-sounds/Audio/footstep_concrete_004.ogg
+0.777574 ./impact-sounds/Audio/footstep_grass_000.ogg
+0.673605 ./impact-sounds/Audio/footstep_grass_001.ogg
+0.692449 ./impact-sounds/Audio/footstep_grass_002.ogg
+0.669320 ./impact-sounds/Audio/footstep_grass_003.ogg
+0.590227 ./impact-sounds/Audio/footstep_grass_004.ogg
+0.374218 ./impact-sounds/Audio/footstep_snow_000.ogg
+0.374218 ./impact-sounds/Audio/footstep_snow_001.ogg
+0.374218 ./impact-sounds/Audio/footstep_snow_002.ogg
+0.374218 ./impact-sounds/Audio/footstep_snow_003.ogg
+0.374218 ./impact-sounds/Audio/footstep_snow_004.ogg
+0.249592 ./impact-sounds/Audio/footstep_wood_000.ogg
+0.251565 ./impact-sounds/Audio/footstep_wood_001.ogg
+0.251383 ./impact-sounds/Audio/footstep_wood_002.ogg
+0.251519 ./impact-sounds/Audio/footstep_wood_003.ogg
+0.247914 ./impact-sounds/Audio/footstep_wood_004.ogg
+1.480181 ./impact-sounds/Audio/impactBell_heavy_000.ogg
+1.740862 ./impact-sounds/Audio/impactBell_heavy_001.ogg
+0.697279 ./impact-sounds/Audio/impactBell_heavy_002.ogg
+0.653605 ./impact-sounds/Audio/impactBell_heavy_003.ogg
+0.301451 ./impact-sounds/Audio/impactBell_heavy_004.ogg
+0.138685 ./impact-sounds/Audio/impactGeneric_light_000.ogg
+0.117506 ./impact-sounds/Audio/impactGeneric_light_001.ogg
+0.139592 ./impact-sounds/Audio/impactGeneric_light_002.ogg
+0.137982 ./impact-sounds/Audio/impactGeneric_light_003.ogg
+0.140340 ./impact-sounds/Audio/impactGeneric_light_004.ogg
+0.241224 ./impact-sounds/Audio/impactGlass_heavy_000.ogg
+0.429002 ./impact-sounds/Audio/impactGlass_heavy_001.ogg
+0.247166 ./impact-sounds/Audio/impactGlass_heavy_002.ogg
+0.171542 ./impact-sounds/Audio/impactGlass_heavy_003.ogg
+0.399184 ./impact-sounds/Audio/impactGlass_heavy_004.ogg
+0.209592 ./impact-sounds/Audio/impactGlass_light_000.ogg
+0.209592 ./impact-sounds/Audio/impactGlass_light_001.ogg
+0.209592 ./impact-sounds/Audio/impactGlass_light_002.ogg
+0.209592 ./impact-sounds/Audio/impactGlass_light_003.ogg
+0.209592 ./impact-sounds/Audio/impactGlass_light_004.ogg
+0.543356 ./impact-sounds/Audio/impactGlass_medium_000.ogg
+0.543356 ./impact-sounds/Audio/impactGlass_medium_001.ogg
+0.543356 ./impact-sounds/Audio/impactGlass_medium_002.ogg
+0.543356 ./impact-sounds/Audio/impactGlass_medium_003.ogg
+0.543356 ./impact-sounds/Audio/impactGlass_medium_004.ogg
+0.167664 ./impact-sounds/Audio/impactMetal_heavy_000.ogg
+0.359274 ./impact-sounds/Audio/impactMetal_heavy_001.ogg
+0.117302 ./impact-sounds/Audio/impactMetal_heavy_002.ogg
+0.206916 ./impact-sounds/Audio/impactMetal_heavy_003.ogg
+0.133810 ./impact-sounds/Audio/impactMetal_heavy_004.ogg
+0.351474 ./impact-sounds/Audio/impactMetal_light_000.ogg
+0.251837 ./impact-sounds/Audio/impactMetal_light_001.ogg
+0.235782 ./impact-sounds/Audio/impactMetal_light_002.ogg
+0.482041 ./impact-sounds/Audio/impactMetal_light_003.ogg
+0.213401 ./impact-sounds/Audio/impactMetal_light_004.ogg
+0.271769 ./impact-sounds/Audio/impactMetal_medium_000.ogg
+0.143447 ./impact-sounds/Audio/impactMetal_medium_001.ogg
+0.119138 ./impact-sounds/Audio/impactMetal_medium_002.ogg
+0.253968 ./impact-sounds/Audio/impactMetal_medium_003.ogg
+0.109433 ./impact-sounds/Audio/impactMetal_medium_004.ogg
+0.937438 ./impact-sounds/Audio/impactMining_000.ogg
+0.869410 ./impact-sounds/Audio/impactMining_001.ogg
+0.804671 ./impact-sounds/Audio/impactMining_002.ogg
+0.991723 ./impact-sounds/Audio/impactMining_003.ogg
+0.830295 ./impact-sounds/Audio/impactMining_004.ogg
+0.779002 ./impact-sounds/Audio/impactPlank_medium_000.ogg
+0.779002 ./impact-sounds/Audio/impactPlank_medium_001.ogg
+0.779002 ./impact-sounds/Audio/impactPlank_medium_002.ogg
+0.779002 ./impact-sounds/Audio/impactPlank_medium_003.ogg
+0.779002 ./impact-sounds/Audio/impactPlank_medium_004.ogg
+0.488662 ./impact-sounds/Audio/impactPlate_heavy_000.ogg
+0.352336 ./impact-sounds/Audio/impactPlate_heavy_001.ogg
+0.494195 ./impact-sounds/Audio/impactPlate_heavy_002.ogg
+0.346553 ./impact-sounds/Audio/impactPlate_heavy_003.ogg
+0.559070 ./impact-sounds/Audio/impactPlate_heavy_004.ogg
+0.542426 ./impact-sounds/Audio/impactPlate_light_000.ogg
+0.654671 ./impact-sounds/Audio/impactPlate_light_001.ogg
+0.488821 ./impact-sounds/Audio/impactPlate_light_002.ogg
+0.527596 ./impact-sounds/Audio/impactPlate_light_003.ogg
+0.656599 ./impact-sounds/Audio/impactPlate_light_004.ogg
+0.609274 ./impact-sounds/Audio/impactPlate_medium_000.ogg
+0.616213 ./impact-sounds/Audio/impactPlate_medium_001.ogg
+0.515238 ./impact-sounds/Audio/impactPlate_medium_002.ogg
+0.653673 ./impact-sounds/Audio/impactPlate_medium_003.ogg
+0.534308 ./impact-sounds/Audio/impactPlate_medium_004.ogg
+0.649025 ./impact-sounds/Audio/impactPunch_heavy_000.ogg
+0.535941 ./impact-sounds/Audio/impactPunch_heavy_001.ogg
+0.457483 ./impact-sounds/Audio/impactPunch_heavy_002.ogg
+0.473810 ./impact-sounds/Audio/impactPunch_heavy_003.ogg
+0.536349 ./impact-sounds/Audio/impactPunch_heavy_004.ogg
+0.430544 ./impact-sounds/Audio/impactPunch_medium_000.ogg
+0.404603 ./impact-sounds/Audio/impactPunch_medium_001.ogg
+0.541406 ./impact-sounds/Audio/impactPunch_medium_002.ogg
+0.455261 ./impact-sounds/Audio/impactPunch_medium_003.ogg
+0.542925 ./impact-sounds/Audio/impactPunch_medium_004.ogg
+0.505102 ./impact-sounds/Audio/impactSoft_heavy_000.ogg
+0.572041 ./impact-sounds/Audio/impactSoft_heavy_001.ogg
+0.572313 ./impact-sounds/Audio/impactSoft_heavy_002.ogg
+0.544172 ./impact-sounds/Audio/impactSoft_heavy_003.ogg
+0.500952 ./impact-sounds/Audio/impactSoft_heavy_004.ogg
+0.118005 ./impact-sounds/Audio/impactSoft_medium_000.ogg
+0.183288 ./impact-sounds/Audio/impactSoft_medium_001.ogg
+0.135193 ./impact-sounds/Audio/impactSoft_medium_002.ogg
+0.140227 ./impact-sounds/Audio/impactSoft_medium_003.ogg
+0.147143 ./impact-sounds/Audio/impactSoft_medium_004.ogg
+0.158707 ./impact-sounds/Audio/impactTin_medium_000.ogg
+0.174308 ./impact-sounds/Audio/impactTin_medium_001.ogg
+0.133787 ./impact-sounds/Audio/impactTin_medium_002.ogg
+0.214558 ./impact-sounds/Audio/impactTin_medium_003.ogg
+0.178549 ./impact-sounds/Audio/impactTin_medium_004.ogg
+0.313039 ./impact-sounds/Audio/impactWood_heavy_000.ogg
+0.313039 ./impact-sounds/Audio/impactWood_heavy_001.ogg
+0.313039 ./impact-sounds/Audio/impactWood_heavy_002.ogg
+0.313039 ./impact-sounds/Audio/impactWood_heavy_003.ogg
+0.313039 ./impact-sounds/Audio/impactWood_heavy_004.ogg
+0.265601 ./impact-sounds/Audio/impactWood_light_000.ogg
+0.265601 ./impact-sounds/Audio/impactWood_light_001.ogg
+0.265601 ./impact-sounds/Audio/impactWood_light_002.ogg
+0.265601 ./impact-sounds/Audio/impactWood_light_003.ogg
+0.265601 ./impact-sounds/Audio/impactWood_light_004.ogg
+0.332676 ./impact-sounds/Audio/impactWood_medium_000.ogg
+0.332676 ./impact-sounds/Audio/impactWood_medium_001.ogg
+0.332676 ./impact-sounds/Audio/impactWood_medium_002.ogg
+0.332676 ./impact-sounds/Audio/impactWood_medium_003.ogg
+0.332676 ./impact-sounds/Audio/impactWood_medium_004.ogg
+0.063878 ./interface-sounds/Audio/back_001.ogg
+0.069841 ./interface-sounds/Audio/back_002.ogg
+0.092880 ./interface-sounds/Audio/back_003.ogg
+0.072993 ./interface-sounds/Audio/back_004.ogg
+0.122834 ./interface-sounds/Audio/bong_001.ogg
+0.100023 ./interface-sounds/Audio/click_001.ogg
+0.010023 ./interface-sounds/Audio/click_002.ogg
+0.010023 ./interface-sounds/Audio/click_003.ogg
+0.010023 ./interface-sounds/Audio/click_004.ogg
+0.010023 ./interface-sounds/Audio/click_005.ogg
+0.147778 ./interface-sounds/Audio/close_001.ogg
+0.313787 ./interface-sounds/Audio/close_002.ogg
+0.313787 ./interface-sounds/Audio/close_003.ogg
+0.322880 ./interface-sounds/Audio/close_004.ogg
+0.289841 ./interface-sounds/Audio/confirmation_001.ogg
+0.539002 ./interface-sounds/Audio/confirmation_002.ogg
+0.322018 ./interface-sounds/Audio/confirmation_003.ogg
+0.490408 ./interface-sounds/Audio/confirmation_004.ogg
+0.109819 ./interface-sounds/Audio/drop_001.ogg
+0.191088 ./interface-sounds/Audio/drop_002.ogg
+0.191088 ./interface-sounds/Audio/drop_003.ogg
+0.286689 ./interface-sounds/Audio/drop_004.ogg
+0.164558 ./interface-sounds/Audio/error_001.ogg
+0.164558 ./interface-sounds/Audio/error_002.ogg
+0.533469 ./interface-sounds/Audio/error_003.ogg
+0.102698 ./interface-sounds/Audio/error_004.ogg
+0.500045 ./interface-sounds/Audio/error_005.ogg
+0.500045 ./interface-sounds/Audio/error_006.ogg
+0.191995 ./interface-sounds/Audio/error_007.ogg
+0.139320 ./interface-sounds/Audio/error_008.ogg
+0.278435 ./interface-sounds/Audio/glass_001.ogg
+0.125306 ./interface-sounds/Audio/glass_002.ogg
+0.123673 ./interface-sounds/Audio/glass_003.ogg
+0.692268 ./interface-sounds/Audio/glass_004.ogg
+0.110794 ./interface-sounds/Audio/glass_005.ogg
+0.110794 ./interface-sounds/Audio/glass_006.ogg
+0.020023 ./interface-sounds/Audio/glitch_001.ogg
+0.030023 ./interface-sounds/Audio/glitch_002.ogg
+0.010023 ./interface-sounds/Audio/glitch_003.ogg
+0.022902 ./interface-sounds/Audio/glitch_004.ogg
+0.258390 ./interface-sounds/Audio/maximize_001.ogg
+0.258277 ./interface-sounds/Audio/maximize_002.ogg
+0.211859 ./interface-sounds/Audio/maximize_003.ogg
+0.417959 ./interface-sounds/Audio/maximize_004.ogg
+0.526372 ./interface-sounds/Audio/maximize_005.ogg
+0.379955 ./interface-sounds/Audio/maximize_006.ogg
+0.185760 ./interface-sounds/Audio/maximize_007.ogg
+0.225351 ./interface-sounds/Audio/maximize_008.ogg
+0.224785 ./interface-sounds/Audio/maximize_009.ogg
+0.258390 ./interface-sounds/Audio/minimize_001.ogg
+0.258277 ./interface-sounds/Audio/minimize_002.ogg
+0.211859 ./interface-sounds/Audio/minimize_003.ogg
+0.417959 ./interface-sounds/Audio/minimize_004.ogg
+0.526372 ./interface-sounds/Audio/minimize_005.ogg
+0.379955 ./interface-sounds/Audio/minimize_006.ogg
+0.185760 ./interface-sounds/Audio/minimize_007.ogg
+0.225351 ./interface-sounds/Audio/minimize_008.ogg
+0.224785 ./interface-sounds/Audio/minimize_009.ogg
+0.147778 ./interface-sounds/Audio/open_001.ogg
+0.313787 ./interface-sounds/Audio/open_002.ogg
+0.313787 ./interface-sounds/Audio/open_003.ogg
+0.322880 ./interface-sounds/Audio/open_004.ogg
+0.102426 ./interface-sounds/Audio/pluck_001.ogg
+0.164558 ./interface-sounds/Audio/pluck_002.ogg
+0.490680 ./interface-sounds/Audio/question_001.ogg
+0.332517 ./interface-sounds/Audio/question_002.ogg
+0.332494 ./interface-sounds/Audio/question_003.ogg
+0.332472 ./interface-sounds/Audio/question_004.ogg
+0.139320 ./interface-sounds/Audio/scratch_001.ogg
+0.139320 ./interface-sounds/Audio/scratch_002.ogg
+0.123424 ./interface-sounds/Audio/scratch_003.ogg
+0.325079 ./interface-sounds/Audio/scratch_004.ogg
+0.325079 ./interface-sounds/Audio/scratch_005.ogg
+1.000023 ./interface-sounds/Audio/scroll_001.ogg
+1.000023 ./interface-sounds/Audio/scroll_002.ogg
+1.000023 ./interface-sounds/Audio/scroll_003.ogg
+1.000023 ./interface-sounds/Audio/scroll_004.ogg
+1.000023 ./interface-sounds/Audio/scroll_005.ogg
+0.043288 ./interface-sounds/Audio/select_001.ogg
+0.043288 ./interface-sounds/Audio/select_002.ogg
+0.382766 ./interface-sounds/Audio/select_003.ogg
+0.382766 ./interface-sounds/Audio/select_004.ogg
+0.382766 ./interface-sounds/Audio/select_005.ogg
+1.943923 ./interface-sounds/Audio/select_006.ogg
+0.046939 ./interface-sounds/Audio/select_007.ogg
+0.046939 ./interface-sounds/Audio/select_008.ogg
+0.617664 ./interface-sounds/Audio/switch_001.ogg
+0.610952 ./interface-sounds/Audio/switch_002.ogg
+0.500000 ./interface-sounds/Audio/switch_003.ogg
+0.500000 ./interface-sounds/Audio/switch_004.ogg
+0.611927 ./interface-sounds/Audio/switch_005.ogg
+0.610544 ./interface-sounds/Audio/switch_006.ogg
+0.614354 ./interface-sounds/Audio/switch_007.ogg
+0.023220 ./interface-sounds/Audio/tick_001.ogg
+0.023220 ./interface-sounds/Audio/tick_002.ogg
+0.054807 ./interface-sounds/Audio/tick_004.ogg
+0.139320 ./interface-sounds/Audio/toggle_001.ogg
+0.139320 ./interface-sounds/Audio/toggle_002.ogg
+0.139320 ./interface-sounds/Audio/toggle_003.ogg
+0.066168 ./interface-sounds/Audio/toggle_004.ogg
+1.757846 ./music-jingles/Audio/8-Bit jingles/jingles_NES00.ogg
+0.408390 ./music-jingles/Audio/8-Bit jingles/jingles_NES01.ogg
+0.390635 ./music-jingles/Audio/8-Bit jingles/jingles_NES02.ogg
+0.603719 ./music-jingles/Audio/8-Bit jingles/jingles_NES03.ogg
+0.603696 ./music-jingles/Audio/8-Bit jingles/jingles_NES04.ogg
+0.905556 ./music-jingles/Audio/8-Bit jingles/jingles_NES05.ogg
+0.799025 ./music-jingles/Audio/8-Bit jingles/jingles_NES06.ogg
+0.745760 ./music-jingles/Audio/8-Bit jingles/jingles_NES07.ogg
+0.621451 ./music-jingles/Audio/8-Bit jingles/jingles_NES08.ogg
+0.443900 ./music-jingles/Audio/8-Bit jingles/jingles_NES09.ogg
+0.408390 ./music-jingles/Audio/8-Bit jingles/jingles_NES10.ogg
+0.834535 ./music-jingles/Audio/8-Bit jingles/jingles_NES11.ogg
+0.852290 ./music-jingles/Audio/8-Bit jingles/jingles_NES12.ogg
+1.047596 ./music-jingles/Audio/8-Bit jingles/jingles_NES13.ogg
+0.372880 ./music-jingles/Audio/8-Bit jingles/jingles_NES14.ogg
+0.426145 ./music-jingles/Audio/8-Bit jingles/jingles_NES15.ogg
+0.514921 ./music-jingles/Audio/8-Bit jingles/jingles_NES16.ogg
+0.284104 ./music-jingles/Audio/Hit jingles/jingles_HIT00.ogg
+0.506054 ./music-jingles/Audio/Hit jingles/jingles_HIT01.ogg
+0.523787 ./music-jingles/Audio/Hit jingles/jingles_HIT02.ogg
+0.745737 ./music-jingles/Audio/Hit jingles/jingles_HIT03.ogg
+0.639229 ./music-jingles/Audio/Hit jingles/jingles_HIT04.ogg
+0.612585 ./music-jingles/Audio/Hit jingles/jingles_HIT05.ogg
+0.514921 ./music-jingles/Audio/Hit jingles/jingles_HIT06.ogg
+0.284104 ./music-jingles/Audio/Hit jingles/jingles_HIT07.ogg
+0.284104 ./music-jingles/Audio/Hit jingles/jingles_HIT08.ogg
+0.745760 ./music-jingles/Audio/Hit jingles/jingles_HIT09.ogg
+0.745760 ./music-jingles/Audio/Hit jingles/jingles_HIT10.ogg
+0.958821 ./music-jingles/Audio/Hit jingles/jingles_HIT11.ogg
+0.275215 ./music-jingles/Audio/Hit jingles/jingles_HIT12.ogg
+0.292971 ./music-jingles/Audio/Hit jingles/jingles_HIT13.ogg
+0.417256 ./music-jingles/Audio/Hit jingles/jingles_HIT14.ogg
+1.163016 ./music-jingles/Audio/Hit jingles/jingles_HIT15.ogg
+0.292971 ./music-jingles/Audio/Hit jingles/jingles_HIT16.ogg
+0.494172 ./music-jingles/Audio/Pizzicato jingles/jingles_PIZZI00.ogg
+1.002358 ./music-jingles/Audio/Pizzicato jingles/jingles_PIZZI01.ogg
+0.955737 ./music-jingles/Audio/Pizzicato jingles/jingles_PIZZI02.ogg
+1.146871 ./music-jingles/Audio/Pizzicato jingles/jingles_PIZZI03.ogg
+0.564127 ./music-jingles/Audio/Pizzicato jingles/jingles_PIZZI04.ogg
+0.536122 ./music-jingles/Audio/Pizzicato jingles/jingles_PIZZI05.ogg
+0.689977 ./music-jingles/Audio/Pizzicato jingles/jingles_PIZZI06.ogg
+1.324036 ./music-jingles/Audio/Pizzicato jingles/jingles_PIZZI07.ogg
+0.568776 ./music-jingles/Audio/Pizzicato jingles/jingles_PIZZI08.ogg
+0.568776 ./music-jingles/Audio/Pizzicato jingles/jingles_PIZZI09.ogg
+0.797211 ./music-jingles/Audio/Pizzicato jingles/jingles_PIZZI10.ogg
+0.792540 ./music-jingles/Audio/Pizzicato jingles/jingles_PIZZI11.ogg
+0.993039 ./music-jingles/Audio/Pizzicato jingles/jingles_PIZZI12.ogg
+0.881134 ./music-jingles/Audio/Pizzicato jingles/jingles_PIZZI13.ogg
+0.923084 ./music-jingles/Audio/Pizzicato jingles/jingles_PIZZI14.ogg
+0.811202 ./music-jingles/Audio/Pizzicato jingles/jingles_PIZZI15.ogg
+0.461542 ./music-jingles/Audio/Pizzicato jingles/jingles_PIZZI16.ogg
+0.390635 ./music-jingles/Audio/Sax jingles/jingles_SAX00.ogg
+0.887800 ./music-jingles/Audio/Sax jingles/jingles_SAX01.ogg
+0.870045 ./music-jingles/Audio/Sax jingles/jingles_SAX02.ogg
+1.118617 ./music-jingles/Audio/Sax jingles/jingles_SAX03.ogg
+0.390635 ./music-jingles/Audio/Sax jingles/jingles_SAX04.ogg
+0.461655 ./music-jingles/Audio/Sax jingles/jingles_SAX05.ogg
+0.514921 ./music-jingles/Audio/Sax jingles/jingles_SAX06.ogg
+1.740091 ./music-jingles/Audio/Sax jingles/jingles_SAX07.ogg
+0.390635 ./music-jingles/Audio/Sax jingles/jingles_SAX08.ogg
+0.372880 ./music-jingles/Audio/Sax jingles/jingles_SAX09.ogg
+0.639229 ./music-jingles/Audio/Sax jingles/jingles_SAX10.ogg
+0.621451 ./music-jingles/Audio/Sax jingles/jingles_SAX11.ogg
+0.852290 ./music-jingles/Audio/Sax jingles/jingles_SAX12.ogg
+0.781270 ./music-jingles/Audio/Sax jingles/jingles_SAX13.ogg
+0.745760 ./music-jingles/Audio/Sax jingles/jingles_SAX14.ogg
+0.603696 ./music-jingles/Audio/Sax jingles/jingles_SAX15.ogg
+0.408390 ./music-jingles/Audio/Sax jingles/jingles_SAX16.ogg
+0.932812 ./music-jingles/Audio/Steel jingles/jingles_STEEL00.ogg
+1.375306 ./music-jingles/Audio/Steel jingles/jingles_STEEL01.ogg
+1.387256 ./music-jingles/Audio/Steel jingles/jingles_STEEL02.ogg
+1.387256 ./music-jingles/Audio/Steel jingles/jingles_STEEL03.ogg
+0.908889 ./music-jingles/Audio/Steel jingles/jingles_STEEL04.ogg
+0.944785 ./music-jingles/Audio/Steel jingles/jingles_STEEL05.ogg
+1.375283 ./music-jingles/Audio/Steel jingles/jingles_STEEL06.ogg
+1.554694 ./music-jingles/Audio/Steel jingles/jingles_STEEL07.ogg
+0.801270 ./music-jingles/Audio/Steel jingles/jingles_STEEL08.ogg
+0.586009 ./music-jingles/Audio/Steel jingles/jingles_STEEL09.ogg
+0.908889 ./music-jingles/Audio/Steel jingles/jingles_STEEL10.ogg
+0.825170 ./music-jingles/Audio/Steel jingles/jingles_STEEL11.ogg
+1.255714 ./music-jingles/Audio/Steel jingles/jingles_STEEL12.ogg
+1.052404 ./music-jingles/Audio/Steel jingles/jingles_STEEL13.ogg
+1.375306 ./music-jingles/Audio/Steel jingles/jingles_STEEL14.ogg
+0.944762 ./music-jingles/Audio/Steel jingles/jingles_STEEL15.ogg
+0.908912 ./music-jingles/Audio/Steel jingles/jingles_STEEL16.ogg
+13.017021 ./music-jingles/Preview.ogg
+0.276708 ./rpg-audio/Audio/beltHandle1.ogg
+0.476563 ./rpg-audio/Audio/beltHandle2.ogg
+0.230604 ./rpg-audio/Audio/bookClose.ogg
+0.768646 ./rpg-audio/Audio/bookFlip1.ogg
+0.430438 ./rpg-audio/Audio/bookFlip2.ogg
+0.230604 ./rpg-audio/Audio/bookFlip3.ogg
+0.153729 ./rpg-audio/Audio/bookOpen.ogg
+0.276708 ./rpg-audio/Audio/bookPlace1.ogg
+0.353583 ./rpg-audio/Audio/bookPlace2.ogg
+0.261333 ./rpg-audio/Audio/bookPlace3.ogg
+0.240250 ./rpg-audio/Audio/chop.ogg
+0.661042 ./rpg-audio/Audio/cloth1.ogg
+0.415063 ./rpg-audio/Audio/cloth2.ogg
+0.476563 ./rpg-audio/Audio/cloth3.ogg
+0.384333 ./rpg-audio/Audio/cloth4.ogg
+0.722521 ./rpg-audio/Audio/clothBelt.ogg
+0.753292 ./rpg-audio/Audio/clothBelt2.ogg
+0.661042 ./rpg-audio/Audio/creak1.ogg
+0.830146 ./rpg-audio/Audio/creak2.ogg
+0.338208 ./rpg-audio/Audio/creak3.ogg
+0.675042 ./rpg-audio/Audio/doorClose_1.ogg
+0.612479 ./rpg-audio/Audio/doorClose_2.ogg
+0.713938 ./rpg-audio/Audio/doorClose_3.ogg
+0.603375 ./rpg-audio/Audio/doorClose_4.ogg
+0.918958 ./rpg-audio/Audio/doorOpen_1.ogg
+1.413313 ./rpg-audio/Audio/doorOpen_2.ogg
+0.399708 ./rpg-audio/Audio/drawKnife1.ogg
+0.445833 ./rpg-audio/Audio/drawKnife2.ogg
+0.476563 ./rpg-audio/Audio/drawKnife3.ogg
+0.415083 ./rpg-audio/Audio/dropLeather.ogg
+0.248854 ./rpg-audio/Audio/footstep00.ogg
+0.282479 ./rpg-audio/Audio/footstep01.ogg
+0.242146 ./rpg-audio/Audio/footstep02.ogg
+0.269021 ./rpg-audio/Audio/footstep03.ogg
+0.322833 ./rpg-audio/Audio/footstep04.ogg
+0.275771 ./rpg-audio/Audio/footstep05.ogg
+0.242125 ./rpg-audio/Audio/footstep06.ogg
+0.255583 ./rpg-audio/Audio/footstep07.ogg
+0.255583 ./rpg-audio/Audio/footstep08.ogg
+0.215229 ./rpg-audio/Audio/footstep09.ogg
+0.845521 ./rpg-audio/Audio/handleCoins.ogg
+0.338208 ./rpg-audio/Audio/handleCoins2.ogg
+0.338208 ./rpg-audio/Audio/handleSmallLeather.ogg
+0.307479 ./rpg-audio/Audio/handleSmallLeather2.ogg
+0.599542 ./rpg-audio/Audio/knifeSlice.ogg
+0.568792 ./rpg-audio/Audio/knifeSlice2.ogg
+0.445833 ./rpg-audio/Audio/metalClick.ogg
+0.261333 ./rpg-audio/Audio/metalLatch.ogg
+1.460458 ./rpg-audio/Audio/metalPot1.ogg
+0.937771 ./rpg-audio/Audio/metalPot2.ogg
+0.907000 ./rpg-audio/Audio/metalPot3.ogg
+26.127313 ./rpg-audio/Preview.ogg
+5.000000 ./sci-fi-sounds/Audio/computerNoise_000.ogg
+5.000000 ./sci-fi-sounds/Audio/computerNoise_001.ogg
+5.000000 ./sci-fi-sounds/Audio/computerNoise_002.ogg
+5.000000 ./sci-fi-sounds/Audio/computerNoise_003.ogg
+0.531610 ./sci-fi-sounds/Audio/doorClose_000.ogg
+0.528594 ./sci-fi-sounds/Audio/doorClose_001.ogg
+0.532585 ./sci-fi-sounds/Audio/doorClose_002.ogg
+0.531610 ./sci-fi-sounds/Audio/doorOpen_000.ogg
+0.528594 ./sci-fi-sounds/Audio/doorOpen_001.ogg
+0.532585 ./sci-fi-sounds/Audio/doorOpen_002.ogg
+5.000000 ./sci-fi-sounds/Audio/engineCircular_000.ogg
+5.000000 ./sci-fi-sounds/Audio/engineCircular_001.ogg
+5.000000 ./sci-fi-sounds/Audio/engineCircular_002.ogg
+5.000000 ./sci-fi-sounds/Audio/engineCircular_003.ogg
+5.000000 ./sci-fi-sounds/Audio/engineCircular_004.ogg
+0.777460 ./sci-fi-sounds/Audio/explosionCrunch_000.ogg
+1.356780 ./sci-fi-sounds/Audio/explosionCrunch_001.ogg
+1.255760 ./sci-fi-sounds/Audio/explosionCrunch_002.ogg
+1.553401 ./sci-fi-sounds/Audio/explosionCrunch_003.ogg
+1.980136 ./sci-fi-sounds/Audio/explosionCrunch_004.ogg
+0.954014 ./sci-fi-sounds/Audio/forceField_000.ogg
+0.953424 ./sci-fi-sounds/Audio/forceField_001.ogg
+0.955079 ./sci-fi-sounds/Audio/forceField_002.ogg
+0.955941 ./sci-fi-sounds/Audio/forceField_003.ogg
+0.954444 ./sci-fi-sounds/Audio/forceField_004.ogg
+0.634898 ./sci-fi-sounds/Audio/impactMetal_000.ogg
+0.687574 ./sci-fi-sounds/Audio/impactMetal_001.ogg
+0.471111 ./sci-fi-sounds/Audio/impactMetal_002.ogg
+0.776780 ./sci-fi-sounds/Audio/impactMetal_003.ogg
+0.389524 ./sci-fi-sounds/Audio/impactMetal_004.ogg
+0.676644 ./sci-fi-sounds/Audio/laserLarge_000.ogg
+0.720998 ./sci-fi-sounds/Audio/laserLarge_001.ogg
+0.743583 ./sci-fi-sounds/Audio/laserLarge_002.ogg
+0.715782 ./sci-fi-sounds/Audio/laserLarge_003.ogg
+0.693197 ./sci-fi-sounds/Audio/laserLarge_004.ogg
+0.235420 ./sci-fi-sounds/Audio/laserRetro_000.ogg
+0.235510 ./sci-fi-sounds/Audio/laserRetro_001.ogg
+0.255057 ./sci-fi-sounds/Audio/laserRetro_002.ogg
+0.254785 ./sci-fi-sounds/Audio/laserRetro_003.ogg
+0.278639 ./sci-fi-sounds/Audio/laserRetro_004.ogg
+0.239206 ./sci-fi-sounds/Audio/laserSmall_000.ogg
+0.247347 ./sci-fi-sounds/Audio/laserSmall_001.ogg
+0.344263 ./sci-fi-sounds/Audio/laserSmall_002.ogg
+0.300363 ./sci-fi-sounds/Audio/laserSmall_003.ogg
+0.414331 ./sci-fi-sounds/Audio/laserSmall_004.ogg
+2.000045 ./sci-fi-sounds/Audio/lowFrequency_explosion_000.ogg
+1.000045 ./sci-fi-sounds/Audio/lowFrequency_explosion_001.ogg
+0.500000 ./sci-fi-sounds/Audio/slime_000.ogg
+4.709841 ./sci-fi-sounds/Audio/slime_001.ogg
+5.000000 ./sci-fi-sounds/Audio/spaceEngineLarge_000.ogg
+5.000000 ./sci-fi-sounds/Audio/spaceEngineLarge_001.ogg
+5.000000 ./sci-fi-sounds/Audio/spaceEngineLarge_002.ogg
+5.000000 ./sci-fi-sounds/Audio/spaceEngineLarge_003.ogg
+5.000000 ./sci-fi-sounds/Audio/spaceEngineLarge_004.ogg
+5.000000 ./sci-fi-sounds/Audio/spaceEngineLow_000.ogg
+5.000000 ./sci-fi-sounds/Audio/spaceEngineLow_001.ogg
+5.000000 ./sci-fi-sounds/Audio/spaceEngineLow_002.ogg
+5.000000 ./sci-fi-sounds/Audio/spaceEngineLow_003.ogg
+5.000000 ./sci-fi-sounds/Audio/spaceEngineLow_004.ogg
+5.000000 ./sci-fi-sounds/Audio/spaceEngineSmall_000.ogg
+5.000000 ./sci-fi-sounds/Audio/spaceEngineSmall_001.ogg
+5.000000 ./sci-fi-sounds/Audio/spaceEngineSmall_002.ogg
+5.000000 ./sci-fi-sounds/Audio/spaceEngineSmall_003.ogg
+5.000000 ./sci-fi-sounds/Audio/spaceEngineSmall_004.ogg
+5.000000 ./sci-fi-sounds/Audio/spaceEngine_000.ogg
+5.000000 ./sci-fi-sounds/Audio/spaceEngine_001.ogg
+5.000045 ./sci-fi-sounds/Audio/spaceEngine_002.ogg
+5.000045 ./sci-fi-sounds/Audio/spaceEngine_003.ogg
+5.000000 ./sci-fi-sounds/Audio/thrusterFire_000.ogg
+5.000000 ./sci-fi-sounds/Audio/thrusterFire_001.ogg
+5.000000 ./sci-fi-sounds/Audio/thrusterFire_002.ogg
+5.000000 ./sci-fi-sounds/Audio/thrusterFire_003.ogg
+5.000000 ./sci-fi-sounds/Audio/thrusterFire_004.ogg
+0.093832 ./ui-audio/Audio/click1.ogg
+0.055737 ./ui-audio/Audio/click2.ogg
+0.086145 ./ui-audio/Audio/click3.ogg
+0.036531 ./ui-audio/Audio/click4.ogg
+0.032018 ./ui-audio/Audio/click5.ogg
+0.059365 ./ui-audio/Audio/mouseclick1.ogg
+0.069048 ./ui-audio/Audio/mouserelease1.ogg
+0.227279 ./ui-audio/Audio/rollover1.ogg
+0.057324 ./ui-audio/Audio/rollover2.ogg
+0.069297 ./ui-audio/Audio/rollover3.ogg
+0.113197 ./ui-audio/Audio/rollover4.ogg
+0.111746 ./ui-audio/Audio/rollover5.ogg
+0.174490 ./ui-audio/Audio/rollover6.ogg
+0.314694 ./ui-audio/Audio/switch1.ogg
+0.367143 ./ui-audio/Audio/switch10.ogg
+0.297211 ./ui-audio/Audio/switch11.ogg
+0.053560 ./ui-audio/Audio/switch12.ogg
+0.027619 ./ui-audio/Audio/switch13.ogg
+0.033107 ./ui-audio/Audio/switch14.ogg
+0.256077 ./ui-audio/Audio/switch15.ogg
+0.358503 ./ui-audio/Audio/switch16.ogg
+0.332902 ./ui-audio/Audio/switch17.ogg
+0.435329 ./ui-audio/Audio/switch18.ogg
+0.384127 ./ui-audio/Audio/switch19.ogg
+0.297211 ./ui-audio/Audio/switch2.ogg
+0.358526 ./ui-audio/Audio/switch20.ogg
+0.409728 ./ui-audio/Audio/switch21.ogg
+0.358503 ./ui-audio/Audio/switch22.ogg
+0.384104 ./ui-audio/Audio/switch23.ogg
+0.281678 ./ui-audio/Audio/switch24.ogg
+0.384127 ./ui-audio/Audio/switch25.ogg
+0.230476 ./ui-audio/Audio/switch26.ogg
+0.281678 ./ui-audio/Audio/switch27.ogg
+0.204875 ./ui-audio/Audio/switch28.ogg
+0.307279 ./ui-audio/Audio/switch29.ogg
+0.367143 ./ui-audio/Audio/switch3.ogg
+0.358526 ./ui-audio/Audio/switch30.ogg
+0.435329 ./ui-audio/Audio/switch31.ogg
+0.435329 ./ui-audio/Audio/switch32.ogg
+0.512154 ./ui-audio/Audio/switch33.ogg
+0.460930 ./ui-audio/Audio/switch34.ogg
+0.332902 ./ui-audio/Audio/switch35.ogg
+0.307302 ./ui-audio/Audio/switch36.ogg
+0.307302 ./ui-audio/Audio/switch37.ogg
+0.423810 ./ui-audio/Audio/switch38.ogg
+0.419592 ./ui-audio/Audio/switch4.ogg
+0.314694 ./ui-audio/Audio/switch5.ogg
+0.349660 ./ui-audio/Audio/switch6.ogg
+0.192313 ./ui-audio/Audio/switch7.ogg
+0.332177 ./ui-audio/Audio/switch8.ogg
+0.262245 ./ui-audio/Audio/switch9.ogg
+14.136458 ./ui-audio/Preview.ogg
