@@ -1,0 +1,21 @@
+name: Musik holen
+on:
+  workflow_dispatch:
+    inputs:
+      urls:
+        description: 'Datei-URLs (CC0), mit Leerzeichen getrennt'
+        required: true
+permissions:
+  contents: write
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Herunterladen und ablegen
+        run: |
+          mkdir -p mus && cd mus
+          for u in ${{ inputs.urls }}; do f=$(basename "$u" | python3 -c "import sys,urllib.parse;print(urllib.parse.unquote(sys.stdin.read().strip()).replace(' ','_').replace(\"'\",''))"); curl -sL -A "Mozilla/5.0" "$u" -o "$f"; ls -la "$f"; done
+          git init -q -b mus-raw && git add -A
+          git -c user.name=bot -c user.email=bot@users.noreply.github.com commit -qm "CC0 Musik"
+          git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" mus-raw
