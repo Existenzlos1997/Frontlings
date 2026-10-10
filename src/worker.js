@@ -179,6 +179,15 @@ export class Lobby{constructor(state,env){this.state=state;this.env=env||{}}
   r.done=1;await st.put('m:'+mid,r);const lose=win===r.h?r.g:r.h,dur=Date.now()-r.ts;
   if(!r.ranked||dur<20000||!this.env.DB){this.tell(win,{t:'rk',none:1});this.tell(lose,{t:'rk',none:1});return}
   try{const x=await rateMatch(this.env.DB,win,lose);if(x){this.tell(win,{t:'rk',d:x.d,rk:x.a,lg:league(x.a)});this.tell(lose,{t:'rk',d:-x.d,rk:x.b,lg:league(x.b)})}}catch(e){}}
+ async mm1(ws,a){const ranked=!a.code,now=Date.now();let best=null,bs=1e9;
+  for(const o of this.state.getWebSockets()){if(o===ws)continue;const b=o.deserializeAttachment();if(!b||b.st!=='wait'||b.pid===a.pid||(b.code||'')!==(a.code||''))continue;if(!a.code&&(b.md||'r8')!==a.md)continue;
+   let sc=0;if(ranked){const w=Math.max(now-(a.since||now),now-(b.since||now))/1000,dR=Math.abs((b.rk||1000)-(a.rk||1000)),dP=Math.abs((b.pw==null?pwOf(b.info,b.md||'r8'):b.pw)-(a.pw||1)),dT=Math.abs(((b.info||{}).tr||0)-((a.info||{}).tr||0));
+    if(dR>Math.min(1200,150+22*w)||dP>Math.min(8,1.5+.15*w))continue;sc=dR/100+dP*1.5+dT/400}
+   if(sc<bs){bs=sc;best=o}}
+  if(!best)return false;
+  const b=best.deserializeAttachment(),mid=Math.random().toString(36).slice(2,10);b.st='play';b.partner=a.pid;b.mid=mid;a.st='play';a.partner=b.pid;a.mid=mid;b.role='host';a.role='guest';best.serializeAttachment(b);ws.serializeAttachment(a);
+  if(this.state.storage){await this.state.storage.put('m:'+mid,{h:b.pid,g:a.pid,ranked,ts:Date.now(),ch:null,cg:null,done:0});try{const al=await this.state.storage.getAlarm();if(!al)await this.state.storage.setAlarm(Date.now()+36e5)}catch(e){}}
+  const md=b.md||'r8',ai=modeInfo(a.info,md),bi=modeInfo(b.info,md);try{best.send(JSON.stringify({t:'start',role:'host',mid,ranked,md,opp:ai}));ws.send(JSON.stringify({t:'start',role:'guest',mid,ranked,md,opp:bi}))}catch(e){}return true}
  async webSocketMessage(ws,msg){let m;try{m=JSON.parse(typeof msg==='string'?msg:new TextDecoder().decode(msg))}catch(e){return}const a=ws.deserializeAttachment()||{};
   if(m.t==='find'&&m.mode==='2v2'){a.st='wait2';a.tc=String(m.tc||'').slice(0,40);a.info=m.info||{};a.info.name=a.name;a.info.id=a.pid;a.since=Date.now();ws.serializeAttachment(a);
    const solo=[],byTc={},teams=[];for(const o of this.state.getWebSockets()){const b=o.deserializeAttachment();if(!b||b.st!=='wait2')continue;if(b.tc)(byTc[b.tc]=byTc[b.tc]||[]).push(o);else solo.push(o)}
@@ -191,12 +200,9 @@ export class Lobby{constructor(state,env){this.state=state;this.env=env||{}}
   if(m.t==='trejoin'){await this.tRejoin(ws,a,m);return}
   if(m.t==='tquit'){const r=await this.tFind(a.pid,m.rid);const p=r&&r.players.find(q=>q.pid===a.pid);if(p)await this.tQuitP(r,p);if(a.st==='troom'){a.st='idle';ws.serializeAttachment(a)}return}
   if(a.st==='troom'&&typeof m.t==='string'&&m.t[0]==='t'){await this.tftMsg(ws,a,m);return}
-  if(m.t==='find'){a.st='wait';a.code=String(m.code||'').slice(0,40);a.info=m.info||{};a.info.name=a.name;a.info.rk=a.rk;a.info.id=a.pid;a.since=Date.now();ws.serializeAttachment(a);
-   const ranked=!a.code;a.md=MDS.includes(a.info.md)?a.info.md:'r8';ws.serializeAttachment(a);let best=null,bd=1e9;for(const o of this.state.getWebSockets()){if(o===ws)continue;const b=o.deserializeAttachment();if(!b||b.st!=='wait'||b.pid===a.pid||(b.code||'')!==a.code)continue;if(!a.code&&(b.md||'r8')!==a.md)continue;const d=ranked?Math.abs((b.rk||1000)-(a.rk||1000)):Math.abs(((b.info||{}).tr||0)-((a.info||{}).tr||0));if(d<bd){bd=d;best=o}}
-   if(best){const b=best.deserializeAttachment(),mid=Math.random().toString(36).slice(2,10);b.st='play';b.partner=a.pid;b.mid=mid;a.st='play';a.partner=b.pid;a.mid=mid;b.role='host';a.role='guest';best.serializeAttachment(b);ws.serializeAttachment(a);
-    if(this.state.storage){await this.state.storage.put('m:'+mid,{h:b.pid,g:a.pid,ranked,ts:Date.now(),ch:null,cg:null,done:0});try{const al=await this.state.storage.getAlarm();if(!al)await this.state.storage.setAlarm(Date.now()+36e5)}catch(e){}}
-    const md=b.md||'r8',ai=modeInfo(a.info,md),bi=modeInfo(b.info,md);try{best.send(JSON.stringify({t:'start',role:'host',mid,ranked,md,opp:ai}));ws.send(JSON.stringify({t:'start',role:'guest',mid,ranked,md,opp:bi}))}catch(e){}return}
-   try{ws.send(JSON.stringify({t:'wait'}))}catch(e){}return}
+  if(m.t==='find'){a.st='wait';a.code=String(m.code||'').slice(0,40);a.info=m.info||{};a.info.name=a.name;a.info.rk=a.rk;a.info.id=a.pid;a.since=Date.now();a.md=MDS.includes(a.info.md)?a.info.md:'r8';a.pw=pwOf(a.info,a.md);ws.serializeAttachment(a);
+   if(await this.mm1(ws,a))return;try{ws.send(JSON.stringify({t:'wait'}))}catch(e){}return}
+  if(m.t==='mm'){if(a.st==='wait')await this.mm1(ws,a);return}
   if(m.t==='watch'){let tgt=null;for(const o of this.state.getWebSockets(String(m.pid||''))){const x=o.deserializeAttachment();if(x&&x.st==='play'){tgt=x;break}}
    if(!tgt){try{ws.send('{"t":"watchfail"}')}catch(e){}return}let opp=null;for(const o of this.state.getWebSockets(tgt.partner||'')){const x=o.deserializeAttachment();if(x&&x.mid===tgt.mid){opp=x;break}}
    a.st='watch';a.wmid=tgt.mid;ws.serializeAttachment(a);try{ws.send(JSON.stringify({t:'watchok',host:tgt.role==='host',a:tgt.name,b:opp?opp.name:'Gegner',ai:tgt.info||{},bi:opp?opp.info||{}:{}}))}catch(e){}return}
@@ -273,6 +279,7 @@ export class Lobby{constructor(state,env){this.state=state;this.env=env||{}}
  async alarm(){const st=this.state.storage;if(!st)return;const all=await st.list({prefix:'m:'}),old=Date.now()-36e5,del=[];for(const [k,v] of all)if(!v||v.ts<old)del.push(k);try{const rr=await st.list({prefix:'r:'});for(const [k,v] of rr)if(!v||v.ts<Date.now()-3*36e5)del.push(k)}catch(e){}for(let i=0;i<del.length;i+=100)await st.delete(del.slice(i,i+100));if(all.size-del.length>0)await st.setAlarm(Date.now()+36e5)}}
 const MDS=['m4','r8','ms'];
 /* Spielmodus: beide Seiten spielen mit dem Deck des vereinbarten Modus */
+function pwOf(inf,md){try{const o=modeInfo(inf,md),pl=(inf&&inf.plv)||{},L=(o.deck||[]).map(k=>+pl[k]||1);const c=L.length?L.reduce((x,y)=>x+y,0)/L.length:1,t=Math.max(0,(+(inf&&inf.lv)||1)-1);return Math.round((c+t*.3)*10)/10}catch(e){return 1}}
 function modeInfo(inf,md){const o={...(inf||{})},d=o.dks&&o.dks[md];if(Array.isArray(d)&&d.length&&d.length<=8&&d.every(x=>typeof x=='string'&&x.length<24))o.deck=d;delete o.dks;o.md=md;return o}
 
 /* GitHub-Actions-Ausweis (OIDC) prüfen: nur der Bau-Ablauf im eigenen Repo bekommt den App-Signaturschlüssel */
