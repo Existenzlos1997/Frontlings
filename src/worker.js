@@ -179,6 +179,8 @@ export class Lobby{constructor(state,env){this.state=state;this.env=env||{}}
    try{ws.send(JSON.stringify({t:'wait'}))}catch(e){}return}
   if(m.t==='find'&&m.mode==='tft'){a.st='twait';a.info={name:a.name,av:String((m.info||{}).av||'').slice(0,16)};a.since=Date.now();ws.serializeAttachment(a);await this.tftTry(false);return}
   if(m.t==='tgo'){if(a.st==='twait')await this.tftTry(true);return}
+  if(m.t==='trejoin'){await this.tRejoin(ws,a,m);return}
+  if(m.t==='tquit'){const r=await this.tFind(a.pid,m.rid);const p=r&&r.players.find(q=>q.pid===a.pid);if(p)await this.tQuitP(r,p);if(a.st==='troom'){a.st='idle';ws.serializeAttachment(a)}return}
   if(a.st==='troom'&&typeof m.t==='string'&&m.t[0]==='t'){await this.tftMsg(ws,a,m);return}
   if(m.t==='find'){a.st='wait';a.code=String(m.code||'').slice(0,40);a.info=m.info||{};a.info.name=a.name;a.info.rk=a.rk;a.info.id=a.pid;a.since=Date.now();ws.serializeAttachment(a);
    const ranked=!a.code;a.md=MDS.includes(a.info.md)?a.info.md:'r8';ws.serializeAttachment(a);let best=null,bd=1e9;for(const o of this.state.getWebSockets()){if(o===ws)continue;const b=o.deserializeAttachment();if(!b||b.st!=='wait'||b.pid===a.pid||(b.code||'')!==a.code)continue;if(!a.code&&(b.md||'r8')!==a.md)continue;const d=ranked?Math.abs((b.rk||1000)-(a.rk||1000)):Math.abs(((b.info||{}).tr||0)-((a.info||{}).tr||0));if(d<bd){bd=d;best=o}}
@@ -201,7 +203,7 @@ export class Lobby{constructor(state,env){this.state=state;this.env=env||{}}
    if(a.role==='host'||m.t==='bye'||m.t==='emo')this.toWatchers(a.mid,typeof msg==='string'?msg:JSON.stringify(m),m.t==='end'||m.t==='bye');
    if(m.t==='end'||m.t==='bye'){a.st='idle';ws.serializeAttachment(a);const b=p.deserializeAttachment();b.st='idle';p.serializeAttachment(b);
     const r=await this.rec(a.mid);if(r){if(m.t==='bye')await this.settle(a.mid,{force:a.pid===r.h?r.g:r.h});else if(a.pid===r.h)await this.settle(a.mid,{ch:m.w?r.h:r.g})}}}}
- async webSocketClose(ws){const a0=ws.deserializeAttachment();if(a0&&a0.st==='troom'){await this.tftGone(a0);return}if(a0&&a0.st==='play2'){const others=this.grp2(a0);a0.st='idle';try{ws.serializeAttachment(a0)}catch(e){}
+ async webSocketClose(ws){const a0=ws.deserializeAttachment();if(a0&&a0.st==='troom'){await this.tftGone(a0,ws);return}if(a0&&a0.st==='play2'){const others=this.grp2(a0);a0.st='idle';try{ws.serializeAttachment(a0)}catch(e){}
    if(a0.slot===0){for(const o of others){try{o.send('{"t":"left"}')}catch(e){}const x=o.deserializeAttachment();x.st='idle';o.serializeAttachment(x)}}else{const h=others.find(o=>o.deserializeAttachment().slot===0);if(h){try{h.send(JSON.stringify({t:'bye',sl:a0.slot}))}catch(e){}}}return}
   const a=ws.deserializeAttachment();if(a&&a.st==='play'){a.st='idle';try{ws.serializeAttachment(a)}catch(e){}this.toWatchers(a.mid,'{"t":"left"}',1);const p=this.partner(a);if(p){try{p.send('{"t":"left"}')}catch(e){}const b=p.deserializeAttachment();b.st='idle';p.serializeAttachment(b)}
    const r=await this.rec(a.mid);if(r&&!r.done)await this.settle(a.mid,{force:a.pid===r.h?r.g:r.h})}}
@@ -228,8 +230,8 @@ export class Lobby{constructor(state,env){this.state=state;this.env=env||{}}
    if(!win)me.hp-=dmg;else{const o=r.pairs[a.slot];if(o!=null&&o>=0){const op=r.players[o];if(op&&(op.gone||op.bot)&&op.alive)op.hp-=dmg}}await this.tCheckRes(r);return}
   if(m.t==='tbots'){if(r.phase!=='plan'||m.round!==r.round)return;const bs=m.boards||{};for(const p of r.players){if(p.bot&&p.alive&&bs[p.slot]){const b=this.tBoard(bs[p.slot]);r.ready[p.slot]=b;r.last[p.slot]=b}}await this.tCheckReady(r);return}
   if(m.t==='tnudge'){if(r.phase!=='plan'||!r.rt||Date.now()-r.rt<75000||!r.ready[a.slot])return;const auto=[];for(const p of r.players){if(p.alive&&!p.gone&&!p.bot&&!r.ready[p.slot]){r.ready[p.slot]=r.last[p.slot]||[];auto.push(p.slot)}}if(auto.length)this.tSend(r,{t:'tauto',slots:auto});await this.tCheckReady(r);return}
-  if(m.t==='tleave'){a.st='idle';ws.serializeAttachment(a);await this.tftGone({...a,st:'troom'});return}}
- async tCheckReady(r){const need=r.players.filter(p=>p.alive&&!p.gone&&!p.bot);if(!need.length){await this.tDel(r.rid);return}if(!need.every(p=>r.ready[p.slot])){await this.tSave(r);return}
+  if(m.t==='tleave'){a.st='idle';ws.serializeAttachment(a);await this.tQuitP(r,me);return}}
+ async tCheckReady(r){const need=r.players.filter(p=>p.alive&&!p.gone&&!p.bot);if(!need.length){await this.tSave(r);return}if(!need.every(p=>r.ready[p.slot])){await this.tSave(r);return}
   const al=r.players.filter(p=>p.alive).map(p=>p.slot).sort(()=>Math.random()-.5),pairs={};for(let i=0;i+1<al.length;i+=2){pairs[al[i]]=al[i+1];pairs[al[i+1]]=al[i]}let gh=null;
   if(al.length%2){const z=al[al.length-1],others=al.filter(s=>s!==z);pairs[z]=-1;gh=others.length?others[Math.floor(Math.random()*others.length)]:null}
   r.pairs=pairs;r.res={};r.phase='fight';await this.tSave(r);
@@ -240,12 +242,24 @@ export class Lobby{constructor(state,env){this.state=state;this.env=env||{}}
   dying.forEach((p,i)=>{p.alive=0;p.place=after>0?after+1+i:1+i});const rest=r.players.filter(p=>p.alive);if(rest.length===1)rest[0].place=1;
   for(const p of dying)if(!p.gone)this.tSend(r,{t:'tend',place:p.place},p.slot);
   if(rest.length<=1){if(rest.length===1&&!rest[0].gone)this.tSend(r,{t:'tend',place:1},rest[0].slot);await this.tDel(r.rid);return}
-  const hum=rest.filter(p=>!p.gone&&!p.bot);if(hum.length===1&&!rest.some(p=>p.bot)){rest.filter(p=>p.gone).sort((x,y)=>y.hp-x.hp).forEach((p,i)=>{p.alive=0;p.place=2+i});hum[0].place=1;this.tSend(r,{t:'tend',place:1},hum[0].slot);await this.tDel(r.rid);return}
-  if(!rest.some(p=>!p.gone&&!p.bot)){await this.tDel(r.rid);return}const bh=r.players.find(p=>!p.gone&&!p.bot&&p.alive)||r.players.find(p=>!p.gone&&!p.bot);r.bh=bh?bh.slot:-1;
+  const hum=rest.filter(p=>!p.gone&&!p.bot);if(hum.length===1&&!rest.some(p=>p.bot)&&rest.every(p=>!p.gone||Date.now()-(p.goneAt||0)>120000)){rest.filter(p=>p.gone).sort((x,y)=>(y.goneAt||0)-(x.goneAt||0)).forEach((p,i)=>{p.alive=0;p.place=2+i});hum[0].place=1;this.tSend(r,{t:'tend',place:1},hum[0].slot);await this.tDel(r.rid);return}
+  const bh=r.players.find(p=>!p.gone&&!p.bot&&p.alive)||r.players.find(p=>!p.gone&&!p.bot);r.bh=bh?bh.slot:-1;
   r.round++;r.phase='plan';r.ready={};r.res={};r.pairs={};r.rt=0;await this.tSave(r);
   this.tSend(r,{t:'tstate',round:r.round,bh:r.bh,players:r.players.map(p=>({slot:p.slot,hp:Math.max(0,p.hp),alive:p.alive,gone:p.gone,place:p.place,bot:p.bot?1:0}))})}
- async tftGone(a){const r=await this.tLoad(a.rid);if(!r)return;const p=r.players[a.slot];if(!p||p.gone)return;p.gone=1;this.tSend(r,{t:'tgone',slot:a.slot});
-  if(!r.players.some(q=>!q.gone&&!q.bot)){await this.tDel(r.rid);return}if(r.bh===a.slot){const nb=r.players.find(q=>!q.gone&&!q.bot);r.bh=nb?nb.slot:-1;if(nb)this.tSend(r,{t:'tbh',bh:r.bh,round:r.round})}if(r.phase==='plan')await this.tCheckReady(r);else await this.tCheckRes(r)}
+ async tFind(pid,rid){let r=rid?await this.tLoad(String(rid).slice(0,16)):null;if(r&&r.players&&r.players.some(q=>q.pid===pid))return r;r=null;try{const rr=await this.state.storage.list({prefix:'r:'});for(const [k,v] of rr){if(String(k).startsWith('r:')&&v&&v.players&&v.players.some(q=>q.pid===pid&&!q.quit)){if(!r||(v.ts||0)>(r.ts||0))r=v}}}catch(e){}return r}
+ async tQuitP(r,p){if(!r||!p||p.quit)return;p.quit=1;p.gone=1;p.goneAt=Date.now();if(p.alive){p.place=r.players.filter(q=>q.alive).length;p.alive=0}this.tSend(r,{t:'tgone',slot:p.slot,q:1});
+  if(!r.players.some(q=>!q.gone&&!q.bot)){await this.tDel(r.rid);return}if(r.bh===p.slot){const nb=r.players.find(q=>!q.gone&&!q.bot);r.bh=nb?nb.slot:-1;if(nb)this.tSend(r,{t:'tbh',bh:r.bh,round:r.round})}
+  const al=r.players.filter(q=>q.alive);if(al.length===1){al[0].place=1;al[0].alive=0;if(!al[0].gone)this.tSend(r,{t:'tend',place:1},al[0].slot);await this.tDel(r.rid);return}
+  if(r.phase==='plan')await this.tCheckReady(r);else await this.tCheckRes(r)}
+ async tRejoin(ws,a,m){const r=await this.tFind(a.pid,m.rid);const p=r&&r.players.find(q=>q.pid===a.pid);if(!r||!p||p.quit){try{ws.send(p&&p.place?JSON.stringify({t:'tend',place:p.place,rj:1}):'{"t":"tnorej"}')}catch(e){}return}
+  if(!p.alive){try{ws.send(JSON.stringify({t:'tend',place:p.place||4,rj:1}))}catch(e){}return}
+  for(const w of this.state.getWebSockets(a.pid)){if(w===ws)continue;const x=w.deserializeAttachment();if(x&&x.st==='troom'&&x.rid===r.rid){x.st='idle';try{w.serializeAttachment(x)}catch(e){}}}
+  p.gone=0;delete p.goneAt;a.st='troom';a.rid=r.rid;a.slot=p.slot;ws.serializeAttachment(a);const bhg=r.bh==null||r.bh<0||!r.players[r.bh]||r.players[r.bh].gone||r.players[r.bh].bot;if(bhg)r.bh=p.slot;await this.tSave(r);
+  try{ws.send(JSON.stringify({t:'tresume',rid:r.rid,slot:p.slot,round:r.round,phase:r.phase,bh:r.bh,ready:!!r.ready[p.slot],res:!!r.res[p.slot],board:r.last[p.slot]||[],players:r.players.map(q=>({slot:q.slot,name:q.name,av:q.av,bot:q.bot?1:0,hp:Math.max(0,q.hp),alive:q.alive,gone:q.gone,place:q.place}))}))}catch(e){}
+  for(const q of r.players)if(q!==p)this.tSend(r,{t:'tback',slot:p.slot},q.slot);if(bhg)this.tSend(r,{t:'tbh',bh:r.bh,round:r.round});
+  if(r.phase==='fight'&&!r.res[p.slot]&&r.pairs&&r.pairs[p.slot]!=null){const o=r.pairs[p.slot];let src=o;if(o<0){const others=r.players.filter(q=>q.alive&&q.slot!==p.slot);src=others.length?others[0].slot:null}const op=src!=null?r.players[src]:null;this.tSend(r,{t:'tfight',round:r.round,oslot:o,ghost:o<0,oname:op?op.name:'Schatten',oav:op?op.av:'',board:src!=null?(r.ready[src]||r.last[src]||[]):[]},p.slot)}}
+ async tftGone(a,ws0){const r=await this.tLoad(a.rid);if(!r)return;const p=r.players[a.slot];if(!p||p.gone)return;for(const w of this.state.getWebSockets(p.pid)){if(w===ws0)continue;const x=w.deserializeAttachment();if(x&&x.st==='troom'&&x.rid===r.rid&&!w.closed&&w.readyState!==3&&w.readyState!==2)return}p.gone=1;p.goneAt=Date.now();this.tSend(r,{t:'tgone',slot:a.slot});
+  if(!r.players.some(q=>!q.gone&&!q.bot)){await this.tSave(r);return}if(r.bh===a.slot){const nb=r.players.find(q=>!q.gone&&!q.bot);r.bh=nb?nb.slot:-1;if(nb)this.tSend(r,{t:'tbh',bh:r.bh,round:r.round})}if(r.phase==='plan')await this.tCheckReady(r);else await this.tCheckRes(r)}
  async webSocketError(ws){await this.webSocketClose(ws)}
  async alarm(){const st=this.state.storage;if(!st)return;const all=await st.list({prefix:'m:'}),old=Date.now()-36e5,del=[];for(const [k,v] of all)if(!v||v.ts<old)del.push(k);try{const rr=await st.list({prefix:'r:'});for(const [k,v] of rr)if(!v||v.ts<Date.now()-3*36e5)del.push(k)}catch(e){}for(let i=0;i<del.length;i+=100)await st.delete(del.slice(i,i+100));if(all.size-del.length>0)await st.setAlarm(Date.now()+36e5)}}
 const MDS=['m4','r8','ms'];
